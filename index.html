@@ -18,7 +18,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        input, button {
+        input, button, select {
             display: block;
             width: 100%;
             margin: 10px 0;
@@ -51,6 +51,9 @@
             text-decoration: none;
             border-radius: 5px;
         }
+        .option-label {
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -60,6 +63,22 @@
         <input type="file" id="imageInput" accept="image/*" placeholder="Select Background Image">
         <img id="preview" alt="Image Preview">
         
+        <div>
+            <label for="imageRatio" class="option-label">Select Image Ratio</label>
+            <select id="imageRatio">
+                <option value="full">Full Screen</option>
+                <option value="square">Square</option>
+                <option value="rectangle">Rectangle</option>
+                <option value="circle">Circle</option>
+                <option value="triangle">Triangle</option>
+            </select>
+        </div>
+        
+        <div>
+            <label for="customText" class="option-label">Custom Text Below Image</label>
+            <input type="text" id="customText" placeholder="Enter custom text here">
+        </div>
+
         <input type="file" id="audioInput" accept="audio/*" placeholder="Select Audio">
         <audio id="audioPlayer" controls></audio>
         
@@ -93,6 +112,7 @@
                 this.audioFile = null;
                 this.audioContext = null;
                 this.audioDuration = 0;
+                this.customText = '';
 
                 this.setupEventListeners();
             }
@@ -101,6 +121,9 @@
                 this.imageInput.addEventListener('change', (e) => this.handleImageUpload(e));
                 this.audioInput.addEventListener('change', (e) => this.handleAudioUpload(e));
                 this.convertBtn.addEventListener('click', () => this.convertToVideo());
+                document.getElementById('customText').addEventListener('input', (e) => {
+                    this.customText = e.target.value;
+                });
             }
 
             handleImageUpload(e) {
@@ -201,9 +224,22 @@
                     await new Promise(resolve => img.onload = resolve);
 
                     // Setup canvas
-                    this.renderCanvas.width = img.width;
-                    this.renderCanvas.height = img.height;
-                    
+                    const ratio = document.getElementById('imageRatio').value;
+                    if (ratio === 'square') {
+                        this.renderCanvas.width = this.renderCanvas.height = Math.min(img.width, img.height);
+                    } else if (ratio === 'rectangle') {
+                        this.renderCanvas.width = img.width;
+                        this.renderCanvas.height = img.height * 0.75;
+                    } else if (ratio === 'circle') {
+                        this.renderCanvas.width = this.renderCanvas.height = Math.min(img.width, img.height);
+                    } else if (ratio === 'triangle') {
+                        this.renderCanvas.width = img.width;
+                        this.renderCanvas.height = img.height;
+                    } else {
+                        this.renderCanvas.width = img.width;
+                        this.renderCanvas.height = img.height;
+                    }
+
                     const totalFrames = Math.floor(this.audioDuration * 30); // 30 FPS
                     const frameInterval = 1000 / 30; // 30 FPS
 
@@ -259,18 +295,37 @@
                         }
                     }, 100);
 
-                    // Fill canvas with repeated image for each frame
+                    // Fill canvas with the selected layout
                     const drawFrame = () => {
                         const currentTime = (Date.now() - startTime) / 1000;
                         if (currentTime < this.audioDuration) {
-                            // Repeat the image
-                            const cols = Math.ceil(this.renderCanvas.width / img.width);
-                            const rows = Math.ceil(this.renderCanvas.height / img.height);
-                            for (let i = 0; i < cols; i++) {
-                                for (let j = 0; j < rows; j++) {
-                                    this.renderCtx.drawImage(img, i * img.width, j * img.height);
-                                }
+                            // Draw according to the selected layout
+                            const ratio = document.getElementById('imageRatio').value;
+                            this.renderCtx.clearRect(0, 0, this.renderCanvas.width, this.renderCanvas.height);
+
+                            if (ratio === 'circle') {
+                                this.renderCtx.beginPath();
+                                this.renderCtx.arc(this.renderCanvas.width / 2, this.renderCanvas.height / 2, Math.min(this.renderCanvas.width, this.renderCanvas.height) / 2, 0, Math.PI * 2);
+                                this.renderCtx.clip();
+                            } else if (ratio === 'triangle') {
+                                this.renderCtx.beginPath();
+                                this.renderCtx.moveTo(this.renderCanvas.width / 2, 0);
+                                this.renderCtx.lineTo(0, this.renderCanvas.height);
+                                this.renderCtx.lineTo(this.renderCanvas.width, this.renderCanvas.height);
+                                this.renderCtx.closePath();
+                                this.renderCtx.clip();
                             }
+
+                            this.renderCtx.drawImage(img, 0, 0, this.renderCanvas.width, this.renderCanvas.height);
+                            
+                            // Custom text if provided
+                            if (this.customText) {
+                                this.renderCtx.font = '30px Arial';
+                                this.renderCtx.fillStyle = '#fff';
+                                this.renderCtx.textAlign = 'center';
+                                this.renderCtx.fillText(this.customText, this.renderCanvas.width / 2, this.renderCanvas.height - 30);
+                            }
+
                             // Draw next frame
                             requestAnimationFrame(drawFrame);
                         }
