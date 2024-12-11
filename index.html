@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Length Video Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        input, button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+        }
+        #preview, #waveformCanvas {
+            max-width: 100%;
+            max-height: 200px;
+            margin: 10px 0;
+        }
+        #progressBar {
+            width: 0%;
+            height: 20px;
+            background-color: #4CAF50;
+            border-radius: 5px;
+            transition: width 0.5s;
+        }
+        #status {
+            text-align: center;
+            margin-top: 10px;
+            color: #666;
+        }
+        #downloadLink {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Audio Length Video Converter</h1>
+        
+        <input type="file" id="imageInput" accept="image/*" placeholder="Select Background Image">
+        <img id="preview" alt="Image Preview">
+        
+        <input type="file" id="audioInput" accept="audio/*" placeholder="Select Audio">
+        <audio id="audioPlayer" controls></audio>
+        
+        <canvas id="waveformCanvas" width="600" height="100"></canvas>
+        
+        <button id="convertBtn" disabled>Convert to Video</button>
+        
+        <div id="progressBar"></div>
+        <div id="status">Ready to convert</div>
+        <a id="downloadLink" style="display:none;">Download Video</a>
+    </div>
+
+    <canvas id="renderCanvas" style="display:none;"></canvas>
+
+    <script>
+        class AudioVideoConverter {
+            constructor() {
+                this.imageInput = document.getElementById('imageInput');
+                this.audioInput = document.getElementById('audioInput');
+                this.preview = document.getElementById('preview');
+                this.audioPlayer = document.getElementById('audioPlayer');
+                this.waveformCanvas = document.getElementById('waveformCanvas');
+                this.convertBtn = document.getElementById('convertBtn');
+                this.status = document.getElementById('status');
+                this.progressBar = document.getElementById('progressBar');
+                this.downloadLink = document.getElementById('downloadLink');
+                this.renderCanvas = document.getElementById('renderCanvas');
+                this.renderCtx = this.renderCanvas.getContext('2d');
+
+                this.imageFile = null;
+                this.audioFile = null;
+                this.audioContext = null;
+                this.audioDuration = 0;
+
+                this.setupEventListeners();
+            }
+
+            setupEventListeners() {
+                this.imageInput.addEventListener('change', (e) => this.handleImageUpload(e));
+                this.audioInput.addEventListener('change', (e) => this.handleAudioUpload(e));
+                this.convertBtn.addEventListener('click', () => this.convertToVideo());
+            }
+
+            handleImageUpload(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (event) => {
+                        this.preview.src = event.target.result;
+                        this.imageFile = file;
+                        this.checkReadyToConvert();
+                    }
+                    reader.readAsDataURL(file);
+                }
+            }
+
+            async handleAudioUpload(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = async (event) => {
+                        this.audioPlayer.src = event.target.result;
+                        this.audioFile = file;
+
+                        // Process audio for waveform and duration
+                        await this.processAudio(event.target.result);
+                        this.checkReadyToConvert();
+                    }
+                    reader.readAsDataURL(file);
+                }
+            }
+
+            async processAudio(audioSrc) {
+                // Create audio context and analyze audio
+                this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const response = await fetch(audioSrc);
+                const arrayBuffer = await response.arrayBuffer();
+                const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
+                
+                // Get duration
+                this.audioDuration = audioBuffer.duration;
+
+                // Draw waveform
+                this.drawAudioWaveform(audioBuffer);
+            }
+
+            drawAudioWaveform(audioBuffer) {
+                const ctx = this.waveformCanvas.getContext('2d');
+                const width = this.waveformCanvas.width;
+                const height = this.waveformCanvas.height;
+                
+                ctx.clearRect(0, 0, width, height);
+                ctx.fillStyle = 'rgba(0,0,0,0.1)';
+                ctx.fillRect(0, 0, width, height);
+
+                // Get audio data
+                const channelData = audioBuffer.getChannelData(0);
+                const step = Math.ceil(channelData.length / width);
+                
+                ctx.beginPath();
+                ctx.strokeStyle = '#4CAF50';
+                ctx.lineWidth = 2;
+
+                for (let i = 0; i < width; i++) {
+                    let min = 1.0;
+                    let max = -1.0;
+                    for (let j = 0; j < step; j++) {
+                        const datum = channelData[(i * step) + j];
+                        if (datum < min) min = datum;
+                        if (datum > max) max = datum;
+                    }
+                    
+                    ctx.moveTo(i, (1 + min) * height / 2);
+                    ctx.lineTo(i, (1 + max) * height / 2);
+                }
+                
+                ctx.stroke();
+            }
+
+            checkReadyToConvert() {
+                this.convertBtn.disabled = !(this.imageFile && this.audioFile);
+            }
+
+            updateProgress(percentage) {
+                this.progressBar.style.width = `${percentage}%`;
+                this.status.textContent = `Converting: ${percentage.toFixed(2)}%`;
+            }
+
+            async convertToVideo() {
+                try {
+                    // Reset UI
+                    this.downloadLink.style.display = 'none';
+                    this.convertBtn.disabled = true;
+                    this.updateProgress(0);
+
+                    // Prepare image
+                    const img = new Image();
+                    img.src = URL.createObjectURL(this.imageFile);
+                    await new Promise(resolve => img.onload = resolve);
+
+                    // Setup canvas
+                    this.renderCanvas.width = img.width;
+                    this.renderCanvas.height = img.height;
+                    
+                    const totalFrames = Math.floor(this.audioDuration * 30); // 30 FPS
+                    const frameInterval = 1000 / 30; // 30 FPS
+
+                    // Prepare video stream
+                    const stream = this.renderCanvas.captureStream(30);
+
+                    // Prepare audio
+                    const audioSource = this.audioContext.createBufferSource();
+                    const audioBuffer = await this.audioContext.decodeAudioData(
+                        await this.audioFile.arrayBuffer()
+                    );
+                    audioSource.buffer = audioBuffer;
+
+                    // Create audio destination
+                    const audioDestination = this.audioContext.createMediaStreamDestination();
+                    audioSource.connect(audioDestination);
+
+                    // Add audio track to video stream
+                    stream.addTrack(audioDestination.stream.getAudioTracks()[0]);
+
+                    // Prepare recorder
+                    const mediaRecorder = new MediaRecorder(stream, {
+                        mimeType: 'video/webm'
+                    });
+
+                    const chunks = [];
+                    mediaRecorder.ondataavailable = (e) => chunks.push(e.data);
+
+                    // Promise to handle recording
+                    const recordingPromise = new Promise((resolve) => {
+                        mediaRecorder.onstop = () => {
+                            const blob = new Blob(chunks, { type: 'video/mp4' });
+                            resolve(blob);
+                        };
+                    });
+
+                    // Start recording
+                    mediaRecorder.start();
+                    audioSource.start();
+
+                    // Draw the image repeatedly for the video duration
+                    const startTime = Date.now();
+                    const progressInterval = setInterval(() => {
+                        const elapsedTime = (Date.now() - startTime) / 1000;
+                        const progressPercentage = Math.min(
+                            100, 
+                            (elapsedTime / this.audioDuration) * 100
+                        );
+                        this.updateProgress(progressPercentage);
+
+                        if (elapsedTime >= this.audioDuration) {
+                            clearInterval(progressInterval);
+                        }
+                    }, 100);
+
+                    // Fill canvas with repeated image for each frame
+                    const drawFrame = () => {
+                        const currentTime = (Date.now() - startTime) / 1000;
+                        if (currentTime < this.audioDuration) {
+                            // Repeat the image
+                            const cols = Math.ceil(this.renderCanvas.width / img.width);
+                            const rows = Math.ceil(this.renderCanvas.height / img.height);
+                            for (let i = 0; i < cols; i++) {
+                                for (let j = 0; j < rows; j++) {
+                                    this.renderCtx.drawImage(img, i * img.width, j * img.height);
+                                }
+                            }
+                            // Draw next frame
+                            requestAnimationFrame(drawFrame);
+                        }
+                    };
+
+                    // Start drawing frames
+                    drawFrame();
+
+                    // Stop after audio duration
+                    setTimeout(async () => {
+                        mediaRecorder.stop();
+                        audioSource.stop();
+
+                        // Get video blob
+                        const videoBlob = await recordingPromise;
+                        
+                        // Create download link
+                        const url = URL.createObjectURL(videoBlob);
+                        this.downloadLink.href = url;
+                        this.downloadLink.download = 'converted_video.mp4';
+                        this.downloadLink.style.display = 'block';
+                        
+                        this.status.textContent = 'Conversion Complete!';
+                        this.convertBtn.disabled = false;
+                    }, this.audioDuration * 1000);
+
+                } catch (error) {
+                    console.error(error);
+                    this.status.textContent = `Error: ${error.message}`;
+                    this.convertBtn.disabled = false;
+                }
+            }
+        }
+
+        // Initialize the converter
+        const converter = new AudioVideoConverter();
+    </script>
+</body>
+</html>
