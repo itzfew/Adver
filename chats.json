@@ -1,7 +1,7 @@
 [
     {
         "name": "Mom",
-        "image": "https://via.placeholder.com/30",
+        "image": "https://gravatar.com/images/homepage/avatar-01.png",
         "messages": [
             { "type": "received", "text": "Where have you been for the past six days? You didn’t even tell me you were leaving! I’ve been worried sick." },
             { "type": "sent", "text": "Mom, I’m really sorry. I didn’t mean to worry you. I had to sort out some things for school, but I should’ve told you." },
