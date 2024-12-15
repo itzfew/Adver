@@ -227,7 +227,8 @@
             const lineHeight = fontSize * 1.4;  // Increase line spacing for better readability
             const maxWidth = canvas.width - 40; // Some padding
 
-            let y = 20; // Start from the top with a padding
+            let totalTextHeight = lines.length * lineHeight;  // Calculate the total height of the text
+            let y = (canvas.height - totalTextHeight) / 2;    // Center the text vertically
 
             // Draw each line of text
             for (let i = 0; i < lines.length; i++) {
