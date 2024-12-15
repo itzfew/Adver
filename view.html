@@ -49,7 +49,7 @@
 
         // Get the 'text' parameter from the URL and display it
         const postText = decodeURIComponent(getQueryParameter('text'));
-        document.getElementById('postText').innerText = postText;
+        document.getElementById('postText').innerHTML = postText;
     </script>
 </body>
 </html>
