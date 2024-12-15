@@ -229,6 +229,10 @@
 </head>
 <body>
 
+    <!-- Add Audio Elements -->
+    <audio id="message-sent-sound" src="https://bigsoundbank.com/UPLOAD/wav-en/1313.wav"></audio>
+    <audio id="message-received-sound" src="https://bigsoundbank.com/UPLOAD/wav-en/1313.wav"></audio>
+
     <div id="contact-list-container">
         <!-- Contact List Header -->
         <div class="contact-list-header">
@@ -287,6 +291,9 @@
         const chatName = document.getElementById('chat-name');
         const contactListContainer = document.getElementById('contact-list-container');
         
+        const messageSentSound = document.getElementById('message-sent-sound');
+        const messageReceivedSound = document.getElementById('message-received-sound');
+        
         let contacts = [];
         let currentChat = null;
 
@@ -339,6 +346,7 @@
                 
                 if (message.type === 'received') {
                     await showTypingIndicator(message.text);
+                    messageReceivedSound.play(); // Play received message sound
                 }
                 
                 await sendMessage(message); // Send the received message
@@ -376,6 +384,10 @@
             messageElement.innerText = message.text;
             chatBox.appendChild(messageElement);
             chatBox.scrollTop = chatBox.scrollHeight;
+
+            if (message.type === 'sent') {
+                messageSentSound.play(); // Play sent message sound
+            }
         }
 
         // Simulate typing a message (user message in input field)
