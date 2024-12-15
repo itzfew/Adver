@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Chat Simulation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* General Styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e5ddd5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #main-container {
+            width: 90%;
+            max-width: 800px;
+            height: 90%;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        /* Contact List */
+        #contact-list {
+            width: 30%;
+            background: #f8f9fa;
+            border-right: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .contact {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .contact:hover {
+            background: #e0e0e0;
+        }
+
+        .contact img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .contact .name {
+            font-weight: bold;
+        }
+
+        /* Chat Area */
+        #chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #chat-header {
+            background-color: #075e54;
+            color: white;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        #chat-header .profile {
+            display: flex;
+            align-items: center;
+        }
+
+        #chat-header img {
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        #chat-header .name {
+            font-weight: bold;
+        }
+
+        #chat-box {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            background: #e5ddd5;
+        }
+
+        .message {
+            max-width: 80%;
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            word-wrap: break-word;
+        }
+
+        .message.sent {
+            background-color: #dcf8c6;
+            align-self: flex-end;
+        }
+
+        .message.received {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            align-self: flex-start;
+        }
+
+        #input-box {
+            display: flex;
+            padding: 10px;
+            background-color: #f0f0f0;
+        }
+
+        #message-input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 20px;
+            border: 1px solid #ddd;
+        }
+
+        #send-btn {
+            margin-left: 10px;
+            cursor: pointer;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main-container">
+        <!-- Contact List -->
+        <div id="contact-list"></div>
+
+        <!-- Chat Container -->
+        <div id="chat-container">
+            <div id="chat-header">
+                <div class="profile">
+                    <img src="" alt="Profile Picture" id="profile-pic">
+                    <span class="name" id="chat-name">Select a Contact</span>
+                </div>
+            </div>
+            <div id="chat-box"></div>
+            <div id="input-box">
+                <input type="text" id="message-input" placeholder="Type a message..." disabled>
+                <i class="fas fa-paper-plane" id="send-btn"></i>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const contactList = document.getElementById('contact-list');
+        const chatBox = document.getElementById('chat-box');
+        const inputBox = document.getElementById('message-input');
+        const chatName = document.getElementById('chat-name');
+        const profilePic = document.getElementById('profile-pic');
+        const sendButton = document.getElementById('send-btn');
+
+        let currentChat = null;
+
+        // Load chats from JSON
+        fetch('chats.json')
+            .then(response => response.json())
+            .then(chats => {
+                chats.forEach((chat, index) => {
+                    const contact = document.createElement('div');
+                    contact.classList.add('contact');
+                    contact.innerHTML = `
+                        <img src="${chat.image}" alt="Profile">
+                        <span class="name">${chat.name}</span>
+                    `;
+                    contact.addEventListener('click', () => loadChat(chat));
+                    contactList.appendChild(contact);
+                });
+            });
+
+        // Load Chat
+        function loadChat(chat) {
+            currentChat = chat;
+            chatName.innerText = chat.name;
+            profilePic.src = chat.image;
+            inputBox.disabled = false;
+            chatBox.innerHTML = '';
+
+            chat.messages.forEach(message => {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message', message.type);
+                messageElement.innerText = message.text;
+                chatBox.appendChild(messageElement);
+            });
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Send Message
+        sendButton.addEventListener('click', () => {
+            const messageText = inputBox.value.trim();
+            if (!messageText || !currentChat) return;
+
+            const newMessage = { type: 'sent', text: messageText };
+            currentChat.messages.push(newMessage);
+
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', 'sent');
+            messageElement.innerText = messageText;
+            chatBox.appendChild(messageElement);
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+            inputBox.value = '';
+        });
+    </script>
+</body>
+</html>
