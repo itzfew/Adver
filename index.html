@@ -24,25 +24,95 @@
             margin: 0;
         }
 
-        #chat-container {
+        #contact-list-container, #chat-container {
             width: 100%;
             height: 100%;
             max-width: 100%;
-            max-height: 100%;
             background-color: white;
-            border-radius: 10px;
+            border-radius: 1px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
         }
 
-        /* Chat Header (Profile and Name) */
+        /* Contact List Styles */
+        #contact-list {
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: background 0.2s;
+        }
+
+        .contact-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .contact-item img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+        }
+
+        .contact-item .name {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .contact-item .last-message {
+            font-size: 14px;
+            color: #888;
+        }
+
+        /* Contact List Header (Search, Plus, and Menu) */
+        .contact-list-header {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            background-color: #075e54;
+            color: white;
+            align-items: center;
+        }
+
+        .contact-list-header .icons i {
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        #search-input {
+            width: 80%;
+            padding: 10px;
+            border-radius: 20px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            outline: none;
+        }
+
+        /* Chat Styles */
+        #chat-container {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        /* Chat Header (Profile, Back, and Menu) */
         .chat-header {
             background-color: #075e54;
             color: white;
             padding: 10px;
             display: flex;
             align-items: center;
+          
             justify-content: space-between;
             font-size: 16px;
         }
@@ -61,6 +131,12 @@
 
         .chat-header .name {
             font-weight: bold;
+          margin-right: 10px;
+        }
+
+        .chat-header .back-btn {
+            font-size: 20px;
+            cursor: pointer;
         }
 
         /* Chat Messages Area */
@@ -118,67 +194,61 @@
             outline: none;
         }
 
-        .icons {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
         .icons i {
             font-size: 20px;
+           margin-right: 10px;
             cursor: pointer;
         }
+/* Style for the Plus Button */
+#add-contact-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    background-color: #25d366;
+    color: white;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    z-index: 100;
+    transition: transform 0.2s ease-in-out;
+}
 
-        /* Contact List */
-        #contact-list {
-            width: 300px;
-            background-color: #fff;
-            overflow-y: auto;
-            border-radius: 10px;
-            padding: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+#add-contact-btn:hover {
+    transform: scale(1.1);
+}
 
-        .contact-item {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            transition: background 0.2s;
-        }
-
-        .contact-item:hover {
-            background-color: #f0f0f0;
-        }
-
-        .contact-item img {
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            margin-right: 10px;
-        }
-
-        .contact-item .name {
-            font-weight: bold;
-        }
-
-        .contact-item .last-message {
-            font-size: 12px;
-            color: #888;
-        }
-
+#add-contact-btn i {
+    font-size: 24px;
+}
     </style>
 </head>
 <body>
-    <div id="contact-list">
-        <!-- Contact list will be rendered here -->
+
+    <div id="contact-list-container">
+        <!-- Contact List Header -->
+        <div class="contact-list-header">
+            <input type="text" id="search-input" placeholder="Search..." oninput="filterContacts()">
+            <div class="icons">
+                <i class="fas fa-plus-circle" id="add-contact-btn"></i>
+                <i class="fas fa-ellipsis-v" id="menu-btn"></i>
+            </div>
+        </div>
+        
+        <!-- Contact List -->
+        <div id="contact-list">
+            <!-- Contacts will be appended here -->
+        </div>
     </div>
 
-    <div id="chat-container" style="display: none;">
-        <!-- Chat Header (User Profile) -->
+    <div id="chat-container">
+        <!-- Chat Header (Profile, Back Button) -->
         <div class="chat-header">
+            <i class="fas fa-arrow-left back-btn" onclick="backToContacts()"></i>
             <div class="profile">
                 <img src="https://via.placeholder.com/30" alt="User Profile" id="chat-profile-img">
                 <span class="name" id="chat-name">Farhad</span>
@@ -208,25 +278,30 @@
 
     <script>
         const contactListDiv = document.getElementById('contact-list');
+        const searchInput = document.getElementById('search-input');
         const chatBox = document.getElementById('chat-box');
         const inputBox = document.getElementById('message-input');
         const sendButton = document.getElementById('send-btn');
         const chatContainer = document.getElementById('chat-container');
         const chatProfileImg = document.getElementById('chat-profile-img');
         const chatName = document.getElementById('chat-name');
-
+        const contactListContainer = document.getElementById('contact-list-container');
+        
+        let contacts = [];
         let currentChat = null;
 
-        // Fetch chat data from the JSON
+        // Fetch contact data from a JSON source (For demo purposes, using static data)
         async function fetchChats() {
             const response = await fetch('https://raw.githubusercontent.com/itzfew/Adver/refs/heads/main/chats.json');
             const data = await response.json();
-            renderContacts(data);
+            contacts = data;
+            renderContacts(contacts);
         }
 
         // Render contacts in the contact list
-        function renderContacts(data) {
-            data.forEach(contact => {
+        function renderContacts(contactList) {
+            contactListDiv.innerHTML = ''; // Clear the contact list before rendering
+            contactList.forEach(contact => {
                 const contactElement = document.createElement('div');
                 contactElement.classList.add('contact-item');
                 contactElement.innerHTML = `
@@ -244,33 +319,34 @@
         // Start a chat with the selected contact
         function startChat(contact) {
             currentChat = contact;
-            contactListDiv.style.display = 'none';
+            contactListContainer.style.display = 'none';
             chatContainer.style.display = 'flex';
             chatProfileImg.src = contact.profilePic;
             chatName.textContent = contact.name;
             chatBox.innerHTML = '';
             inputBox.disabled = false;
 
-            simulateConversation(contact.messages);
+            // Wait 2 seconds before starting the conversation
+            setTimeout(() => {
+                simulateConversation(contact.messages);
+            }, 2000); // 2-second delay
         }
 
-        // Simulate the conversation based on the selected contact's messages
+        // Simulate conversation for the selected contact
         async function simulateConversation(messages) {
             for (let i = 0; i < messages.length; i++) {
-                if (messages[i].type === 'sent') {
-                    await sendMessage(messages[i]);
-                } else {
-                    await showTypingIndicator();
-                    await sendMessage(messages[i]);
+                const message = messages[i];
+                if (message.type === 'received') {
+                    await showTypingIndicator(); // Show typing indicator before the received message
                 }
-
+                await sendMessage(message);
                 if (i < messages.length - 1) {
-                    await new Promise(resolve => setTimeout(resolve, 1500));
+                    await new Promise(resolve => setTimeout(resolve, 1500)); // Wait between messages
                 }
             }
         }
 
-        // Simulate typing indicator
+        // Show typing indicator before showing the received message
         async function showTypingIndicator() {
             const typingElement = document.createElement('div');
             typingElement.classList.add('typing-indicator');
@@ -282,28 +358,36 @@
                 setTimeout(() => {
                     chatBox.removeChild(typingElement);
                     resolve();
-                }, 2000);
+                }, 2000); // Typing effect duration
             });
         }
 
-        // Simulate sending a message
+        // Send message (User message simulation)
         async function sendMessage(message) {
-            return new Promise(resolve => {
-                const messageElement = document.createElement('div');
-                messageElement.classList.add('message', message.type);
-                messageElement.innerText = message.text;
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', message.type);
+            messageElement.innerText = message.text;
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
 
-                chatBox.appendChild(messageElement);
-                chatBox.scrollTop = chatBox.scrollHeight;
+        // Back to contacts view
+        function backToContacts() {
+            chatContainer.style.display = 'none';
+            contactListContainer.style.display = 'flex';
+        }
 
-                setTimeout(resolve, 1000);
-            });
+        // Filter contacts based on search input
+        function filterContacts() {
+            const searchText = searchInput.value.toLowerCase();
+            const filteredContacts = contacts.filter(contact => contact.name.toLowerCase().includes(searchText));
+            renderContacts(filteredContacts);
         }
 
         // Send message when user clicks on the send button
         sendButton.addEventListener('click', () => {
             const messageText = inputBox.value.trim();
-            if (messageText) {
+            if (messageText && currentChat) {
                 const newMessage = { type: 'sent', text: messageText };
                 sendMessage(newMessage);
                 inputBox.value = '';
@@ -312,7 +396,7 @@
 
         // Start by fetching the chats
         fetchChats();
-
     </script>
+
 </body>
 </html>
