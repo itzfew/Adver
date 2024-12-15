@@ -54,8 +54,8 @@
 <body>
     <div class="post-container">
         <h1 class="post-title">My Latest Poem</h1>
-        <div class="post-content">
-            <p id="postText">
+        <div class="post-content" id="postContent">
+            <p>
                 Jab Se Uske Husan Pe Padi Hai Nazar<br>
                 Main Ho Gya Hoon Apni Hasti Se Bekhabar
             </p>
@@ -70,13 +70,50 @@
     <script>
         function createPostPage() {
             // Get the text content of the post
-            const postText = encodeURIComponent(document.getElementById('postText').innerText);
+            const postText = document.getElementById('postContent').innerHTML;
 
-            // Create the URL for the new page with the post text
-            const newUrl = `view.html?text=${postText}`;
+            // Open a new window
+            const newWindow = window.open('', '_blank');
 
-            // Open the new page with the post text
-            window.location.href = newUrl;
+            // Write the HTML content to the new window
+            newWindow.document.write(`
+                <html>
+                    <head>
+                        <title>Post Content</title>
+                        <style>
+                            body {
+                                font-family: Arial, sans-serif;
+                                background-color: #f4f4f9;
+                                margin: 0;
+                                padding: 0;
+                            }
+                            .post-container {
+                                max-width: 600px;
+                                margin: 50px auto;
+                                padding: 20px;
+                                background-color: #fff;
+                                border-radius: 10px;
+                                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                            }
+                            h1 {
+                                font-size: 2rem;
+                                color: #333;
+                                text-align: center;
+                            }
+                            p {
+                                font-size: 1.2rem;
+                                line-height: 1.6;
+                                color: #555;
+                            }
+                        </style>
+                    </head>
+                    <body>
+                        <div class="post-container">
+                            ${postText}
+                        </div>
+                    </body>
+                </html>
+            `);
         }
     </script>
 </body>
