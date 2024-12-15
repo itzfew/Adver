@@ -1,130 +1,220 @@
-<div style="max-width: 800px; margin: 0px auto; padding: 0px; text-align: center; font-family: 'Georgia', serif; line-height: 1.8;">
-    <h2 style="font-size: 30px; margin-bottom: 20px; color: #333; font-weight: bold;">
-        <i class="fa fa-pen" style="font-size: 30px; color: #555;"></i>
-        Poem by Allama Iqbal
-    </h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poem by Allama Iqbal</title>
+    <!-- Google Fonts and Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Georgia&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
 
-    <!-- Poetry Section (Content will be injected dynamically) -->
-    <div id="poem-content" style="font-size: 22px; color: #444; margin: 20px 0;"></div>
+        h2 {
+            font-size: 32px;
+            color: #333;
+            font-weight: bold;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
 
-    <!-- Fa Copy Icon Section with Button Hover Effect -->
-    <div style="margin-top: 30px; font-size: 24px; color: #555;">
-        <a href="#" title="Copy to clipboard" onclick="copyPoem()" style="text-decoration: none; color: #555; display: inline-block; padding: 10px 20px; background-color: #f1f1f1; border-radius: 5px; font-weight: bold; transition: background-color 0.3s, transform 0.3s;">
-            <i class="fa fa-copy" style="margin-right: 10px;"></i>Copy Poem
-        </a>
+        .poetry-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 15px;
+            text-align: center;
+        }
+
+        #poem-content {
+            font-size: 24px;
+            color: #444;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        #poem-content p {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            margin: 15px 0;
+            padding: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            font-size: 18px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        button i {
+            font-size: 20px;
+        }
+
+        .fa-copy {
+            margin-right: 8px;
+        }
+
+        .fa-link {
+            margin-right: 8px;
+        }
+
+        .author {
+            font-size: 20px;
+            color: #888;
+            margin-top: 40px;
+        }
+
+        .fa {
+            font-size: 20px;
+        }
+
+        /* Styling the copy button with icon */
+        .copy-btn {
+            padding: 12px 25px;
+            background-color: #28a745;
+        }
+
+        /* Styling the link button with icon */
+        .link-btn {
+            padding: 12px 25px;
+            background-color: #17a2b8;
+        }
+
+        .button-container a {
+            text-decoration: none;
+            display: inline-block;
+            color: white;
+        }
+
+        .button-container a:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="poetry-container">
+        <h2>
+            <i class="fa fa-pen"></i>
+            Poem by Allama Iqbal
+        </h2>
+
+        <!-- Poetry Section (Content will be injected dynamically) -->
+        <div id="poem-content"></div>
+
+        <!-- Buttons -->
+        <div class="button-container">
+            <button class="copy-btn" onclick="copyPoem()">
+                <i class="fa fa-copy"></i> Copy Poem
+            </button>
+            <button class="link-btn" onclick="createLink()">
+                <i class="fa fa-link"></i> View Poem as Image
+            </button>
+        </div>
+
+        <!-- Author Section -->
+        <div class="author">
+            <p>— Allama Iqbal</p>
+        </div>
     </div>
 
-    <!-- Create Link Button -->
-    <div style="margin-top: 20px;">
-        <button onclick="createLink()" style="font-size: 18px; padding: 10px 20px; background-color: #007BFF; color: white; border-radius: 5px; cursor: pointer; transition: background-color 0.3s, transform 0.3s;">
-            Create Link to Poem
-        </button>
-    </div>
+    <!-- Copy Poem Script -->
+    <script>
+        function copyPoem() {
+            const poemText = document.querySelector('#poem-content').innerText;
+            const textArea = document.createElement('textarea');
+            textArea.value = poemText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            alert('Poem copied to clipboard!');
+        }
 
-    <!-- Author Section -->
-    <div style="font-size: 20px; color: #888; margin-top: 40px;">
-        <p>— Allama Iqbal</p>
-    </div>
-</div>
+        function createLink() {
+            const poemText = document.querySelector('#poem-content').innerHTML;
+            const encodedText = encodeURIComponent(poemText);
+            const link = `view.html?text=${encodedText}`;
 
-<!-- Copy Poem Script -->
-<script>
-    function copyPoem() {
-        const poemText = document.querySelector('#poem-content').innerText;
-        const textArea = document.createElement('textarea');
-        textArea.value = poemText;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
-        alert('Poem copied to clipboard!');
-    }
+            // Open the new page with the poem content
+            window.open(link, '_blank');
+        }
 
-    function createLink() {
-        const poemText = document.querySelector('#poem-content').innerHTML;
-        const encodedText = encodeURIComponent(poemText);
-        const link = `view.html?text=${encodedText}`;
+        // Automatically highlight any clicked paragraph
+        window.onload = function() {
+            const poemText = `
+            میرے اقبال میں شرمندہ ہوں تیری روح سے
+            تیرے خوابوں کی جو تعبیر تھی پھر خواب کیا
+            `;
 
-        // Open the new page with the poem content
-        window.open(link, '_blank');
-    }
-
-    // Automatically highlight any clicked paragraph
-    window.onload = function() {
-        const poemText = `
-        میرے اقبال میں شرمندہ ہوں تیری روح سے
-تیرے خوابوں کی جو تعبیر تھی پھر خواب کیا
-`;
-
-        const poemContainer = document.querySelector('#poem-content');
-        
-        // Split the poem by line breaks and wrap each line in a <p> tag
-        const poemLines = poemText.split('\n');
-        poemLines.forEach(line => {
-            const p = document.createElement('p');
-            p.textContent = line;
-            poemContainer.appendChild(p);
-        });
-
-        // Add click event listener to each <p> tag after poem is loaded
-        const paragraphs = document.querySelectorAll('#poem-content p');
-        
-        paragraphs.forEach(p => {
-            p.addEventListener('click', function() {
-                // Remove highlight from all paragraphs
-                paragraphs.forEach(p => p.style.backgroundColor = 'transparent');
-                
-                // Highlight the clicked paragraph
-                this.style.backgroundColor = '#f0f8ff';  // Light highlight color
+            const poemContainer = document.querySelector('#poem-content');
+            
+            // Split the poem by line breaks and wrap each line in a <p> tag
+            const poemLines = poemText.split('\n');
+            poemLines.forEach(line => {
+                const p = document.createElement('p');
+                p.textContent = line;
+                poemContainer.appendChild(p);
             });
 
-            // Add hover effect for each paragraph
-            p.addEventListener('mouseenter', function() {
-                this.style.backgroundColor = '#eaf7ff';  // Light hover color
-                this.style.cursor = 'pointer';
+            // Add click event listener to each <p> tag after poem is loaded
+            const paragraphs = document.querySelectorAll('#poem-content p');
+            
+            paragraphs.forEach(p => {
+                p.addEventListener('click', function() {
+                    // Remove highlight from all paragraphs
+                    paragraphs.forEach(p => p.style.backgroundColor = 'transparent');
+                    
+                    // Highlight the clicked paragraph
+                    this.style.backgroundColor = '#f0f8ff';  // Light highlight color
+                });
+
+                // Add hover effect for each paragraph
+                p.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = '#eaf7ff';  // Light hover color
+                    this.style.cursor = 'pointer';
+                });
+                p.addEventListener('mouseleave', function() {
+                    if (this.style.backgroundColor !== 'rgb(240, 248, 255)') {
+                        this.style.backgroundColor = 'transparent';
+                    }
+                });
             });
-            p.addEventListener('mouseleave', function() {
-                if (this.style.backgroundColor !== 'rgb(240, 248, 255)') {
-                    this.style.backgroundColor = 'transparent';
-                }
-            });
-        });
-    };
-</script>
+        };
+    </script>
 
-<!-- Font Awesome (for icons) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+    <!-- Font Awesome (for icons) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
 
-<style>
-    /* Use inline Google Fonts URL for Noto Nastaliq Urdu */
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&display=swap');
-    
-    /* Apply Noto Nastaliq Urdu font for all paragraphs */
-    #poem-content p {
-        font-family: 'Noto Nastaliq Urdu', serif;
-        margin: 15px 0;
-        padding: 5px;
-        transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-
-    /* Apply default font for English text */
-    h1, .author p {
-        font-family: 'Georgia', serif;
-    }
-
-    /* Button Hover Effect */
-    a:hover {
-        background-color: #ddd;
-        transform: scale(1.05);
-    }
-
-    /* Automatically add line gap between paragraphs */
-    #poem-content p {
-        margin-bottom: 20px; /* Controls the gap between lines */
-    }
-
-    button:hover {
-        background-color: #0056b3;
-        transform: scale(1.05);
-    }
-</style>
+</body>
+</html>
