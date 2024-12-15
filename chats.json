@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Farhad",
+        "image": "https://via.placeholder.com/30",
+        "messages": [
+            { "type": "sent", "text": "Hey! How's it going?" },
+            { "type": "received", "text": "Hey, I'm good! What about you?" },
+            { "type": "sent", "text": "All good! Just busy with work." },
+            { "type": "received", "text": "Same here. What are you working on?" },
+            { "type": "sent", "text": "Just a new project. How about you?" }
+        ]
+    },
+    {
+        "name": "Aisha",
+        "image": "https://via.placeholder.com/30",
+        "messages": [
+            { "type": "received", "text": "Hi! Did you finish the task?" },
+            { "type": "sent", "text": "Yes, just submitted it." },
+            { "type": "received", "text": "Great! Let’s discuss the next steps." }
+        ]
+    }
+]
