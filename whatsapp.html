@@ -112,7 +112,6 @@
             padding: 10px;
             display: flex;
             align-items: center;
-          
             justify-content: space-between;
             font-size: 16px;
         }
@@ -131,7 +130,7 @@
 
         .chat-header .name {
             font-weight: bold;
-          margin-right: 10px;
+            margin-right: 10px;
         }
 
         .chat-header .back-btn {
@@ -196,35 +195,36 @@
 
         .icons i {
             font-size: 20px;
-           margin-right: 10px;
+            margin-right: 10px;
             cursor: pointer;
         }
-/* Style for the Plus Button */
-#add-contact-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 10px;
-    background-color: #25d366;
-    color: white;
-    width: 70px;
-    height: 70px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    z-index: 100;
-    transition: transform 0.2s ease-in-out;
-}
 
-#add-contact-btn:hover {
-    transform: scale(1.1);
-}
+        /* Style for the Plus Button */
+        #add-contact-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 10px;
+            background-color: #25d366;
+            color: white;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            z-index: 100;
+            transition: transform 0.2s ease-in-out;
+        }
 
-#add-contact-btn i {
-    font-size: 24px;
-}
+        #add-contact-btn:hover {
+            transform: scale(1.1);
+        }
+
+        #add-contact-btn i {
+            font-size: 24px;
+        }
     </style>
 </head>
 <body>
@@ -337,7 +337,7 @@
             for (let i = 0; i < messages.length; i++) {
                 const message = messages[i];
                 if (message.type === 'received') {
-                    await showTypingIndicator(); // Show typing indicator before the received message
+                    await showTypingIndicator(message.text); // Adjust typing time based on message length
                 }
                 await sendMessage(message);
                 if (i < messages.length - 1) {
@@ -347,10 +347,14 @@
         }
 
         // Show typing indicator before showing the received message
-        async function showTypingIndicator() {
+        async function showTypingIndicator(messageText) {
             const typingElement = document.createElement('div');
             typingElement.classList.add('typing-indicator');
             typingElement.innerText = `${currentChat.name} is typing...`;
+
+            // Adjust typing delay based on message length (e.g., 50ms per character)
+            const typingDuration = Math.min(2000, messageText.length * 50); // Max 2 seconds
+
             chatBox.appendChild(typingElement);
             chatBox.scrollTop = chatBox.scrollHeight;
 
@@ -358,7 +362,7 @@
                 setTimeout(() => {
                     chatBox.removeChild(typingElement);
                     resolve();
-                }, 2000); // Typing effect duration
+                }, typingDuration);
             });
         }
 
@@ -385,10 +389,15 @@
         }
 
         // Send message when user clicks on the send button
-        sendButton.addEventListener('click', () => {
+        sendButton.addEventListener('click', async () => {
             const messageText = inputBox.value.trim();
             if (messageText && currentChat) {
                 const newMessage = { type: 'sent', text: messageText };
+
+                // Simulate typing for user message
+                await showTypingIndicator(messageText);
+
+                // Send user message
                 sendMessage(newMessage);
                 inputBox.value = '';
             }
