@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Text to Image Generator with Font and Background Selection</title>
+    <title>Text to Image Generator with Resize Option</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Noto+Naskh+Arabic:wght@400..700&family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Noto+Nastaliq+Urdu:wght@400..700&display=swap" rel="stylesheet">
@@ -110,6 +110,7 @@
             border: 1px solid #ccc;
             background-color: #fff;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            cursor: pointer;
         }
 
         #downloadBtn {
@@ -138,7 +139,7 @@
     </style>
 </head>
 <body>
-    <h1>Text to Image Generator with Font and Background Selection</h1>
+    <h1>Text to Image Generator with Resize Option</h1>
 
     <div class="form-group-row">
         <div class="form-group">
@@ -175,7 +176,7 @@
         <button id="downloadBtn" onclick="downloadImage()"><i class="fas fa-download"></i>Download Image</button>
     </div>
 
-    <canvas id="canvas" width="800" height="500"></canvas>
+    <canvas id="canvas" width="700" height="1400"></canvas>
 
     <!-- Spinner for loading -->
     <div class="spinner" id="spinner">
@@ -256,6 +257,20 @@
             link.download = 'text-image.png';
             link.click();
         }
+
+        // Resize the image proportionally when clicked
+        document.getElementById('canvas').addEventListener('click', function() {
+            const newWidth = prompt("Enter new width (700px max):", 700);
+            if (newWidth) {
+                const aspectRatio = 700 / 1400;
+                const newHeight = newWidth * aspectRatio;
+                if (newWidth <= 700 && newHeight <= 1400) {
+                    canvas.width = newWidth;
+                    canvas.height = newHeight;
+                    generateImage(); // Regenerate the image with the new size
+                }
+            }
+        });
     </script>
 </body>
 </html>
