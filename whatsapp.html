@@ -179,7 +179,7 @@
         let currentChat = null;
 
         // Load chats from JSON
-        fetch('chats.json')
+        fetch('https://raw.githubusercontent.com/itzfew/Adver/refs/heads/main/chats.json')
             .then(response => response.json())
             .then(chats => {
                 chats.forEach((chat, index) => {
