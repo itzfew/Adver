@@ -162,9 +162,9 @@
         }
 
         function createLink() {
-            const poemText = document.querySelector('#poem-content').innerHTML;
-            const encodedText = encodeURIComponent(poemText);
-            const link = `view.html?text=${encodedText}`;
+            const poemText = document.querySelector('#poem-content').innerText; // Get plain text
+            const encodedText = encodeURIComponent(poemText); // Encode the poem text
+            const link = `view.html?text=${encodedText}`; // Create the link with the encoded text
 
             // Open the new page with the poem content
             window.open(link, '_blank');
