@@ -22,7 +22,7 @@
     },
     {
         "name": "Teacher",
-        "image": "https://via.placeholder.com/30",
+        "image": "img/10.webp",
         "messages": [
             { "type": "received", "text": "I’ve noticed you haven’t submitted any of your assignments yet. Is everything okay?" },
             { "type": "sent", "text": "Hi, Mrs. Anderson. I’m really sorry. I’ve been dealing with some personal stuff, and I fell behind on my work." },
