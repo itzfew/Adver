@@ -105,6 +105,7 @@
             height: 100%;
         }
 
+
         /* Chat Header (Profile, Back, and Menu) */
         .chat-header {
             background-color: #075e54;
@@ -112,14 +113,15 @@
             padding: 10px;
             display: flex;
             align-items: center;
-          
             justify-content: space-between;
             font-size: 16px;
         }
 
+        /* Profile on the left */
         .chat-header .profile {
             display: flex;
             align-items: center;
+          margin-right: 70%;
         }
 
         .chat-header img {
@@ -131,13 +133,26 @@
 
         .chat-header .name {
             font-weight: bold;
-          margin-right: 10px;
+            margin-right: 10px;
         }
 
         .chat-header .back-btn {
             font-size: 20px;
             cursor: pointer;
         }
+
+        .chat-header .icons {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-header .icons i {
+            font-size: 20px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
 
         /* Chat Messages Area */
         #chat-box {
@@ -196,38 +211,43 @@
 
         .icons i {
             font-size: 20px;
-           margin-right: 10px;
+            margin-right: 10px;
             cursor: pointer;
         }
-/* Style for the Plus Button */
-#add-contact-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 10px;
-    background-color: #25d366;
-    color: white;
-    width: 70px;
-    height: 70px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    cursor: pointer;
-    z-index: 100;
-    transition: transform 0.2s ease-in-out;
-}
 
-#add-contact-btn:hover {
-    transform: scale(1.1);
-}
+        /* Style for the Plus Button */
+        #add-contact-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 10px;
+            background-color: #25d366;
+            color: white;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            z-index: 100;
+            transition: transform 0.2s ease-in-out;
+        }
 
-#add-contact-btn i {
-    font-size: 24px;
-}
+        #add-contact-btn:hover {
+            transform: scale(1.1);
+        }
+
+        #add-contact-btn i {
+            font-size: 24px;
+        }
     </style>
 </head>
 <body>
+
+    <!-- Add Audio Elements -->
+    <audio id="message-sent-sound" src="https://bigsoundbank.com/UPLOAD/wav-en/1313.wav"></audio>
+    <audio id="message-received-sound" src="https://bigsoundbank.com/UPLOAD/wav-en/1313.wav"></audio>
 
     <div id="contact-list-container">
         <!-- Contact List Header -->
@@ -287,6 +307,9 @@
         const chatName = document.getElementById('chat-name');
         const contactListContainer = document.getElementById('contact-list-container');
         
+        const messageSentSound = document.getElementById('message-sent-sound');
+        const messageReceivedSound = document.getElementById('message-received-sound');
+        
         let contacts = [];
         let currentChat = null;
 
@@ -325,32 +348,40 @@
             chatName.textContent = contact.name;
             chatBox.innerHTML = '';
             inputBox.disabled = false;
-
-            // Wait 2 seconds before starting the conversation
+            
+            // Simulate conversation (received messages) after 2 seconds
             setTimeout(() => {
                 simulateConversation(contact.messages);
             }, 2000); // 2-second delay
         }
 
-        // Simulate conversation for the selected contact
+        // Simulate conversation (for received messages)
         async function simulateConversation(messages) {
             for (let i = 0; i < messages.length; i++) {
                 const message = messages[i];
+                
                 if (message.type === 'received') {
-                    await showTypingIndicator(); // Show typing indicator before the received message
+                    await showTypingIndicator(message.text);
+                    messageReceivedSound.play(); // Play received message sound
                 }
-                await sendMessage(message);
+                
+                await sendMessage(message); // Send the received message
+                
                 if (i < messages.length - 1) {
                     await new Promise(resolve => setTimeout(resolve, 1500)); // Wait between messages
                 }
             }
         }
 
-        // Show typing indicator before showing the received message
-        async function showTypingIndicator() {
+        // Show typing indicator before a received message
+        async function showTypingIndicator(messageText) {
             const typingElement = document.createElement('div');
             typingElement.classList.add('typing-indicator');
             typingElement.innerText = `${currentChat.name} is typing...`;
+
+            const wordCount = messageText.split(' ').length;
+            const typingDuration = (wordCount / 5) * 1000; // 1 second per 5 words
+            
             chatBox.appendChild(typingElement);
             chatBox.scrollTop = chatBox.scrollHeight;
 
@@ -358,43 +389,54 @@
                 setTimeout(() => {
                     chatBox.removeChild(typingElement);
                     resolve();
-                }, 2000); // Typing effect duration
+                }, typingDuration);
             });
         }
 
-        // Send message (User message simulation)
+        // Send message (simulated)
         async function sendMessage(message) {
             const messageElement = document.createElement('div');
             messageElement.classList.add('message', message.type);
             messageElement.innerText = message.text;
             chatBox.appendChild(messageElement);
             chatBox.scrollTop = chatBox.scrollHeight;
+
+            if (message.type === 'sent') {
+                messageSentSound.play(); // Play sent message sound
+            }
         }
 
-        // Back to contacts view
-        function backToContacts() {
-            chatContainer.style.display = 'none';
-            contactListContainer.style.display = 'flex';
+        // Simulate typing a message (user message in input field)
+        async function typeMessage(messageText) {
+            let typedText = '';
+            for (let i = 0; i < messageText.length; i++) {
+                typedText += messageText[i];
+                inputBox.value = typedText; // Simulate typing character by character
+                chatBox.scrollTop = chatBox.scrollHeight; // Keep chat scrolled to bottom
+                await new Promise(resolve => setTimeout(resolve, 100)); // Typing speed
+            }
+
+            // After typing simulation, send the message automatically
+            const newMessage = { type: 'sent', text: typedText };
+            await sendMessage(newMessage);
+            inputBox.value = ''; // Clear input box after sending
         }
 
-        // Filter contacts based on search input
-        function filterContacts() {
-            const searchText = searchInput.value.toLowerCase();
-            const filteredContacts = contacts.filter(contact => contact.name.toLowerCase().includes(searchText));
-            renderContacts(filteredContacts);
-        }
-
-        // Send message when user clicks on the send button
-        sendButton.addEventListener('click', () => {
+        // Trigger typing and sending when user clicks on the send button
+        sendButton.addEventListener('click', async () => {
             const messageText = inputBox.value.trim();
             if (messageText && currentChat) {
-                const newMessage = { type: 'sent', text: messageText };
-                sendMessage(newMessage);
-                inputBox.value = '';
+                await typeMessage(messageText); // Simulate typing and sending
             }
         });
 
-        // Start by fetching the chats
+        // Go back to contacts view
+        function backToContacts() {
+            contactListContainer.style.display = 'flex';
+            chatContainer.style.display = 'none';
+        }
+
+        // Fetch chats when the page loads
         fetchChats();
     </script>
 
