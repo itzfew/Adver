@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -27,7 +27,7 @@
         #contact-list-container, #chat-container {
             width: 100%;
             height: 100%;
-            max-width: 400px;
+            max-width: 100%;
             background-color: white;
             border-radius: 10px;
             overflow: hidden;
@@ -196,7 +196,32 @@
             font-size: 20px;
             cursor: pointer;
         }
+/* Style for the Plus Button */
+#add-contact-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 10px;
+    background-color: #25d366;
+    color: white;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    z-index: 100;
+    transition: transform 0.2s ease-in-out;
+}
 
+#add-contact-btn:hover {
+    transform: scale(1.1);
+}
+
+#add-contact-btn i {
+    font-size: 24px;
+}
     </style>
 </head>
 <body>
@@ -297,7 +322,11 @@
             chatName.textContent = contact.name;
             chatBox.innerHTML = '';
             inputBox.disabled = false;
-            simulateConversation(contact.messages);
+
+            // Wait 2 seconds before starting the conversation
+            setTimeout(() => {
+                simulateConversation(contact.messages);
+            }, 2000); // 2-second delay
         }
 
         // Simulate conversation for the selected contact
