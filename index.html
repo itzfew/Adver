@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Chat Simulation</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e5ddd5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #chat-container {
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            background-color: #075e54;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+        }
+
+        .chat-header .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-pic {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .chat-header i {
+            color: white;
+            font-size: 20px;
+            margin-left: 15px;
+            cursor: pointer;
+        }
+
+        #chat-box {
+            flex-grow: 1;
+            padding: 10px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message {
+            max-width: 80%;
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            word-wrap: break-word;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .message.sent {
+            background-color: #dcf8c6;
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .message.received {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            align-self: flex-start;
+        }
+
+        .message-content {
+            max-width: 80%;
+            word-wrap: break-word;
+            padding: 8px;
+        }
+
+        .timestamp {
+            font-size: 10px;
+            color: #999;
+            margin-left: 10px;
+        }
+
+        #input-box {
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-top: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #message-input {
+            width: 80%;
+            padding: 10px;
+            border-radius: 20px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+            outline: none;
+        }
+
+        #send-btn {
+            background-color: #075e54;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            margin-left: 10px;
+        }
+
+        #send-btn:disabled {
+            background-color: #b8e1ff;
+            cursor: not-allowed;
+        }
+
+        /* Custom Scrollbar */
+        #chat-box::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #chat-box::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+            border-radius: 10px;
+        }
+
+        #chat-box::-webkit-scrollbar-track {
+            background-color: #f1f1f1;
+        }
+
+        /* Camera Icon Styling */
+        #input-box i {
+            font-size: 20px;
+            color: #075e54;
+            cursor: pointer;
+        }
+
+        #input-box i:hover {
+            color: #25d366;
+        }
+
+        .customization-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .customization-container input,
+        .customization-container button,
+        .customization-container textarea {
+            margin: 5px;
+            padding: 10px;
+            font-size: 14px;
+            width: 300px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <!-- Customization Section -->
+        <div class="customization-container" id="customization-container">
+            <h2>Customize Your Chat</h2>
+            <input type="text" id="contact-name" placeholder="Enter Contact Name">
+            <input type="url" id="contact-pic" placeholder="Enter Profile Pic URL (optional)">
+            <textarea id="custom-messages" placeholder="Enter custom messages (one per line) with type 'sent' or 'received'"></textarea>
+            <button id="start-chat-btn">Start Chat</button>
+        </div>
+
+        <!-- Chat Section -->
+        <div class="chat-header" id="chat-header">
+            <div class="header-left">
+                <i class="fas fa-arrow-left" id="back-btn"></i>
+                <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Contact" class="profile-pic" id="profile-pic">
+                <span id="contact-name-display">Contact Name</span>
+            </div>
+            <div class="header-right">
+                <i class="fas fa-video"></i>
+                <i class="fas fa-phone-alt"></i>
+                <i class="fas fa-ellipsis-v"></i>
+            </div>
+        </div>
+        <div id="chat-box"></div>
+        <div id="input-box">
+            <i class="fas fa-camera"></i>
+            <input type="text" id="message-input" placeholder="Type a message..." disabled>
+            <button id="send-btn" disabled>➤</button>
+        </div>
+    </div>
+
+    <script>
+        // Variables
+        const customizationContainer = document.getElementById('customization-container');
+        const startChatBtn = document.getElementById('start-chat-btn');
+        const contactNameInput = document.getElementById('contact-name');
+        const contactPicInput = document.getElementById('contact-pic');
+        const customMessagesInput = document.getElementById('custom-messages');
+        const chatHeader = document.getElementById('chat-header');
+        const chatBox = document.getElementById('chat-box');
+        const inputBox = document.getElementById('message-input');
+        const sendButton = document.getElementById('send-btn');
+        const profilePicDisplay = document.getElementById('profile-pic');
+        const contactNameDisplay = document.getElementById('contact-name-display');
+        const backBtn = document.getElementById('back-btn');
+
+        // Retrieve contact info from local storage
+        const storedContactData = JSON.parse(localStorage.getItem('contactData'));
+
+        let messages = storedContactData?.messages || [];
+
+        // Start the chat
+        function startChat() {
+            const contactName = contactNameInput.value.trim();
+            const contactPic = contactPicInput.value.trim();
+            const customMessages = customMessagesInput.value.trim().split('\n').map(msg => {
+                const [type, text] = msg.split('|').map(s => s.trim());
+                if (type === 'sent' || type === 'received') {
+                    return { type, text, time: getCurrentTime() };
+                } else {
+                    return null;
+                }
+            }).filter(msg => msg !== null);
+
+            if (!contactName || customMessages.length === 0) {
+                alert('Please fill all fields with valid data');
+                return;
+            }
+
+            // Set the default profile pic if not provided
+            const profilePicURL = contactPic || 'https://via.placeholder.com/150?text=No+Pic';
+
+            // Save data to local storage
+            const contactData = {
+                name: contactName,
+                pic: profilePicURL,
+                messages: customMessages
+            };
+            localStorage.setItem('contactData', JSON.stringify(contactData));
+
+            // Hide customization and show chat
+            customizationContainer.style.display = 'none';
+            chatHeader.style.display = 'flex';
+
+            contactNameDisplay.textContent = contactName;
+            profilePicDisplay.src = profilePicURL;
+
+            messages = customMessages;
+            startConversation();
+        }
+
+        // Get current time for the timestamp
+        function getCurrentTime() {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            return `${hours}:${minutes}`;
+        }
+
+        // Function to simulate sending a message
+        async function sendMessage(message) {
+            return new Promise(resolve => {
+                const messageElement = document.createElement('div');
+                messageElement.classList.add('message', message.type);
+
+                const messageContent = document.createElement('div');
+                messageContent.classList.add('message-content');
+                messageContent.innerText = message.text;
+
+                const timestamp = document.createElement('span');
+                timestamp.classList.add('timestamp');
+                timestamp.innerText = message.time;
+
+                messageElement.appendChild(messageContent);
+                messageElement.appendChild(timestamp);
+
+                // Add the sent message to the chat
+                chatBox.appendChild(messageElement);
+                chatBox.scrollTop = chatBox.scrollHeight; // Scroll to bottom
+
+                setTimeout(resolve, 1000); // Wait for 1 second before resolving
+            });
+        }
+
+        // Function to simulate a conversation
+        async function startConversation() {
+            for (let i = 0; i < messages.length; i++) {
+                await sendMessage(messages[i]);
+
+                if (i < messages.length - 1) {
+                    await new Promise(resolve => setTimeout(resolve, 1500)); // Time gap between messages
+                }
+            }
+
+            inputBox.disabled = false;
+            sendButton.disabled = false;
+        }
+
+        // Listen for send button click
+        sendButton.addEventListener('click', () => {
+            const userMessage = inputBox.value.trim();
+            if (userMessage) {
+                const sentMessage = { type: 'sent', text: userMessage, time: getCurrentTime() };
+                inputBox.value = '';  // Clear input field
+                sendButton.disabled = true; // Disable send button while sending
+
+                sendMessage(sentMessage).then(() => {
+                    sendButton.disabled = false;  // Enable send button after sending message
+
+                    setTimeout(() => {
+                        const receivedMessage = { type: 'received', text: "I'll get back to you later.", time: getCurrentTime() };
+                        sendMessage(receivedMessage);
+                    }, 1500); // 1.5 seconds delay for the received message
+                });
+            }
+        });
+
+        // Listen for 'Enter' key to send message
+        inputBox.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && inputBox.value.trim()) {
+                sendButton.click();
+            }
+        });
+
+        // Back button to return to customization screen
+        backBtn.addEventListener('click', () => {
+            customizationContainer.style.display = 'flex';
+            chatHeader.style.display = 'none';
+            localStorage.removeItem('contactData'); // Clear stored data for the new contact
+        });
+
+        // Check if there's stored data, then start chat immediately
+        if (storedContactData) {
+            customizationContainer.style.display = 'none';
+            contactNameDisplay.textContent = storedContactData.name;
+            profilePicDisplay.src = storedContactData.pic;
+            messages = storedContactData.messages;
+            startConversation();
+        }
+
+        // Start chat on button click
+        startChatBtn.addEventListener('click', startChat);
+    </script>
+</body>
+</html>
