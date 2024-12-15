@@ -325,36 +325,39 @@
             chatName.textContent = contact.name;
             chatBox.innerHTML = '';
             inputBox.disabled = false;
-
-            // Wait 2 seconds before starting the conversation
+            
+            // Simulate conversation (received messages) after 2 seconds
             setTimeout(() => {
                 simulateConversation(contact.messages);
             }, 2000); // 2-second delay
         }
 
-        // Simulate conversation for the selected contact
+        // Simulate conversation (for received messages)
         async function simulateConversation(messages) {
             for (let i = 0; i < messages.length; i++) {
                 const message = messages[i];
+                
                 if (message.type === 'received') {
-                    await showTypingIndicator(message.text); // Adjust typing time based on message length
+                    await showTypingIndicator(message.text);
                 }
-                await sendMessage(message);
+                
+                await sendMessage(message); // Send the received message
+                
                 if (i < messages.length - 1) {
                     await new Promise(resolve => setTimeout(resolve, 1500)); // Wait between messages
                 }
             }
         }
 
-        // Show typing indicator before showing the received message
+        // Show typing indicator before a received message
         async function showTypingIndicator(messageText) {
             const typingElement = document.createElement('div');
             typingElement.classList.add('typing-indicator');
             typingElement.innerText = `${currentChat.name} is typing...`;
 
-            // Adjust typing delay based on message length (e.g., 50ms per character)
-            const typingDuration = Math.min(2000, messageText.length * 50); // Max 2 seconds
-
+            const wordCount = messageText.split(' ').length;
+            const typingDuration = (wordCount / 5) * 1000; // 1 second per 5 words
+            
             chatBox.appendChild(typingElement);
             chatBox.scrollTop = chatBox.scrollHeight;
 
@@ -366,7 +369,7 @@
             });
         }
 
-        // Send message (User message simulation)
+        // Send message (simulated)
         async function sendMessage(message) {
             const messageElement = document.createElement('div');
             messageElement.classList.add('message', message.type);
@@ -375,35 +378,37 @@
             chatBox.scrollTop = chatBox.scrollHeight;
         }
 
-        // Back to contacts view
-        function backToContacts() {
-            chatContainer.style.display = 'none';
-            contactListContainer.style.display = 'flex';
+        // Simulate typing a message (user message in input field)
+        async function typeMessage(messageText) {
+            let typedText = '';
+            for (let i = 0; i < messageText.length; i++) {
+                typedText += messageText[i];
+                inputBox.value = typedText; // Simulate typing character by character
+                chatBox.scrollTop = chatBox.scrollHeight; // Keep chat scrolled to bottom
+                await new Promise(resolve => setTimeout(resolve, 100)); // Typing speed
+            }
+
+            // After typing simulation, send the message automatically
+            const newMessage = { type: 'sent', text: typedText };
+            await sendMessage(newMessage);
+            inputBox.value = ''; // Clear input box after sending
         }
 
-        // Filter contacts based on search input
-        function filterContacts() {
-            const searchText = searchInput.value.toLowerCase();
-            const filteredContacts = contacts.filter(contact => contact.name.toLowerCase().includes(searchText));
-            renderContacts(filteredContacts);
-        }
-
-        // Send message when user clicks on the send button
+        // Trigger typing and sending when user clicks on the send button
         sendButton.addEventListener('click', async () => {
             const messageText = inputBox.value.trim();
             if (messageText && currentChat) {
-                const newMessage = { type: 'sent', text: messageText };
-
-                // Simulate typing for user message
-                await showTypingIndicator(messageText);
-
-                // Send user message
-                sendMessage(newMessage);
-                inputBox.value = '';
+                await typeMessage(messageText); // Simulate typing and sending
             }
         });
 
-        // Start by fetching the chats
+        // Go back to contacts view
+        function backToContacts() {
+            contactListContainer.style.display = 'flex';
+            chatContainer.style.display = 'none';
+        }
+
+        // Fetch chats when the page loads
         fetchChats();
     </script>
 
