@@ -3,83 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Post</title>
+    <title>Poem by Allama Iqbal</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Georgia', serif;
             background-color: #f4f4f9;
             margin: 0;
             padding: 0;
         }
 
-        .post-container {
-            max-width: 600px;
+        .poem-container {
+            max-width: 800px;
             margin: 50px auto;
             padding: 20px;
+            text-align: center;
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .post-title {
-            font-size: 2rem;
+        .poem-title {
+            font-size: 30px;
             color: #333;
-            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
         }
 
-        .post-content {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            color: #555;
-            margin-top: 20px;
+        .poem-content {
+            font-size: 22px;
+            color: #444;
+            margin: 20px 0;
         }
 
-        button {
-            display: block;
-            margin: 20px auto;
+        button, a {
+            display: inline-block;
             padding: 10px 20px;
-            font-size: 1rem;
-            color: white;
+            font-size: 16px;
+            color: #fff;
             background-color: #007BFF;
-            border: none;
             border-radius: 5px;
+            text-decoration: none;
             cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
-        button:hover {
+        button:hover, a:hover {
             background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        #createLinkBtn {
+            margin-top: 30px;
+            font-size: 18px;
+        }
+
+        .author {
+            font-size: 20px;
+            color: #888;
+            margin-top: 40px;
         }
     </style>
 </head>
 <body>
-    <div class="post-container">
-        <h1 class="post-title">My Latest Poem</h1>
-        <div class="post-content" id="postContent">
-            <p>
-                Jab Se Uske Husan Pe Padi Hai Nazqar<br>
-                Main Ho Gya Hoon Apni Hasti Se Bekhabar
-            </p>
-            <p>
-                Meri Duaon Ka Kuch Aisa Hua Hai Asr<br>
-                Mujhey Mil Gya Hai Mere Khawabon Ka Pekar
-            </p>
+    <div class="poem-container">
+        <h2 class="poem-title">
+            <i class="fa fa-pen" style="font-size: 30px; color: #555;"></i> Poem by Allama Iqbal
+        </h2>
+
+        <!-- Poetry Section -->
+        <div id="poem-content" class="poem-content">
+            <p>میرے اقبال میں شرمندہ ہوں تیری روح سے</p>
+            <p>تیرے خوابوں کی جو تعبیر تھی پھر خواب کیا</p>
         </div>
-        <button id="createPostBtn" onclick="createPostPage()">Create New Post Page</button>
+
+        <!-- Copy Poem Button -->
+        <div>
+            <a href="#" onclick="copyPoem()" title="Copy to clipboard">
+                <i class="fa fa-copy"></i> Copy Poem
+            </a>
+        </div>
+
+        <!-- Create Link Button -->
+        <div id="createLinkBtn">
+            <button onclick="createLink()">Create Link to Poem</button>
+        </div>
+
+        <!-- Author Section -->
+        <div class="author">
+            <p>— Allama Iqbal</p>
+        </div>
     </div>
 
     <script>
-        function createPostPage() {
-            // Get the text content of the post
-            const postText = document.getElementById('postContent').innerHTML;
+        // Copy Poem function
+        function copyPoem() {
+            const poemText = document.querySelector('#poem-content').innerText;
+            const textArea = document.createElement('textarea');
+            textArea.value = poemText;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            alert('Poem copied to clipboard!');
+        }
 
-            // Encode the post text for use in the URL
-            const encodedText = encodeURIComponent(postText);
+        // Create Link function
+        function createLink() {
+            const poemText = document.querySelector('#poem-content').innerHTML;
+            const encodedText = encodeURIComponent(poemText);
+            const link = `view.html?text=${encodedText}`;
 
-            // Create the URL for the new page with the post text
-            const newUrl = `view.html?text=${encodedText}`;
-
-            // Redirect to the view.html page with the encoded post text
-            window.location.href = newUrl;
+            // Open the new page with the poem content
+            window.open(link, '_blank');
         }
     </script>
 </body>
