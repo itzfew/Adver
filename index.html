@@ -129,15 +129,59 @@
             cursor: pointer;
         }
 
+        /* Contact List */
+        #contact-list {
+            width: 300px;
+            background-color: #fff;
+            overflow-y: auto;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: background 0.2s;
+        }
+
+        .contact-item:hover {
+            background-color: #f0f0f0;
+        }
+
+        .contact-item img {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .contact-item .name {
+            font-weight: bold;
+        }
+
+        .contact-item .last-message {
+            font-size: 12px;
+            color: #888;
+        }
+
     </style>
 </head>
 <body>
-    <div id="chat-container">
+    <div id="contact-list">
+        <!-- Contact list will be rendered here -->
+    </div>
+
+    <div id="chat-container" style="display: none;">
         <!-- Chat Header (User Profile) -->
         <div class="chat-header">
             <div class="profile">
-                <img src="https://via.placeholder.com/30" alt="User Profile">
-                <span class="name">Farhad</span>
+                <img src="https://via.placeholder.com/30" alt="User Profile" id="chat-profile-img">
+                <span class="name" id="chat-name">Farhad</span>
             </div>
             <div class="icons">
                 <i class="fas fa-phone-alt"></i>
@@ -163,25 +207,74 @@
     </div>
 
     <script>
-        // script.js
-
-        const messages = [
-            { type: 'sent', text: "Hey! How's it going?" },
-            { type: 'received', text: "Hey, I'm good! What about you?" },
-            { type: 'sent', text: "All good! Just busy with work." },
-            { type: 'received', text: "Same here. What are you working on?" },
-            { type: 'sent', text: "Just a new project. How about you?" }
-        ];
-
+        const contactListDiv = document.getElementById('contact-list');
         const chatBox = document.getElementById('chat-box');
         const inputBox = document.getElementById('message-input');
         const sendButton = document.getElementById('send-btn');
+        const chatContainer = document.getElementById('chat-container');
+        const chatProfileImg = document.getElementById('chat-profile-img');
+        const chatName = document.getElementById('chat-name');
 
-        // Function to simulate typing effect
+        let currentChat = null;
+
+        // Fetch chat data from the JSON
+        async function fetchChats() {
+            const response = await fetch('https://raw.githubusercontent.com/itzfew/Adver/refs/heads/main/chats.json');
+            const data = await response.json();
+            renderContacts(data);
+        }
+
+        // Render contacts in the contact list
+        function renderContacts(data) {
+            data.forEach(contact => {
+                const contactElement = document.createElement('div');
+                contactElement.classList.add('contact-item');
+                contactElement.innerHTML = `
+                    <img src="${contact.profilePic}" alt="${contact.name}">
+                    <div>
+                        <div class="name">${contact.name}</div>
+                        <div class="last-message">${contact.messages[contact.messages.length - 1].text}</div>
+                    </div>
+                `;
+                contactElement.addEventListener('click', () => startChat(contact));
+                contactListDiv.appendChild(contactElement);
+            });
+        }
+
+        // Start a chat with the selected contact
+        function startChat(contact) {
+            currentChat = contact;
+            contactListDiv.style.display = 'none';
+            chatContainer.style.display = 'flex';
+            chatProfileImg.src = contact.profilePic;
+            chatName.textContent = contact.name;
+            chatBox.innerHTML = '';
+            inputBox.disabled = false;
+
+            simulateConversation(contact.messages);
+        }
+
+        // Simulate the conversation based on the selected contact's messages
+        async function simulateConversation(messages) {
+            for (let i = 0; i < messages.length; i++) {
+                if (messages[i].type === 'sent') {
+                    await sendMessage(messages[i]);
+                } else {
+                    await showTypingIndicator();
+                    await sendMessage(messages[i]);
+                }
+
+                if (i < messages.length - 1) {
+                    await new Promise(resolve => setTimeout(resolve, 1500));
+                }
+            }
+        }
+
+        // Simulate typing indicator
         async function showTypingIndicator() {
             const typingElement = document.createElement('div');
             typingElement.classList.add('typing-indicator');
-            typingElement.innerText = "Farhad is typing...";
+            typingElement.innerText = `${currentChat.name} is typing...`;
             chatBox.appendChild(typingElement);
             chatBox.scrollTop = chatBox.scrollHeight;
 
@@ -193,7 +286,7 @@
             });
         }
 
-        // Function to simulate sending a message
+        // Simulate sending a message
         async function sendMessage(message) {
             return new Promise(resolve => {
                 const messageElement = document.createElement('div');
@@ -207,24 +300,6 @@
             });
         }
 
-        // Function to start the conversation
-        async function startConversation() {
-            for (let i = 0; i < messages.length; i++) {
-                if (messages[i].type === 'sent') {
-                    await sendMessage(messages[i]);
-                } else {
-                    await showTypingIndicator();
-                    await sendMessage(messages[i]);
-                }
-
-                if (i < messages.length - 1) {
-                    await new Promise(resolve => setTimeout(resolve, 1500));
-                }
-            }
-
-            inputBox.disabled = false;
-        }
-
         // Send message when user clicks on the send button
         sendButton.addEventListener('click', () => {
             const messageText = inputBox.value.trim();
@@ -235,8 +310,9 @@
             }
         });
 
-        // Start the chat when the page loads
-        window.onload = startConversation;
+        // Start by fetching the chats
+        fetchChats();
+
     </script>
 </body>
 </html>
