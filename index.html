@@ -3,365 +3,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Audio Length Video Converter</title>
+    <title>Text to Image Generator with Background Color and Font Selection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&family=Julius+Sans+One&family=Zilla+Slab&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
             background-color: #f0f0f0;
+            color: #333;
         }
-        .container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        input, button, select {
-            display: block;
-            width: 100%;
-            margin: 10px 0;
-            padding: 10px;
-        }
-        #preview, #waveformCanvas {
-            max-width: 100%;
-            max-height: 200px;
-            margin: 10px 0;
-        }
-        #progressBar {
-            width: 0%;
-            height: 20px;
-            background-color: #4CAF50;
-            border-radius: 5px;
-            transition: width 0.5s;
-        }
-        #status {
-            text-align: center;
-            margin-top: 10px;
-            color: #666;
-        }
-        #downloadLink {
-            display: block;
-            text-align: center;
-            margin-top: 10px;
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-        .option-label {
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
             font-weight: bold;
+            text-align: center;
+        }
+
+        /* Form and input fields */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+            width: 90%;
+            max-width: 600px;
+        }
+
+        .form-group-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            justify-content: space-between;
+        }
+
+        label {
+            font-size: 16px;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        input, select {
+            padding: 10px 20px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+            width: 60%;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        textarea {
+            width: 90%;
+            height: 40vh; /* 40% of the screen height */
+            padding: 15px;
+            font-size: 18px;
+            font-family: 'Arial', sans-serif;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            resize: none;
+            margin-bottom: 15px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .button-container {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 8px 16px;
+            font-size: 14px;
+            border-radius: 5px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        button i {
+            margin-right: 8px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        canvas {
+            margin-top: 30px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        #downloadBtn {
+            display: none;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Audio Length Video Converter</h1>
-        
-        <input type="file" id="imageInput" accept="image/*" placeholder="Select Background Image">
-        <img id="preview" alt="Image Preview">
-        
-        <div>
-            <label for="imageRatio" class="option-label">Select Image Ratio</label>
-            <select id="imageRatio">
-                <option value="full">Full Screen</option>
-                <option value="square">Square</option>
-                <option value="rectangle">Rectangle</option>
-                <option value="circle">Circle</option>
-                <option value="triangle">Triangle</option>
-            </select>
-        </div>
-        
-        <div>
-            <label for="customText" class="option-label">Custom Text Below Image</label>
-            <input type="text" id="customText" placeholder="Enter custom text here">
-        </div>
+    <h1>Text to Image Generator with Background Color and Font Selection</h1>
 
-        <input type="file" id="audioInput" accept="audio/*" placeholder="Select Audio">
-        <audio id="audioPlayer" controls></audio>
-        
-        <canvas id="waveformCanvas" width="600" height="100"></canvas>
-        
-        <button id="convertBtn" disabled>Convert to Video</button>
-        
-        <div id="progressBar"></div>
-        <div id="status">Ready to convert</div>
-        <a id="downloadLink" style="display:none;">Download Video</a>
+    <div class="form-group">
+        <textarea id="textInput" placeholder="Enter text here..."></textarea>
     </div>
 
-    <canvas id="renderCanvas" style="display:none;"></canvas>
+    <div class="form-group-row">
+        <div class="form-group">
+            <label for="backgroundColor">Background Color:</label>
+            <input type="color" id="backgroundColor" value="#ffffff">
+        </div>
+        <div class="form-group">
+            <label for="textColor">Text Color:</label>
+            <input type="color" id="textColor" value="#000000">
+        </div>
+    </div>
+
+    <div class="form-group-row">
+        <div class="form-group">
+            <label for="fontFamily">Font:</label>
+            <select id="fontFamily">
+                <option value="Arial">English (Arial)</option>
+                <option value="Noto Nastaliq Urdu">Urdu (Noto Nastaliq Urdu)</option>
+                <option value="Julius Sans One">Urdu (Julius Sans One)</option>
+                <option value="Zilla Slab">Urdu (Zilla Slab)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="fontSize">Font Size:</label>
+            <input type="number" id="fontSize" value="40" min="10" max="100">
+        </div>
+    </div>
+
+    <div class="button-container">
+        <button onclick="generateImage()"><i class="fas fa-image"></i>Generate Image</button>
+        <button id="downloadBtn" onclick="downloadImage()"><i class="fas fa-download"></i>Download Image</button>
+    </div>
+
+    <canvas id="canvas" width="800" height="500"></canvas>
 
     <script>
-        class AudioVideoConverter {
-            constructor() {
-                this.imageInput = document.getElementById('imageInput');
-                this.audioInput = document.getElementById('audioInput');
-                this.preview = document.getElementById('preview');
-                this.audioPlayer = document.getElementById('audioPlayer');
-                this.waveformCanvas = document.getElementById('waveformCanvas');
-                this.convertBtn = document.getElementById('convertBtn');
-                this.status = document.getElementById('status');
-                this.progressBar = document.getElementById('progressBar');
-                this.downloadLink = document.getElementById('downloadLink');
-                this.renderCanvas = document.getElementById('renderCanvas');
-                this.renderCtx = this.renderCanvas.getContext('2d');
+        function generateImage() {
+            const text = document.getElementById('textInput').value;
+            const backgroundColor = document.getElementById('backgroundColor').value;
+            const textColor = document.getElementById('textColor').value;
+            const fontSize = document.getElementById('fontSize').value;
+            const fontFamily = document.getElementById('fontFamily').value;
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
 
-                this.imageFile = null;
-                this.audioFile = null;
-                this.audioContext = null;
-                this.audioDuration = 0;
-                this.customText = '';
+            // Clear the canvas before drawing a new image
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-                this.setupEventListeners();
-            }
+            // Set the background color
+            ctx.fillStyle = backgroundColor;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            setupEventListeners() {
-                this.imageInput.addEventListener('change', (e) => this.handleImageUpload(e));
-                this.audioInput.addEventListener('change', (e) => this.handleAudioUpload(e));
-                this.convertBtn.addEventListener('click', () => this.convertToVideo());
-                document.getElementById('customText').addEventListener('input', (e) => {
-                    this.customText = e.target.value;
-                });
-            }
+            // Set font and text styles based on the selected font
+            ctx.font = `${fontSize}px ${fontFamily}`;
+            ctx.fillStyle = textColor;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'top';
 
-            handleImageUpload(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = (event) => {
-                        this.preview.src = event.target.result;
-                        this.imageFile = file;
-                        this.checkReadyToConvert();
-                    }
-                    reader.readAsDataURL(file);
-                }
-            }
+            // Split the input text into lines (split on line breaks)
+            const lines = text.split('\n');
+            const lineHeight = fontSize * 1.2;
+            const maxWidth = canvas.width - 40; // Some padding
 
-            async handleAudioUpload(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = async (event) => {
-                        this.audioPlayer.src = event.target.result;
-                        this.audioFile = file;
+            let y = 20; // Start from the top with a padding
 
-                        // Process audio for waveform and duration
-                        await this.processAudio(event.target.result);
-                        this.checkReadyToConvert();
-                    }
-                    reader.readAsDataURL(file);
-                }
-            }
+            // Draw each line of text
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i];
+                const words = line.split(' ');
 
-            async processAudio(audioSrc) {
-                // Create audio context and analyze audio
-                this.audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                const response = await fetch(audioSrc);
-                const arrayBuffer = await response.arrayBuffer();
-                const audioBuffer = await this.audioContext.decodeAudioData(arrayBuffer);
-                
-                // Get duration
-                this.audioDuration = audioBuffer.duration;
-
-                // Draw waveform
-                this.drawAudioWaveform(audioBuffer);
-            }
-
-            drawAudioWaveform(audioBuffer) {
-                const ctx = this.waveformCanvas.getContext('2d');
-                const width = this.waveformCanvas.width;
-                const height = this.waveformCanvas.height;
-                
-                ctx.clearRect(0, 0, width, height);
-                ctx.fillStyle = 'rgba(0,0,0,0.1)';
-                ctx.fillRect(0, 0, width, height);
-
-                // Get audio data
-                const channelData = audioBuffer.getChannelData(0);
-                const step = Math.ceil(channelData.length / width);
-                
-                ctx.beginPath();
-                ctx.strokeStyle = '#4CAF50';
-                ctx.lineWidth = 2;
-
-                for (let i = 0; i < width; i++) {
-                    let min = 1.0;
-                    let max = -1.0;
-                    for (let j = 0; j < step; j++) {
-                        const datum = channelData[(i * step) + j];
-                        if (datum < min) min = datum;
-                        if (datum > max) max = datum;
-                    }
-                    
-                    ctx.moveTo(i, (1 + min) * height / 2);
-                    ctx.lineTo(i, (1 + max) * height / 2);
-                }
-                
-                ctx.stroke();
-            }
-
-            checkReadyToConvert() {
-                this.convertBtn.disabled = !(this.imageFile && this.audioFile);
-            }
-
-            updateProgress(percentage) {
-                this.progressBar.style.width = `${percentage}%`;
-                this.status.textContent = `Converting: ${percentage.toFixed(2)}%`;
-            }
-
-            async convertToVideo() {
-                try {
-                    // Reset UI
-                    this.downloadLink.style.display = 'none';
-                    this.convertBtn.disabled = true;
-                    this.updateProgress(0);
-
-                    // Prepare image
-                    const img = new Image();
-                    img.src = URL.createObjectURL(this.imageFile);
-                    await new Promise(resolve => img.onload = resolve);
-
-                    // Setup canvas
-                    const ratio = document.getElementById('imageRatio').value;
-                    if (ratio === 'square') {
-                        this.renderCanvas.width = this.renderCanvas.height = Math.min(img.width, img.height);
-                    } else if (ratio === 'rectangle') {
-                        this.renderCanvas.width = img.width;
-                        this.renderCanvas.height = img.height * 0.75;
-                    } else if (ratio === 'circle') {
-                        this.renderCanvas.width = this.renderCanvas.height = Math.min(img.width, img.height);
-                    } else if (ratio === 'triangle') {
-                        this.renderCanvas.width = img.width;
-                        this.renderCanvas.height = img.height;
+                let currentLine = '';
+                // Word wrapping logic: add words until the line exceeds max width
+                for (let word of words) {
+                    const testLine = currentLine + word + ' ';
+                    const testWidth = ctx.measureText(testLine).width;
+                    if (testWidth > maxWidth && currentLine !== '') {
+                        ctx.fillText(currentLine, canvas.width / 2, y);
+                        currentLine = word + ' ';
+                        y += lineHeight;
                     } else {
-                        this.renderCanvas.width = img.width;
-                        this.renderCanvas.height = img.height;
+                        currentLine = testLine;
                     }
-
-                    const totalFrames = Math.floor(this.audioDuration * 30); // 30 FPS
-                    const frameInterval = 1000 / 30; // 30 FPS
-
-                    // Prepare video stream
-                    const stream = this.renderCanvas.captureStream(30);
-
-                    // Prepare audio
-                    const audioSource = this.audioContext.createBufferSource();
-                    const audioBuffer = await this.audioContext.decodeAudioData(
-                        await this.audioFile.arrayBuffer()
-                    );
-                    audioSource.buffer = audioBuffer;
-
-                    // Create audio destination
-                    const audioDestination = this.audioContext.createMediaStreamDestination();
-                    audioSource.connect(audioDestination);
-
-                    // Add audio track to video stream
-                    stream.addTrack(audioDestination.stream.getAudioTracks()[0]);
-
-                    // Prepare recorder
-                    const mediaRecorder = new MediaRecorder(stream, {
-                        mimeType: 'video/webm'
-                    });
-
-                    const chunks = [];
-                    mediaRecorder.ondataavailable = (e) => chunks.push(e.data);
-
-                    // Promise to handle recording
-                    const recordingPromise = new Promise((resolve) => {
-                        mediaRecorder.onstop = () => {
-                            const blob = new Blob(chunks, { type: 'video/mp4' });
-                            resolve(blob);
-                        };
-                    });
-
-                    // Start recording
-                    mediaRecorder.start();
-                    audioSource.start();
-
-                    // Draw the image repeatedly for the video duration
-                    const startTime = Date.now();
-                    const progressInterval = setInterval(() => {
-                        const elapsedTime = (Date.now() - startTime) / 1000;
-                        const progressPercentage = Math.min(
-                            100, 
-                            (elapsedTime / this.audioDuration) * 100
-                        );
-                        this.updateProgress(progressPercentage);
-
-                        if (elapsedTime >= this.audioDuration) {
-                            clearInterval(progressInterval);
-                        }
-                    }, 100);
-
-                    // Fill canvas with the selected layout
-                    const drawFrame = () => {
-                        const currentTime = (Date.now() - startTime) / 1000;
-                        if (currentTime < this.audioDuration) {
-                            // Draw according to the selected layout
-                            const ratio = document.getElementById('imageRatio').value;
-                            this.renderCtx.clearRect(0, 0, this.renderCanvas.width, this.renderCanvas.height);
-
-                            if (ratio === 'circle') {
-                                this.renderCtx.beginPath();
-                                this.renderCtx.arc(this.renderCanvas.width / 2, this.renderCanvas.height / 2, Math.min(this.renderCanvas.width, this.renderCanvas.height) / 2, 0, Math.PI * 2);
-                                this.renderCtx.clip();
-                            } else if (ratio === 'triangle') {
-                                this.renderCtx.beginPath();
-                                this.renderCtx.moveTo(this.renderCanvas.width / 2, 0);
-                                this.renderCtx.lineTo(0, this.renderCanvas.height);
-                                this.renderCtx.lineTo(this.renderCanvas.width, this.renderCanvas.height);
-                                this.renderCtx.closePath();
-                                this.renderCtx.clip();
-                            }
-
-                            this.renderCtx.drawImage(img, 0, 0, this.renderCanvas.width, this.renderCanvas.height);
-                            
-                            // Custom text if provided
-                            if (this.customText) {
-                                this.renderCtx.font = '30px Arial';
-                                this.renderCtx.fillStyle = '#fff';
-                                this.renderCtx.textAlign = 'center';
-                                this.renderCtx.fillText(this.customText, this.renderCanvas.width / 2, this.renderCanvas.height - 30);
-                            }
-
-                            // Draw next frame
-                            requestAnimationFrame(drawFrame);
-                        }
-                    };
-
-                    // Start drawing frames
-                    drawFrame();
-
-                    // Stop after audio duration
-                    setTimeout(async () => {
-                        mediaRecorder.stop();
-                        audioSource.stop();
-
-                        // Get video blob
-                        const videoBlob = await recordingPromise;
-                        
-                        // Create download link
-                        const url = URL.createObjectURL(videoBlob);
-                        this.downloadLink.href = url;
-                        this.downloadLink.download = 'converted_video.mp4';
-                        this.downloadLink.style.display = 'block';
-                        
-                        this.status.textContent = 'Conversion Complete!';
-                        this.convertBtn.disabled = false;
-                    }, this.audioDuration * 1000);
-
-                } catch (error) {
-                    console.error(error);
-                    this.status.textContent = `Error: ${error.message}`;
-                    this.convertBtn.disabled = false;
                 }
+
+                // Draw the last line
+                ctx.fillText(currentLine, canvas.width / 2, y);
+                y += lineHeight;
             }
+
+            // Show the download button
+            document.getElementById('downloadBtn').style.display = 'inline-block';
         }
 
-        // Initialize the converter
-        const converter = new AudioVideoConverter();
+        function downloadImage() {
+            const canvas = document.getElementById('canvas');
+            const dataUrl = canvas.toDataURL('image/png');
+
+            // Create a temporary link element to trigger the download
+            const link = document.createElement('a');
+            link.href = dataUrl;
+            link.download = 'text-image.png';
+            link.click();
+        }
     </script>
 </body>
 </html>
