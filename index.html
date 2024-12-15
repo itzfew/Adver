@@ -176,7 +176,7 @@
         <button id="downloadBtn" onclick="downloadImage()"><i class="fas fa-download"></i>Download Image</button>
     </div>
 
-    <canvas id="canvas" width="700" height="1400"></canvas>
+    <canvas id="canvas" width="700" height="1190"></canvas>
 
     <!-- Spinner for loading -->
     <div class="spinner" id="spinner">
@@ -257,20 +257,6 @@
             link.download = 'text-image.png';
             link.click();
         }
-
-        // Resize the image proportionally when clicked
-        document.getElementById('canvas').addEventListener('click', function() {
-            const newWidth = prompt("Enter new width (700px max):", 700);
-            if (newWidth) {
-                const aspectRatio = 700 / 1400;
-                const newHeight = newWidth * aspectRatio;
-                if (newWidth <= 700 && newHeight <= 1400) {
-                    canvas.width = newWidth;
-                    canvas.height = newHeight;
-                    generateImage(); // Regenerate the image with the new size
-                }
-            }
-        });
     </script>
 </body>
 </html>
