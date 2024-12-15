@@ -1,7 +1,7 @@
 [
     {
         "name": "Mom",
-        "image": "https://gravatar.com/images/homepage/avatar-01.png",
+        "profilePic": "https://gravatar.com/images/homepage/avatar-01.png",
         "messages": [
             { "type": "received", "text": "Where have you been for the past six days? You didn’t even tell me you were leaving! I’ve been worried sick." },
             { "type": "sent", "text": "Mom, I’m really sorry. I didn’t mean to worry you. I had to sort out some things for school, but I should’ve told you." },
@@ -22,7 +22,7 @@
     },
     {
         "name": "Teacher",
-        "image": "img/10.webp",
+        "profilePic": "img/10.webp",
         "messages": [
             { "type": "received", "text": "I’ve noticed you haven’t submitted any of your assignments yet. Is everything okay?" },
             { "type": "sent", "text": "Hi, Mrs. Anderson. I’m really sorry. I’ve been dealing with some personal stuff, and I fell behind on my work." },
@@ -43,7 +43,7 @@
     },
     {
         "name": "Farhad",
-        "image": "https://via.placeholder.com/30",
+        "profilePic": "https://via.placeholder.com/30",
         "messages": [
             { "type": "sent", "text": "Hey! How’s everything going with your projects?" },
             { "type": "received", "text": "Hey, it's been tough. I’ve been out of the house for a while and now I’m way behind on my assignments." },
@@ -65,7 +65,7 @@
     },
     {
         "name": "Aisha",
-        "image": "https://via.placeholder.com/30",
+        "profilePic": "https://via.placeholder.com/30",
         "messages": [
             { "type": "sent", "text": "Hey! Have you finished your project?" },
             { "type": "received", "text": "No, I’m way behind. I’ve been dealing with some stuff and didn’t submit anything." },
