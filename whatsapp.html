@@ -105,6 +105,7 @@
             height: 100%;
         }
 
+
         /* Chat Header (Profile, Back, and Menu) */
         .chat-header {
             background-color: #075e54;
@@ -116,9 +117,11 @@
             font-size: 16px;
         }
 
+        /* Profile on the left */
         .chat-header .profile {
             display: flex;
             align-items: center;
+          margin-right: 70%;
         }
 
         .chat-header img {
@@ -137,6 +140,19 @@
             font-size: 20px;
             cursor: pointer;
         }
+
+        .chat-header .icons {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chat-header .icons i {
+            font-size: 20px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
 
         /* Chat Messages Area */
         #chat-box {
