@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Redirection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 24px;
+        }
+        .message {
+            font-size: 18px;
+            color: #333;
+        }
+        .loading {
+            font-size: 20px;
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Redirecting...</h1>
+    <p class="message">Please wait while we redirect you to the original link.</p>
+    <p class="loading">Loading...</p>
+
+    <script>
+        // Function to Base64 decode the URL
+        function decodeBase64(str) {
+            return atob(str);  // atob() decodes from base64
+        }
+
+        // Check if the URL has 'id' parameter in the query string
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const encodedId = urlParams.get('id');  // Get the 'id' parameter from the URL
+
+            if (encodedId) {
+                // Decode the 'id' to get the original URL
+                const originalUrl = decodeBase64(encodedId);
+
+                // Redirect to the original URL
+                window.location.href = originalUrl;
+            } else {
+                // If 'id' is missing or invalid, show an error message
+                document.querySelector('.message').textContent = "Invalid or missing short URL!";
+                document.querySelector('.loading').style.display = 'none';
+            }
+        }
+    </script>
+
+</body>
+</html>
