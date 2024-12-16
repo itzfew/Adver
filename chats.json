@@ -33,7 +33,7 @@
         "profilePic": "https://randomuser.me/api/portraits/men/20.jpg",
           "status": "Busy",
         "messages": [
-            { "type": "received", "text": "Hey, kiddo! Where were you last night?" },
+            { "type": "sent", "text": "Hey, kiddo! Where were you last night?" },
             { "type": "sent", "text": "Hey Dad, I was out with friends." },
             { "type": "received", "text": "Didn’t hear from you. Hope everything’s good." },
             { "type": "sent", "text": "Yeah, all good, just got caught up!" },
@@ -61,7 +61,7 @@
           "status": "Available",
         "messages": [
             { "type": "received", "text": "Yo! Where were you yesterday?" },
-            { "type": "sent", "text": "Hey, I was just out with some friends." },
+            { "type": "received", "text": "Hey, I was just out with some friends." },
             { "type": "received", "text": "Tried calling you, but you didn’t pick up!" },
             { "type": "sent", "text": "Sorry! Got caught up. What’s up?" },
             { "type": "received", "text": "Nothing much. We should hang soon!" },
