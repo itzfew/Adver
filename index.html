@@ -72,6 +72,14 @@
             font-style: italic;
         }
 
+        .contact-item .new-message {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #25d366; /* Green dot for received messages */
+            margin-left: 10px;
+        }
+
         .contact-list-header {
             display: flex;
             justify-content: space-between;
@@ -229,6 +237,24 @@
         #add-contact-btn i {
             font-size: 24px;
         }
+        .contact-item .new-message {
+    width: 20px;            /* Set width of the circle */
+    height: 20px;           /* Set height of the circle */
+    border-radius: 50%;     /* Make it a perfect circle */
+    background-color: #25d366; /* Green color */
+    color: white;           /* White text color for the number */
+    font-size: 12px;        /* Set the font size for the number */
+    display: flex;          /* Use flexbox to center the number */
+    justify-content: center; /* Center horizontally */
+    align-items: center;    /* Center vertically */
+    margin-left: 10px;      /* Space between the circle and contact name */
+    font-weight: bold;      /* Bold the number to make it stand out */
+    text-align: center;     /* Ensure the text is centered properly */
+    min-width: 20px;        /* Ensure the circle has a minimum width */
+    min-height: 20px;       /* Ensure the circle has a minimum height */
+    padding: 2px;           /* Padding to prevent text from touching the edges */
+}
+
     </style>
 </head>
 <body>
@@ -302,23 +328,42 @@
             renderContacts(contacts);
         }
 
-        // Render contacts in the contact list
-        function renderContacts(contactList) {
-            contactListDiv.innerHTML = ''; // Clear the contact list before rendering
-            contactList.forEach(contact => {
-                const contactElement = document.createElement('div');
-                contactElement.classList.add('contact-item');
-                contactElement.innerHTML = `
-                    <img src="${contact.profilePic}" alt="${contact.name}">
-                    <div>
-                        <div class="name">${contact.name}</div>
-                        <div class="status">${contact.status}</div>
-                    </div>
-                `;
-                contactElement.addEventListener('click', () => startChat(contact));
-                contactListDiv.appendChild(contactElement);
-            });
+// Render contacts in the contact list
+function renderContacts(contactList) {
+    contactListDiv.innerHTML = ''; // Clear the contact list before rendering
+    contactList.forEach(contact => {
+        const contactElement = document.createElement('div');
+        contactElement.classList.add('contact-item');
+        contactElement.innerHTML = `
+            <img src="${contact.profilePic}" alt="${contact.name}">
+            <div>
+                <div class="name">${contact.name}</div>
+                <div class="status">${contact.status}</div>
+            </div>
+        `;
+
+        // Count the number of received messages before the first sent message
+        let receivedMessageCount = 0;
+        for (let msg of contact.messages) {
+            if (msg.type === 'received') {
+                receivedMessageCount++;
+            } else if (msg.type === 'sent') {
+                break; // Stop counting as soon as the first sent message appears
+            }
         }
+
+        // Show a green dot with the count of received messages until the first sent message
+        if (receivedMessageCount > 0) {
+            const newMessageDot = document.createElement('div');
+            newMessageDot.classList.add('new-message');
+            newMessageDot.innerText = receivedMessageCount; // Show the count of received messages
+            contactElement.appendChild(newMessageDot);
+        }
+
+        contactElement.addEventListener('click', () => startChat(contact));
+        contactListDiv.appendChild(contactElement);
+    });
+}
 
         // Start a chat with the selected contact
         function startChat(contact) {
@@ -330,8 +375,15 @@
             chatBox.innerHTML = '';
             inputBox.disabled = false;
             
+            // Show only the first message
+            const firstMessage = contact.messages[0];
+            if (firstMessage) {
+                sendMessage(firstMessage);
+            }
+            
+            // Simulate other messages after chat is opened
             setTimeout(() => {
-                simulateConversation(contact.messages);
+                simulateConversation(contact.messages.slice(1)); // Start from second message onwards
             }, 2000); // 2-second delay
         }
 
@@ -383,6 +435,13 @@
             }
         }
 
+        sendButton.addEventListener('click', async () => {
+            const messageText = inputBox.value.trim();
+            if (messageText && currentChat) {
+                await typeMessage(messageText);
+            }
+        });
+
         async function typeMessage(messageText) {
             let typedText = '';
             for (let i = 0; i < messageText.length; i++) {
@@ -397,13 +456,6 @@
             inputBox.value = '';
         }
 
-        sendButton.addEventListener('click', async () => {
-            const messageText = inputBox.value.trim();
-            if (messageText && currentChat) {
-                await typeMessage(messageText);
-            }
-        });
-
         function backToContacts() {
             contactListContainer.style.display = 'flex';
             chatContainer.style.display = 'none';
@@ -411,6 +463,5 @@
 
         fetchChats();
     </script>
-
 </body>
 </html>
