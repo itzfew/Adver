@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener with Encryption</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 500px;
+            margin: auto;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .short-link {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>URL Shortener with Encryption</h2>
+    <input type="text" id="longUrl" placeholder="Enter long URL">
+    <button onclick="generateShortLink()">Generate Short Link</button>
+
+    <div class="short-link" id="shortLink"></div>
+
+    <script>
+        // Function to Base64 encode the URL
+        function encodeBase64(str) {
+            return btoa(str);  // btoa() encodes to base64
+        }
+
+        // Function to Base64 decode the URL
+        function decodeBase64(str) {
+            return atob(str);  // atob() decodes from base64
+        }
+
+        // Generate the short link
+        function generateShortLink() {
+            const longUrl = document.getElementById('longUrl').value;
+            if (!longUrl) {
+                alert("Please enter a valid URL.");
+                return;
+            }
+
+            // Encrypt URL to create a unique ID (Base64 encoded)
+            const encodedUrl = encodeBase64(longUrl);
+
+            // Store this in localStorage (mimicking a database)
+            localStorage.setItem(encodedUrl, longUrl);
+
+            // Generate the short URL with the encoded ID
+            const shortLink = `${window.location.href.split('?')[0]}?id=${encodedUrl}`;
+            document.getElementById('shortLink').innerHTML = `<a href="${shortLink}" target="_blank">${shortLink}</a>`;
+        }
+
+        // Check if we are on the short link page (has 'id' in query parameters)
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const encodedId = urlParams.get('id');
+            if (encodedId) {
+                // Decode the ID to get the original URL
+                const originalUrl = localStorage.getItem(encodedId);
+                if (originalUrl) {
+                    // Redirect to the original URL
+                    window.location.href = originalUrl;
+                } else {
+                    alert("Invalid or expired short link.");
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
