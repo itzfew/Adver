@@ -36,14 +36,14 @@
 </head>
 <body>
 
-    <h2>URL Shortener</h2>
+    <h2>Generate Short URL</h2>
     <input type="text" id="longUrl" placeholder="Enter long URL">
     <button onclick="generateShortLink()">Generate Short Link</button>
 
     <div class="short-link" id="shortLink"></div>
 
     <script>
-        // Function to Base64 encode the URL and truncate to get a shorter ID
+        // Function to Base64 encode the URL and make it short
         function encodeUrl(url) {
             const encoded = btoa(url);  // Base64 encode the URL
             return encoded.substring(0, 8);  // Truncate to first 8 characters for a shorter ID
@@ -60,11 +60,11 @@
             // Encode the URL to Base64 and shorten it
             const encodedUrl = encodeUrl(longUrl);
 
-            // Store the original long URL and its encoded short ID in localStorage
+            // Store the original long URL and its encoded short ID in localStorage (or a backend in production)
             localStorage.setItem(encodedUrl, longUrl);
 
             // Generate the short URL (e.g., short.html?id=encodedUrl)
-            const shortLink = `${window.location.origin}/short.html?id=${encodedUrl}`;
+            const shortLink = `https://itzfew.github.io/Adver/short.html?id=${encodedUrl}`;
             document.getElementById('shortLink').innerHTML = `Your short link: <a href="${shortLink}" target="_blank">${shortLink}</a>`;
         }
     </script>
