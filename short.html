@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Redirection</title>
+    <title>Redirecting...</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -30,25 +30,24 @@
     <p class="loading">Loading...</p>
 
     <script>
-        // Function to Base64 decode the URL
-        function decodeBase64(str) {
-            return atob(str);  // atob() decodes from base64
-        }
-
         // Check if the URL has 'id' parameter in the query string
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
-            const encodedId = urlParams.get('id');  // Get the 'id' parameter from the URL
+            const shortId = urlParams.get('id');  // Get the 'id' parameter from the URL
 
-            if (encodedId) {
-                // Decode the 'id' to get the original URL
-                const originalUrl = decodeBase64(encodedId);
+            if (shortId) {
+                // Retrieve the original URL from localStorage using the short ID
+                const originalUrl = localStorage.getItem(shortId);
 
-                // Redirect to the original URL
-                window.location.href = originalUrl;
+                if (originalUrl) {
+                    // Redirect to the original URL
+                    window.location.href = originalUrl;
+                } else {
+                    document.querySelector('.message').textContent = "Invalid or expired short URL!";
+                    document.querySelector('.loading').style.display = 'none';
+                }
             } else {
-                // If 'id' is missing or invalid, show an error message
-                document.querySelector('.message').textContent = "Invalid or missing short URL!";
+                document.querySelector('.message').textContent = "Missing short URL ID!";
                 document.querySelector('.loading').style.display = 'none';
             }
         }
