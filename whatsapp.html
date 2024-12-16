@@ -310,31 +310,31 @@
             renderContacts(contacts);
         }
 
-        // Render contacts in the contact list
-        function renderContacts(contactList) {
-            contactListDiv.innerHTML = ''; // Clear the contact list before rendering
-            contactList.forEach(contact => {
-                const contactElement = document.createElement('div');
-                contactElement.classList.add('contact-item');
-                contactElement.innerHTML = `
-                    <img src="${contact.profilePic}" alt="${contact.name}">
-                    <div>
-                        <div class="name">${contact.name}</div>
-                        <div class="status">${contact.status}</div>
-                    </div>
-                `;
+// Render contacts in the contact list
+function renderContacts(contactList) {
+    contactListDiv.innerHTML = ''; // Clear the contact list before rendering
+    contactList.forEach(contact => {
+        const contactElement = document.createElement('div');
+        contactElement.classList.add('contact-item');
+        contactElement.innerHTML = `
+            <img src="${contact.profilePic}" alt="${contact.name}">
+            <div>
+                <div class="name">${contact.name}</div>
+                <div class="status">${contact.status}</div>
+            </div>
+        `;
 
-                // Check if first message is received or sent
-                const firstMessage = contact.messages[0];
-                if (firstMessage.type === 'received') {
-                    const newMessageDot = document.createElement('div');
-                    newMessageDot.classList.add('new-message');
-                    contactElement.appendChild(newMessageDot);
-                }
+        // Check if the first message is received (to show green dot)
+        const firstMessage = contact.messages[0];
+        if (firstMessage && firstMessage.type === 'received') {
+            const newMessageDot = document.createElement('div');
+            newMessageDot.classList.add('new-message');
+            contactElement.appendChild(newMessageDot);
+        }
 
-                contactElement.addEventListener('click', () => startChat(contact));
-                contactListDiv.appendChild(contactElement);
-            });
+        contactElement.addEventListener('click', () => startChat(contact));
+        contactListDiv.appendChild(contactElement);
+    });
         }
 
         // Start a chat with the selected contact
