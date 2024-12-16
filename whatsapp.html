@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WhatsApp Chat Simulation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-   <link rel="manifest" href="manifest.json"> <!-- Manifest link -->
+  <link rel="manifest" href="/manifest.json">
     <style>
         * {
             margin: 0;
@@ -255,31 +255,10 @@
     min-height: 20px;       /* Ensure the circle has a minimum height */
     padding: 2px;           /* Padding to prevent text from touching the edges */
 }
-#install-btn {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    background-color: #25d366;
-    color: white;
-    border: none;
-    padding: 15px;
-    border-radius: 50%;
-    font-size: 20px;
-    cursor: pointer;
-    z-index: 100;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-}
-#install-btn:hover {
-    transform: scale(1.1);
-}
 
     </style>
 </head>
 <body>
-<!-- Add this button at the bottom of your body element -->
-<button id="install-btn" style="display: none; position: fixed; bottom: 20px; left: 20px; background-color: #25d366; color: white; border: none; padding: 15px; border-radius: 50%; font-size: 20px; cursor: pointer; z-index: 100;">
-    <i class="fas fa-cloud-download-alt"></i> Install
-</button>
 
     <audio id="message-sent-sound" src="https://bigsoundbank.com/UPLOAD/wav-en/1313.wav"></audio>
     <audio id="message-received-sound" src="https://bigsoundbank.com/UPLOAD/wav-en/1313.wav"></audio>
@@ -325,43 +304,41 @@
             </div>
         </div>
     </div>
-<script>
-        // Global variable for the install prompt event
-let deferredPrompt;
+<!-- Install Button -->
+    <button id="install-btn" style="display: none; position: fixed; bottom: 20px; left: 20px; background-color: #25d366; color: white; border: none; padding: 15px; border-radius: 50%; font-size: 20px; cursor: pointer; z-index: 100;">
+        <i class="fas fa-cloud-download-alt"></i> Install
+    </button>
+    <script>
+        let deferredPrompt;
+        const installButton = document.getElementById('install-btn');
 
-const installButton = document.getElementById('install-btn');
+        window.addEventListener('beforeinstallprompt', (event) => {
+            event.preventDefault();
+            deferredPrompt = event;
+            installButton.style.display = 'block';
+            installButton.addEventListener('click', () => {
+                installButton.style.display = 'none';
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the A2HS prompt');
+                    } else {
+                        console.log('User dismissed the A2HS prompt');
+                    }
+                    deferredPrompt = null;
+                });
+            });
+        });
 
-// Listen for the beforeinstallprompt event
-window.addEventListener('beforeinstallprompt', (event) => {
-    // Prevent the default prompt
-    event.preventDefault();
-    // Save the event so it can be triggered later
-    deferredPrompt = event;
-
-    // Show the install button
-    installButton.style.display = 'block';
-});
-
-// When the install button is clicked, show the install prompt
-installButton.addEventListener('click', async () => {
-    // Hide the install button after it is clicked
-    installButton.style.display = 'none';
-
-    // Show the install prompt
-    if (deferredPrompt) {
-        deferredPrompt.prompt();
-        // Wait for the user to respond to the prompt
-        const { outcome } = await deferredPrompt.userChoice;
-        if (outcome === 'accepted') {
-            console.log('User accepted the install prompt');
-        } else {
-            console.log('User dismissed the install prompt');
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then((registration) => {
+                    console.log('Service Worker registered with scope: ', registration.scope);
+                })
+                .catch((error) => {
+                    console.error('Service Worker registration failed: ', error);
+                });
         }
-        // Reset the deferred prompt so it can be used again if needed
-        deferredPrompt = null;
-    }
-});
-
     </script>
     <script>
         const contactListDiv = document.getElementById('contact-list');
