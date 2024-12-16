@@ -30,14 +30,19 @@
     <p class="loading">Loading...</p>
 
     <script>
+        // Function to Base64 decode the URL
+        function decodeUrl(encodedUrl) {
+            return atob(encodedUrl);  // atob() decodes from Base64
+        }
+
         // Check if the URL has 'id' parameter in the query string
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
-            const shortId = urlParams.get('id');  // Get the 'id' parameter from the URL
+            const encodedId = urlParams.get('id');  // Get the 'id' parameter from the URL
 
-            if (shortId) {
+            if (encodedId) {
                 // Retrieve the original URL from localStorage using the short ID
-                const originalUrl = localStorage.getItem(shortId);
+                const originalUrl = localStorage.getItem(encodedId);
 
                 if (originalUrl) {
                     // Redirect to the original URL
