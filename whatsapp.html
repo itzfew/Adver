@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WhatsApp Chat Simulation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+   <link rel="manifest" href="manifest.json"> <!-- Manifest link -->
     <style>
         * {
             margin: 0;
@@ -303,7 +304,20 @@
             </div>
         </div>
     </div>
+<script>
+        // Your existing JavaScript goes here
 
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then((registration) => {
+                    console.log('Service Worker registered with scope: ', registration.scope);
+                })
+                .catch((error) => {
+                    console.error('Service Worker registration failed: ', error);
+                });
+        }
+    </script>
     <script>
         const contactListDiv = document.getElementById('contact-list');
         const searchInput = document.getElementById('search-input');
