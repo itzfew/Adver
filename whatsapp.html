@@ -4,10 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WhatsApp Chat Simulation</title>
-    <!-- Font Awesome CDN for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        /* General Reset and Style */
         * {
             margin: 0;
             padding: 0;
@@ -35,7 +33,6 @@
             flex-direction: column;
         }
 
-        /* Contact List Styles */
         #contact-list {
             width: 100%;
             height: 100%;
@@ -69,12 +66,20 @@
             font-size: 16px;
         }
 
-        .contact-item .last-message {
+        .contact-item .status {
             font-size: 14px;
             color: #888;
+            font-style: italic;
         }
 
-        /* Contact List Header (Search, Plus, and Menu) */
+        .contact-item .new-message {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #25d366; /* Green dot for received messages */
+            margin-left: 10px;
+        }
+
         .contact-list-header {
             display: flex;
             justify-content: space-between;
@@ -98,15 +103,12 @@
             outline: none;
         }
 
-        /* Chat Styles */
         #chat-container {
             display: none;
             flex-direction: column;
             height: 100%;
         }
 
-
-        /* Chat Header (Profile, Back, and Menu) */
         .chat-header {
             background-color: #075e54;
             color: white;
@@ -117,11 +119,9 @@
             font-size: 16px;
         }
 
-        /* Profile on the left */
         .chat-header .profile {
             display: flex;
             align-items: center;
-          margin-right: 70%;
         }
 
         .chat-header img {
@@ -153,8 +153,6 @@
             cursor: pointer;
         }
 
-
-        /* Chat Messages Area */
         #chat-box {
             flex-grow: 1;
             padding: 10px;
@@ -190,7 +188,6 @@
             margin-bottom: 10px;
         }
 
-        /* Chat Input Area */
         #input-box {
             padding: 10px;
             background-color: #f0f0f0;
@@ -215,7 +212,6 @@
             cursor: pointer;
         }
 
-        /* Style for the Plus Button */
         #add-contact-btn {
             position: fixed;
             bottom: 20px;
@@ -245,12 +241,10 @@
 </head>
 <body>
 
-    <!-- Add Audio Elements -->
     <audio id="message-sent-sound" src="https://bigsoundbank.com/UPLOAD/wav-en/1313.wav"></audio>
     <audio id="message-received-sound" src="https://bigsoundbank.com/UPLOAD/wav-en/1313.wav"></audio>
 
     <div id="contact-list-container">
-        <!-- Contact List Header -->
         <div class="contact-list-header">
             <input type="text" id="search-input" placeholder="Search..." oninput="filterContacts()">
             <div class="icons">
@@ -259,14 +253,12 @@
             </div>
         </div>
         
-        <!-- Contact List -->
         <div id="contact-list">
             <!-- Contacts will be appended here -->
         </div>
     </div>
 
     <div id="chat-container">
-        <!-- Chat Header (Profile, Back Button) -->
         <div class="chat-header">
             <i class="fas fa-arrow-left back-btn" onclick="backToContacts()"></i>
             <div class="profile">
@@ -280,12 +272,10 @@
             </div>
         </div>
 
-        <!-- Chat Messages Area -->
         <div id="chat-box">
             <!-- Messages will be appended here -->
         </div>
 
-        <!-- Chat Input Area -->
         <div id="input-box">
             <input type="text" id="message-input" placeholder="Type a message..." disabled>
             <div class="icons">
@@ -313,7 +303,6 @@
         let contacts = [];
         let currentChat = null;
 
-        // Fetch contact data from a JSON source (For demo purposes, using static data)
         async function fetchChats() {
             const response = await fetch('https://raw.githubusercontent.com/itzfew/Adver/refs/heads/main/chats.json');
             const data = await response.json();
@@ -331,9 +320,18 @@
                     <img src="${contact.profilePic}" alt="${contact.name}">
                     <div>
                         <div class="name">${contact.name}</div>
-                        <div class="last-message">${contact.messages[contact.messages.length - 1].text}</div>
+                        <div class="status">${contact.status}</div>
                     </div>
                 `;
+
+                // Check if first message is received or sent
+                const firstMessage = contact.messages[0];
+                if (firstMessage.type === 'received') {
+                    const newMessageDot = document.createElement('div');
+                    newMessageDot.classList.add('new-message');
+                    contactElement.appendChild(newMessageDot);
+                }
+
                 contactElement.addEventListener('click', () => startChat(contact));
                 contactListDiv.appendChild(contactElement);
             });
@@ -349,13 +347,18 @@
             chatBox.innerHTML = '';
             inputBox.disabled = false;
             
-            // Simulate conversation (received messages) after 2 seconds
+            // Show only the first message
+            const firstMessage = contact.messages[0];
+            if (firstMessage) {
+                sendMessage(firstMessage);
+            }
+            
+            // Simulate other messages after chat is opened
             setTimeout(() => {
-                simulateConversation(contact.messages);
+                simulateConversation(contact.messages.slice(1)); // Start from second message onwards
             }, 2000); // 2-second delay
         }
 
-        // Simulate conversation (for received messages)
         async function simulateConversation(messages) {
             for (let i = 0; i < messages.length; i++) {
                 const message = messages[i];
@@ -373,7 +376,6 @@
             }
         }
 
-        // Show typing indicator before a received message
         async function showTypingIndicator(messageText) {
             const typingElement = document.createElement('div');
             typingElement.classList.add('typing-indicator');
@@ -393,7 +395,6 @@
             });
         }
 
-        // Send message (simulated)
         async function sendMessage(message) {
             const messageElement = document.createElement('div');
             messageElement.classList.add('message', message.type);
@@ -406,39 +407,33 @@
             }
         }
 
-        // Simulate typing a message (user message in input field)
+        sendButton.addEventListener('click', async () => {
+            const messageText = inputBox.value.trim();
+            if (messageText && currentChat) {
+                await typeMessage(messageText);
+            }
+        });
+
         async function typeMessage(messageText) {
             let typedText = '';
             for (let i = 0; i < messageText.length; i++) {
                 typedText += messageText[i];
-                inputBox.value = typedText; // Simulate typing character by character
-                chatBox.scrollTop = chatBox.scrollHeight; // Keep chat scrolled to bottom
-                await new Promise(resolve => setTimeout(resolve, 100)); // Typing speed
+                inputBox.value = typedText;
+                chatBox.scrollTop = chatBox.scrollHeight;
+                await new Promise(resolve => setTimeout(resolve, 100)); 
             }
 
-            // After typing simulation, send the message automatically
             const newMessage = { type: 'sent', text: typedText };
             await sendMessage(newMessage);
-            inputBox.value = ''; // Clear input box after sending
+            inputBox.value = '';
         }
 
-        // Trigger typing and sending when user clicks on the send button
-        sendButton.addEventListener('click', async () => {
-            const messageText = inputBox.value.trim();
-            if (messageText && currentChat) {
-                await typeMessage(messageText); // Simulate typing and sending
-            }
-        });
-
-        // Go back to contacts view
         function backToContacts() {
             contactListContainer.style.display = 'flex';
             chatContainer.style.display = 'none';
         }
 
-        // Fetch chats when the page loads
         fetchChats();
     </script>
-
 </body>
 </html>
