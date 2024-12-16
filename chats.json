@@ -2,6 +2,7 @@
     {
         "name": "Mom",
         "profilePic": "https://randomuser.me/api/portraits/women/1.jpg",
+        "status": "Can't talk right now",
         "messages": [
             { "type": "received", "text": "Hi sweetie! 😊 Where were you yesterday?" },
             { "type": "sent", "text": "Hey Mom! Just out with friends." },
