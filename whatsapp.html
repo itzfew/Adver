@@ -237,6 +237,24 @@
         #add-contact-btn i {
             font-size: 24px;
         }
+        .contact-item .new-message {
+    width: 20px;            /* Set width of the circle */
+    height: 20px;           /* Set height of the circle */
+    border-radius: 50%;     /* Make it a perfect circle */
+    background-color: #25d366; /* Green color */
+    color: white;           /* White text color for the number */
+    font-size: 12px;        /* Set the font size for the number */
+    display: flex;          /* Use flexbox to center the number */
+    justify-content: center; /* Center horizontally */
+    align-items: center;    /* Center vertically */
+    margin-left: 10px;      /* Space between the circle and contact name */
+    font-weight: bold;      /* Bold the number to make it stand out */
+    text-align: center;     /* Ensure the text is centered properly */
+    min-width: 20px;        /* Ensure the circle has a minimum width */
+    min-height: 20px;       /* Ensure the circle has a minimum height */
+    padding: 2px;           /* Padding to prevent text from touching the edges */
+}
+
     </style>
 </head>
 <body>
@@ -324,18 +342,28 @@ function renderContacts(contactList) {
             </div>
         `;
 
-        // Check if the first message is received (to show green dot)
-        const firstMessage = contact.messages[0];
-        if (firstMessage && firstMessage.type === 'received') {
+        // Count the number of received messages before the first sent message
+        let receivedMessageCount = 0;
+        for (let msg of contact.messages) {
+            if (msg.type === 'received') {
+                receivedMessageCount++;
+            } else if (msg.type === 'sent') {
+                break; // Stop counting as soon as the first sent message appears
+            }
+        }
+
+        // Show a green dot with the count of received messages until the first sent message
+        if (receivedMessageCount > 0) {
             const newMessageDot = document.createElement('div');
             newMessageDot.classList.add('new-message');
+            newMessageDot.innerText = receivedMessageCount; // Show the count of received messages
             contactElement.appendChild(newMessageDot);
         }
 
         contactElement.addEventListener('click', () => startChat(contact));
         contactListDiv.appendChild(contactElement);
     });
-        }
+}
 
         // Start a chat with the selected contact
         function startChat(contact) {
