@@ -31,6 +31,7 @@
     {
         "name": "Dad",
         "profilePic": "https://randomuser.me/api/portraits/men/20.jpg",
+        "status": "Can't talk right now"
         "messages": [
             { "type": "received", "text": "Hey, kiddo! Where were you last night?" },
             { "type": "sent", "text": "Hey Dad, I was out with friends." },
@@ -57,6 +58,7 @@
     {
         "name": "Friend",
         "profilePic": "https://randomuser.me/api/portraits/men/1.jpg",
+        "status": "Can't talk right now",
         "messages": [
             { "type": "received", "text": "Yo! Where were you yesterday?" },
             { "type": "sent", "text": "Hey, I was just out with some friends." },
@@ -85,6 +87,7 @@
     {
         "name": "Sister",
         "profilePic": "https://randomuser.me/api/portraits/women/5.jpg",
+        "status": "Available",
         "messages": [
             { "type": "received", "text": "Hey, where were you last night?" },
             { "type": "sent", "text": "Just out with friends." },
