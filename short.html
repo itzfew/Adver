@@ -3,53 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecting...</title>
+    <title>Redirecting - Adver</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            padding: 50px;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
         }
         h1 {
             font-size: 24px;
+            color: #4CAF50;
         }
-        .message {
+        p {
             font-size: 18px;
             color: #333;
         }
-        .loading {
-            font-size: 20px;
-            color: #28a745;
+        .button {
+            padding: 15px 30px;
+            font-size: 18px;
+            margin-top: 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .hidden {
+            display: none;
+        }
+        .countdown {
+            font-size: 22px;
+            color: #FF6347;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-    <h1>Redirecting...</h1>
-    <p class="message">Please wait while we redirect you to the original link.</p>
-    <p class="loading">Loading...</p>
+    <h1>Step 1: Join Our Telegram Group</h1>
+    <p>Please join our Telegram group to continue:</p>
+    <p><a href="https://t.me/neetpw01" target="_blank"><button class="button">Join Telegram Group</button></a></p>
+    <p><strong>After joining, click the button below to continue:</strong></p>
+
+    <!-- Continue button, hidden initially -->
+    <button id="continueBtn" class="button hidden" onclick="startCountdown()">Continue</button>
+
+    <!-- Countdown timer (hidden initially) -->
+    <p id="countdown" class="countdown hidden">10 seconds remaining...</p>
+
+    <!-- Get Link button, initially hidden -->
+    <button id="getLinkBtn" class="button hidden" onclick="redirectUser()">Get Link</button>
 
     <script>
-        // Check if the URL has 'id' parameter in the query string
-        window.onload = function() {
+        // Function to get the 'id' parameter from the URL
+        function getUrlParameter(name) {
             const urlParams = new URLSearchParams(window.location.search);
-            const shortId = urlParams.get('id');  // Get the 'id' parameter from the URL
+            return urlParams.get(name);
+        }
 
-            if (shortId) {
-                // Retrieve the original URL from localStorage using the short ID
-                const originalUrl = localStorage.getItem(shortId);
-
-                if (originalUrl) {
-                    // Redirect to the original URL
-                    window.location.href = originalUrl;
-                } else {
-                    document.querySelector('.message').textContent = "Invalid or expired short URL!";
-                    document.querySelector('.loading').style.display = 'none';
-                }
-            } else {
-                document.querySelector('.message').textContent = "Missing short URL ID!";
-                document.querySelector('.loading').style.display = 'none';
+        // Check if the user has already joined the Telegram group (using a flag in localStorage)
+        function checkTelegramJoin() {
+            const joined = localStorage.getItem('telegram_joined');
+            if (joined === 'true') {
+                document.getElementById('continueBtn').classList.remove('hidden');  // Show the continue button
             }
+        }
+
+        // Start the countdown after the user clicks the "Continue" button
+        function startCountdown() {
+            let countdownValue = 10;
+            const countdownElement = document.getElementById('countdown');
+            countdownElement.classList.remove('hidden');  // Show the countdown timer
+
+            // Update countdown every second
+            const interval = setInterval(function() {
+                countdownElement.textContent = countdownValue + ' seconds remaining...';
+                countdownValue--;
+                if (countdownValue < 0) {
+                    clearInterval(interval);
+                    document.getElementById('getLinkBtn').classList.remove('hidden');  // Show "Get Link" button
+                    countdownElement.classList.add('hidden');  // Hide countdown timer
+                }
+            }, 1000);
+        }
+
+        // Redirect user to the original URL after clicking "Get Link"
+        function redirectUser() {
+            const shortId = getUrlParameter('id');
+            if (shortId) {
+                const originalUrl = localStorage.getItem(shortId);
+                if (originalUrl) {
+                    window.location.href = originalUrl;  // Redirect to the original long URL
+                } else {
+                    alert("Error: Could not find the original URL.");
+                }
+            }
+        }
+
+        // Show a message for users who haven't joined the Telegram group
+        function showJoinMessage() {
+            document.querySelector('h1').textContent = "Step 1: Join Our Telegram Group";
+            document.querySelector('p').textContent = "Please join our Telegram group first!";
+            document.getElementById('continueBtn').classList.add('hidden');
+        }
+
+        // Run this when the page loads
+        window.onload = function() {
+            // Check if the user has joined the Telegram group
+            checkTelegramJoin();
+
+            // For testing purposes, simulate that the user has joined (remove this in production)
+            // You can remove the line below in production when you want to track actual join status
+            localStorage.setItem('telegram_joined', 'true'); // Simulate the user has joined the Telegram group
         }
     </script>
 
