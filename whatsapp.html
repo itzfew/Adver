@@ -6,8 +6,7 @@
     <title>WhatsApp Chat Simulation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        /* Styles remain the same as your provided code */
-           * {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -74,11 +73,17 @@
         }
 
         .contact-item .new-message {
-            width: 10px;
-            height: 10px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
-            background-color: #25d366; /* Green dot for received messages */
+            background-color: #25d366;
+            color: white;
+            font-size: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             margin-left: 10px;
+            font-weight: bold;
         }
 
         .contact-list-header {
@@ -169,6 +174,8 @@
             border-radius: 20px;
             font-size: 14px;
             word-wrap: break-word;
+            position: relative;
+            padding-bottom: 18px; /* Reserve space for timestamp and ticks */
         }
 
         .message.sent {
@@ -180,6 +187,22 @@
             background-color: #ffffff;
             border: 1px solid #ddd;
             align-self: flex-start;
+        }
+
+        .message .timestamp {
+            font-size: 10px;
+            color: #888;
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+        }
+
+        .message.sent .ticks {
+            position: absolute;
+            bottom: 5px;
+            right: 50px; /* Adjust the position to the right of the timestamp */
+            font-size: 12px;
+            color: #075e54;
         }
 
         .typing-indicator {
@@ -238,23 +261,6 @@
         #add-contact-btn i {
             font-size: 24px;
         }
-        .contact-item .new-message {
-    width: 20px;            /* Set width of the circle */
-    height: 20px;           /* Set height of the circle */
-    border-radius: 50%;     /* Make it a perfect circle */
-    background-color: #25d366; /* Green color */
-    color: white;           /* White text color for the number */
-    font-size: 12px;        /* Set the font size for the number */
-    display: flex;          /* Use flexbox to center the number */
-    justify-content: center; /* Center horizontally */
-    align-items: center;    /* Center vertically */
-    margin-left: 10px;      /* Space between the circle and contact name */
-    font-weight: bold;      /* Bold the number to make it stand out */
-    text-align: center;     /* Ensure the text is centered properly */
-    min-width: 20px;        /* Ensure the circle has a minimum width */
-    min-height: 20px;       /* Ensure the circle has a minimum height */
-    padding: 2px;           /* Padding to prevent text from touching the edges */
-}
     </style>
 </head>
 <body>
@@ -343,22 +349,20 @@
                 `;
 
                 // Count the number of received messages before the first sent message
-                let unreadCount = 0;
-                let foundSentMessage = false;
-
+                let receivedMessageCount = 0;
                 for (let msg of contact.messages) {
-                    if (msg.type === 'received' && !foundSentMessage) {
-                        unreadCount++;
+                    if (msg.type === 'received') {
+                        receivedMessageCount++;
                     } else if (msg.type === 'sent') {
-                        foundSentMessage = true;
+                        break; // Stop counting as soon as the first sent message appears
                     }
                 }
 
                 // Show a green dot with the count of received messages until the first sent message
-                if (unreadCount > 0 && !contact.readMessages) {
+                if (receivedMessageCount > 0) {
                     const newMessageDot = document.createElement('div');
                     newMessageDot.classList.add('new-message');
-                    newMessageDot.innerText = unreadCount; // Show the count of unread messages
+                    newMessageDot.innerText = receivedMessageCount; // Show the count of received messages
                     contactElement.appendChild(newMessageDot);
                 }
 
@@ -377,27 +381,29 @@
             chatBox.innerHTML = '';
             inputBox.disabled = false;
 
-            // Mark the messages as read
-            if (!contact.readMessages) {
-                contact.readMessages = true; // Set as read
-                renderContacts(contacts); // Re-render contacts to remove unread indicator
-            }
-            
             // Show only the first message
             const firstMessage = contact.messages[0];
             if (firstMessage) {
                 sendMessage(firstMessage);
             }
-            
+
             // Simulate other messages after chat is opened
             setTimeout(() => {
                 simulateConversation(contact.messages.slice(1)); // Start from second message onwards
             }, 2000); // 2-second delay
         }
 
-        async function simulateConversation(messages) {
-            if (currentChat && currentChat.isChatSimulated) return; // If the chat has been simulated, do not simulate again
+        // Show timestamp in 12-hour AM/PM format
+        function formatTimestamp(date) {
+            const hours = date.getHours();
+            const minutes = date.getMinutes();
+            const period = hours >= 12 ? 'PM' : 'AM';
+            const formattedHours = hours % 12 || 12;
+            const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+            return `${formattedHours}:${formattedMinutes} ${period}`;
+        }
 
+        async function simulateConversation(messages) {
             for (let i = 0; i < messages.length; i++) {
                 const message = messages[i];
                 
@@ -412,8 +418,6 @@
                     await new Promise(resolve => setTimeout(resolve, 1500)); // Wait between messages
                 }
             }
-
-            currentChat.isChatSimulated = true; // Mark chat as simulated to avoid re-simulation
         }
 
         async function showTypingIndicator(messageText) {
@@ -439,6 +443,21 @@
             const messageElement = document.createElement('div');
             messageElement.classList.add('message', message.type);
             messageElement.innerText = message.text;
+
+            // Add the timestamp
+            const timestamp = document.createElement('div');
+            timestamp.classList.add('timestamp');
+            const time = formatTimestamp(new Date());
+            timestamp.innerText = time;
+            messageElement.appendChild(timestamp);
+
+            if (message.type === 'sent') {
+                const ticks = document.createElement('div');
+                ticks.classList.add('ticks');
+                ticks.innerText = '✔✔'; // Double ticks
+                messageElement.appendChild(ticks);
+            }
+
             chatBox.appendChild(messageElement);
             chatBox.scrollTop = chatBox.scrollHeight;
 
