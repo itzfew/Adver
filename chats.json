@@ -110,16 +110,7 @@
             { "type": "received", "text": "Okay, bye for now! Be safe." },
             { "type": "sent", "text": "Bye! Love you!" }
         ]
-    },
-    {
-    "name": "Name",
-    "profilePic": "URL_TO_PROFILE_PICTURE",
-    "status": "Can't talk now",
-    "messages": [
-        { "type": "received", "text": "Message from person" },
-        { "type": "sent", "text": "Your response" },
-        
-    ]
-}
+    }
+    
 
 ]
