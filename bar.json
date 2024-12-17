@@ -2,53 +2,63 @@
   "countries": [
     {
       "name": "MrBeast (USA)",
-      "number": 337000000,
-      "image": "https://yt3.ggpht.com/ytc/AKedOLTE9S9l9VkhpRo8IjmHRKnYX5p9cwsbzkRLeA=s900-c-k-c0x00ffffff-no-rj"
+      "population": 337000000,
+      "flagImage": "https://yt3.ggpht.com/ytc/AKedOLTE9S9l9VkhpRo8IjmHRKnYX5p9cwsbzkRLeA=s900-c-k-c0x00ffffff-no-rj",
+      "color": "#f39c12"
     },
     {
       "name": "T-Series (India)",
-      "number": 281000000,
-      "image": "https://yt3.ggpht.com/ytc/AKedOLQD6bGjmTE5j_qU2PQBBqx5GxoImiW-32DC4Q=s900-c-k-c0x00ffffff-no-rj"
+      "population": 281000000,
+      "flagImage": "https://yt3.ggpht.com/ytc/AKedOLQD6bGjmTE5j_qU2PQBBqx5GxoImiW-32DC4Q=s900-c-k-c0x00ffffff-no-rj",
+      "color": "#3498db"
     },
     {
       "name": "Cocomelon - Nursery Rhymes (USA)",
-      "number": 187000000,
-      "image": "https://yt3.ggpht.com/ytc/AKedOLRPhf9LfWog-QopYXfglSNR_nleBHFUQhJq7A=s900-c-k-c0x00ffffff-no-rj"
+      "population": 187000000,
+      "flagImage": "https://yt3.ggpht.com/ytc/AKedOLRPhf9LfWog-QopYXfglSNR_nleBHFUQhJq7A=s900-c-k-c0x00ffffff-no-rj",
+      "color": "#e74c3c"
     },
     {
       "name": "SET India (India)",
-      "number": 180000000,
-      "image": "https://yt3.ggpht.com/ytc/AKedOLRSlubcL8qCw6YPbW_MaTzh_aB5RP7l5og7zA=s900-c-k-c0x00ffffff-no-rj"
+      "population": 180000000,
+      "flagImage": "https://yt3.ggpht.com/ytc/AKedOLRSlubcL8qCw6YPbW_MaTzh_aB5RP7l5og7zA=s900-c-k-c0x00ffffff-no-rj",
+      "color": "#2ecc71"
     },
     {
       "name": "Vlad and Niki (Russia)",
-      "number": 129000000,
-      "image": "https://yt3.ggpht.com/ytc/AKedOLRZnZ0tVpDDHdfzEKR2yNiQwDqufxdyC_wfUOZP=s900-c-k-c0x00ffffff-no-rj"
+      "population": 129000000,
+      "flagImage": "https://yt3.ggpht.com/ytc/AKedOLRZnZ0tVpDDHdfzEKR2yNiQwDqufxdyC_wfUOZP=s900-c-k-c0x00ffffff-no-rj",
+      "color": "#9b59b6"
     },
     {
       "name": "Kids Diana Show (USA/Ukraine)",
-      "number": 128000000,
-      "image": "https://yt3.ggpht.com/ytc/AKedOLQIVKUtgjS7SxkO5-xBmu1gP0pTZq9fYoifgaB54A=s900-c-k-c0x00ffffff-no-rj"
+      "population": 128000000,
+      "flagImage": "https://yt3.ggpht.com/ytc/AKedOLQIVKUtgjS7SxkO5-xBmu1gP0pTZq9fYoifgaB54A=s900-c-k-c0x00ffffff-no-rj",
+      "color": "#16a085"
     },
     {
       "name": "Like Nastya (USA/Russia)",
-      "number": 124000000,
-      "image": "https://yt3.ggpht.com/ytc/AKedOLQHIjHLJXzT7NSGFtQOD8rWoFxRPkMAdwhZlWqk=w900-c-k-c0x00ffffff-no-rj"
+      "population": 124000000,
+      "flagImage": "https://yt3.ggpht.com/ytc/AKedOLQHIjHLJXzT7NSGFtQOD8rWoFxRPkMAdwhZlWqk=w900-c-k-c0x00ffffff-no-rj",
+      "color": "#f1c40f"
     },
     {
       "name": "Zee Music (India)",
-      "number": 112000000,
-      "image": "https://yt3.ggpht.com/ytc/AKedOLQjc2eqc9Jg6rV5xQ7GQ2Oqg_E0ebFnaIgsD4Ub=s900-c-k-c0x00ffffff-no-rj"
+      "population": 112000000,
+      "flagImage": "https://yt3.ggpht.com/ytc/AKedOLQjc2eqc9Jg6rV5xQ7GQ2Oqg_E0ebFnaIgsD4Ub=s900-c-k-c0x00ffffff-no-rj",
+      "color": "#e67e22"
     },
     {
       "name": "PewDiePie (Sweden)",
-      "number": 110000000,
-      "image": "https://yt3.ggpht.com/ytc/AKedOLR-fL_d5zAYwX1LQ0R_4fjb0c4c1Hh3RHTGVXn7=s900-c-k-c0x00ffffff-no-rj"
+      "population": 110000000,
+      "flagImage": "https://yt3.ggpht.com/ytc/AKedOLR-fL_d5zAYwX1LQ0R_4fjb0c4c1Hh3RHTGVXn7=s900-c-k-c0x00ffffff-no-rj",
+      "color": "#1abc9c"
     },
     {
       "name": "WWE (USA)",
-      "number": 106000000,
-      "image": "https://yt3.ggpht.com/ytc/AKedOLQqPOjfUJZPfkqggZdo1e2ShnkkG0RdbivLnvq1=s900-c-k-c0x00ffffff-no-rj"
+      "population": 106000000,
+      "flagImage": "https://yt3.ggpht.com/ytc/AKedOLQqPOjfUJZPfkqggZdo1e2ShnkkG0RdbivLnvq1=s900-c-k-c0x00ffffff-no-rj",
+      "color": "#34495e"
     }
   ]
 }
