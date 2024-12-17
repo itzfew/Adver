@@ -207,7 +207,7 @@
   "messages": [
     {
       "type": "sent",
-      "text": "Hello, this is [Your Name]. My cat, Mittens, is missing, and I need your help to find her. She went missing on December 16th at around 2:30 PM. I’ve looked everywhere around the house and outside, but I can’t find her."
+      "text": "Hello, this is Jothan. My cat, Mittens, is missing, and I need your help to find her. She went missing on December 16th at around 2:30 PM. I’ve looked everywhere around the house and outside, but I can’t find her."
     },
     {
       "type": "received",
