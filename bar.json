@@ -3,61 +3,61 @@
     {
       "name": "MrBeast (USA)",
       "population": 10,
-      "flagImage": "https://yt3.ggpht.com/ytc/AKedOLTE9S9l9VkhpRo8IjmHRKnYX5p9cwsbzkRLeA=s900-c-k-c0x00ffffff-no-rj",
+      "flagImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/MrBeast_2023_%28cropped%29.jpg/330px-MrBeast_2023_%28cropped%29.jpg",
       "color": "#f39c12"
     },
     {
       "name": "T-Series (India)",
       "population": 9,
-      "flagImage": "https://yt3.ggpht.com/ytc/AKedOLQD6bGjmTE5j_qU2PQBBqx5GxoImiW-32DC4Q=s900-c-k-c0x00ffffff-no-rj",
+      "flagImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/T-series-logo.svg/180px-T-series-logo.svg.png",
       "color": "#3498db"
     },
     {
       "name": "Cocomelon - Nursery Rhymes (USA)",
       "population": 8,
-      "flagImage": "https://yt3.ggpht.com/ytc/AKedOLRPhf9LfWog-QopYXfglSNR_nleBHFUQhJq7A=s900-c-k-c0x00ffffff-no-rj",
+      "flagImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Cocomelon-label-hd.png/330px-Cocomelon-label-hd.png",
       "color": "#e74c3c"
     },
     {
       "name": "SET India (India)",
       "population": 7,
-      "flagImage": "https://yt3.ggpht.com/ytc/AKedOLRSlubcL8qCw6YPbW_MaTzh_aB5RP7l5og7zA=s900-c-k-c0x00ffffff-no-rj",
+      "flagImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Sony_SET_logo.svg/225px-Sony_SET_logo.svg.png",
       "color": "#2ecc71"
     },
     {
       "name": "Vlad and Niki (Russia)",
       "population": 6,
-      "flagImage": "https://yt3.ggpht.com/ytc/AKedOLRZnZ0tVpDDHdfzEKR2yNiQwDqufxdyC_wfUOZP=s900-c-k-c0x00ffffff-no-rj",
+      "flagImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtwQoB_j2LepovMycppLD1IVERUW21pdkkig&s",
       "color": "#9b59b6"
     },
     {
       "name": "Kids Diana Show (USA/Ukraine)",
       "population": 5,
-      "flagImage": "https://yt3.ggpht.com/ytc/AKedOLQIVKUtgjS7SxkO5-xBmu1gP0pTZq9fYoifgaB54A=s900-c-k-c0x00ffffff-no-rj",
+      "flagImage": "https://static.wikia.nocookie.net/youtube/images/d/df/%E2%9C%BF_Kids_Diana_Show.png/revision/latest?cb=20220330160418",
       "color": "#16a085"
     },
     {
       "name": "Like Nastya (USA/Russia)",
       "population": 4,
-      "flagImage": "https://yt3.ggpht.com/ytc/AKedOLQHIjHLJXzT7NSGFtQOD8rWoFxRPkMAdwhZlWqk=w900-c-k-c0x00ffffff-no-rj",
+      "flagImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Anastasia_Radzinskaya.png/330px-Anastasia_Radzinskaya.png",
       "color": "#f1c40f"
     },
     {
       "name": "Zee Music (India)",
       "population": 3,
-      "flagImage": "https://yt3.ggpht.com/ytc/AKedOLQjc2eqc9Jg6rV5xQ7GQ2Oqg_E0ebFnaIgsD4Ub=s900-c-k-c0x00ffffff-no-rj",
+      "flagImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Zee_Music_Company.svg/330px-Zee_Music_Company.svg.png",
       "color": "#e67e22"
     },
     {
       "name": "PewDiePie (Sweden)",
       "population": 2,
-      "flagImage": "https://yt3.ggpht.com/ytc/AKedOLR-fL_d5zAYwX1LQ0R_4fjb0c4c1Hh3RHTGVXn7=s900-c-k-c0x00ffffff-no-rj",
+      "flagImage": "https://en.wikipedia.org/wiki/File:Pewdiepie_head_shot.jpg",
       "color": "#1abc9c"
     },
     {
       "name": "WWE (USA)",
       "population": 1,
-      "flagImage": "https://yt3.ggpht.com/ytc/AKedOLQqPOjfUJZPfkqggZdo1e2ShnkkG0RdbivLnvq1=s900-c-k-c0x00ffffff-no-rj",
+      "flagImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/WWE_official_logo.svg/225px-WWE_official_logo.svg.png",
       "color": "#34495e"
     }
   ]
