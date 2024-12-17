@@ -68,7 +68,7 @@
   },
   {
     "name": "Dad",
-    "profilePic": "https://randomuser.me/api/portraits/men/1.jpg",
+    "profilePic": "https://randomuser.me/api/portraits/men/31.jpg",
     "status": "Just trying to relax for once 😌",
     "messages": [
       {
@@ -135,7 +135,7 @@
   },
   {
     "name": "Brother",
-    "profilePic": "https://randomuser.me/api/portraits/men/2.jpg",
+    "profilePic": "https://randomuser.me/api/portraits/men/3.jpg",
     "status": "Always up for some fun!",
     "messages": [
       {
@@ -199,6 +199,54 @@
         "text": "Good idea! I’ll do that now. Thanks."
       }
     ]
+  },
+  {
+  "name": "Police",
+  "profilePic": "https://kansasreflector.com/wp-content/uploads/2022/04/police-1536x1024.jpg", 
+  "status": "We are here to help.",
+  "messages": [
+    {
+      "type": "sent",
+      "text": "Hello, this is [Your Name]. My cat, Mittens, is missing, and I need your help to find her. She went missing on December 16th at around 2:30 PM. I’ve looked everywhere around the house and outside, but I can’t find her."
+    },
+    {
+      "type": "received",
+      "text": "Thank you for reaching out. We're sorry to hear about Mittens. Could you provide more details about her so we can assist in finding her?"
+    },
+    {
+      "type": "sent",
+      "text": "Sure! She’s a small, light gray tabby cat with distinct white markings on her paws and chest. She has bright green eyes and a pink collar with a little bell. I’ve attached a recent photo of her so you can recognize her easily."
+    },
+    {
+      "type": "sent",
+      "text": "https://www.catster.com/wp-content/uploads/2023/11/Tabby-cat-looking-up-with-long-whiskers_Krysten-Merriman_Pexels.jpg"
+    },
+    {
+      "type": "received",
+      "text": "Thank you for the details. We’ll keep an eye out for her. Can you provide the exact area where she was last seen?"
+    },
+    
+    {
+      "type": "sent",
+      "text": "She was last seen near the front yard, just outside the house. We live on Maple Street, near the corner of Oak Avenue. There’s a small park nearby, and she loves to wander there sometimes."
+    },
+    {
+      "type": "received",
+      "text": "Got it! We’ll send officers to check the area around Maple Street and the park. In the meantime, make sure to leave some food outside in case she returns on her own."
+    },
+    {
+      "type": "sent",
+      "text": "Thank you! I’ve also posted about her on social media and informed my neighbors. Please let me know if you get any updates."
+    },
+    {
+      "type": "received",
+      "text": "We’ll be sure to update you if we find any leads. Rest assured, we’ll do everything we can to help bring Mittens home."
+    },
+    {
+      "type": "sent",
+      "text": "Thank you so much for your help! I appreciate it."
+    }
+  ]
   },
   {
     "name": "Sister",
