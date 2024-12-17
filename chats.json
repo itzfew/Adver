@@ -16,7 +16,7 @@
                 "url": "https://randomuser.me/api/portraits/women/11.jpg"
             },
             { "type": "received", "text": "Missed you at dinner. Dad made your fave chicken!" },
-            { "type": "sent", "text": "Aww, I was actually craving it!" },
+            { "type": "sent", "text": "https://randomuser.me/api/portraits/women/11.jpg" },
             { "type": "received", "text": "I saved you a plate, don't worry!" },
             { "type": "sent", "text": "Haha, thanks! I’ll be home soon." },
             { "type": "received", "text": "You didn't answer your phone... Everything okay?" },
