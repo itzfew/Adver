@@ -4,7 +4,8 @@
         "profilePic": "https://randomuser.me/api/portraits/women/1.jpg",
           "status": "Available",
         "messages": [
-            { "type": "received", "text": "Hi sweetie! 😊 Where were you yesterday?" },
+            { "type": "received", "text": "Hi sweetie! 😊 Where were you yesterday?", "url": "https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif",
+              },
             { "type": "sent", "text": "Hey Mom! Just out with friends." },
             { "type": "received", "text": "Missed you at dinner. Dad made your fave chicken!" },
             { "type": "sent", "text": "Aww, I was actually craving it!" },
