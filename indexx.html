@@ -150,6 +150,7 @@
         .chat-header .icons {
             display: flex;
             align-items: center;
+            justify-content: space-between;
         }
 
         .chat-header .icons i {
@@ -174,6 +175,7 @@
             font-size: 14px;
             word-wrap: break-word;
             position: relative;
+            padding-bottom: 18px; /* Reserve space for timestamp and ticks */
         }
 
         .message.sent {
@@ -187,18 +189,20 @@
             align-self: flex-start;
         }
 
-        .message img {
-            max-width: 200px;
-            border-radius: 10px;
-            margin-top: 5px;
-        }
-
-        .timestamp {
+        .message .timestamp {
             font-size: 10px;
             color: #888;
             position: absolute;
-            bottom: -15px;
-            right: 10px;
+            bottom: 5px;
+            right: 5px;
+        }
+
+        .message.sent .ticks {
+            position: absolute;
+            bottom: 5px;
+            right: 50px; /* Adjust the position to the right of the timestamp */
+            font-size: 12px;
+            color: #075e54;
         }
 
         .typing-indicator {
@@ -232,6 +236,30 @@
             cursor: pointer;
         }
 
+        /* Keyboard styles */
+        #keyboard {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 5px;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border-top: 1px solid #ddd;
+        }
+
+        #keyboard button {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        #keyboard button:hover {
+            background-color: #e5e5e5;
+        }
+
         #add-contact-btn {
             position: fixed;
             bottom: 20px;
@@ -257,7 +285,6 @@
         #add-contact-btn i {
             font-size: 24px;
         }
-
     </style>
 </head>
 <body>
@@ -305,6 +332,40 @@
                 <i class="fas fa-paper-plane" id="send-btn"></i>
             </div>
         </div>
+
+        <!-- Virtual Keyboard -->
+        <div id="keyboard">
+            <button onclick="addToMessage('Q')">Q</button>
+            <button onclick="addToMessage('W')">W</button>
+            <button onclick="addToMessage('E')">E</button>
+            <button onclick="addToMessage('R')">R</button>
+            <button onclick="addToMessage('T')">T</button>
+            <button onclick="addToMessage('Y')">Y</button>
+            <button onclick="addToMessage('U')">U</button>
+            <button onclick="addToMessage('I')">I</button>
+            <button onclick="addToMessage('O')">O</button>
+            <button onclick="addToMessage('P')">P</button>
+
+            <button onclick="addToMessage('A')">A</button>
+            <button onclick="addToMessage('S')">S</button>
+            <button onclick="addToMessage('D')">D</button>
+            <button onclick="addToMessage('F')">F</button>
+            <button onclick="addToMessage('G')">G</button>
+            <button onclick="addToMessage('H')">H</button>
+            <button onclick="addToMessage('J')">J</button>
+            <button onclick="addToMessage('K')">K</button>
+            <button onclick="addToMessage('L')">L</button>
+
+            <button onclick="addToMessage('Z')">Z</button>
+            <button onclick="addToMessage('X')">X</button>
+            <button onclick="addToMessage('C')">C</button>
+            <button onclick="addToMessage('V')">V</button>
+            <button onclick="addToMessage('B')">B</button>
+            <button onclick="addToMessage('N')">N</button>
+            <button onclick="addToMessage('M')">M</button>
+            <button onclick="addToMessage(' ')">Space</button>
+            <button onclick="backspace()">Backspace</button>
+        </div>
     </div>
 
     <script>
@@ -331,6 +392,7 @@
             renderContacts(contacts);
         }
 
+        // Render contacts in the contact list
         function renderContacts(contactList) {
             contactListDiv.innerHTML = ''; // Clear the contact list before rendering
             contactList.forEach(contact => {
@@ -343,20 +405,22 @@
                         <div class="status">${contact.status}</div>
                     </div>
                 `;
-                
+
+                // Count the number of received messages before the first sent message
                 let receivedMessageCount = 0;
                 for (let msg of contact.messages) {
                     if (msg.type === 'received') {
                         receivedMessageCount++;
                     } else if (msg.type === 'sent') {
-                        break;
+                        break; // Stop counting as soon as the first sent message appears
                     }
                 }
 
+                // Show a green dot with the count of received messages until the first sent message
                 if (receivedMessageCount > 0) {
                     const newMessageDot = document.createElement('div');
                     newMessageDot.classList.add('new-message');
-                    newMessageDot.innerText = receivedMessageCount;
+                    newMessageDot.innerText = receivedMessageCount; // Show the count of received messages
                     contactElement.appendChild(newMessageDot);
                 }
 
@@ -365,6 +429,7 @@
             });
         }
 
+        // Start a chat with the selected contact
         function startChat(contact) {
             currentChat = contact;
             contactListContainer.style.display = 'none';
@@ -374,14 +439,26 @@
             chatBox.innerHTML = '';
             inputBox.disabled = false;
 
+            // Show only the first message
             const firstMessage = contact.messages[0];
             if (firstMessage) {
                 sendMessage(firstMessage);
             }
 
+            // Simulate other messages after chat is opened
             setTimeout(() => {
-                simulateConversation(contact.messages.slice(1));
-            }, 2000);
+                simulateConversation(contact.messages.slice(1)); // Start from second message onwards
+            }, 2000); // 2-second delay
+        }
+
+        // Show timestamp in 12-hour AM/PM format
+        function formatTimestamp(date) {
+            const hours = date.getHours();
+            const minutes = date.getMinutes();
+            const period = hours >= 12 ? 'PM' : 'AM';
+            const formattedHours = hours % 12 || 12;
+            const formattedMinutes = minutes < 10 ? '0' + minutes : minutes;
+            return `${formattedHours}:${formattedMinutes} ${period}`;
         }
 
         async function simulateConversation(messages) {
@@ -390,13 +467,13 @@
                 
                 if (message.type === 'received') {
                     await showTypingIndicator(message.text);
-                    messageReceivedSound.play();
+                    messageReceivedSound.play(); // Play received message sound
                 }
                 
-                await sendMessage(message);
+                await sendMessage(message); // Send the received message
                 
                 if (i < messages.length - 1) {
-                    await new Promise(resolve => setTimeout(resolve, 1500));
+                    await new Promise(resolve => setTimeout(resolve, 1500)); // Wait between messages
                 }
             }
         }
@@ -407,7 +484,7 @@
             typingElement.innerText = `${currentChat.name} is typing...`;
 
             const wordCount = messageText.split(' ').length;
-            const typingDuration = (wordCount / 5) * 1000;
+            const typingDuration = (wordCount / 5) * 1000; // 1 second per 5 words
             
             chatBox.appendChild(typingElement);
             chatBox.scrollTop = chatBox.scrollHeight;
@@ -423,24 +500,27 @@
         async function sendMessage(message) {
             const messageElement = document.createElement('div');
             messageElement.classList.add('message', message.type);
-            messageElement.innerHTML = message.text;
+            messageElement.innerText = message.text;
 
-            if (message.image) {
-                const imgElement = document.createElement('img');
-                imgElement.src = message.image;
-                messageElement.appendChild(imgElement);
+            // Add the timestamp
+            const timestamp = document.createElement('div');
+            timestamp.classList.add('timestamp');
+            const time = formatTimestamp(new Date());
+            timestamp.innerText = time;
+            messageElement.appendChild(timestamp);
+
+            if (message.type === 'sent') {
+                const ticks = document.createElement('div');
+                ticks.classList.add('ticks');
+                ticks.innerText = '✔✔'; // Double ticks
+                messageElement.appendChild(ticks);
             }
-
-            const timestampElement = document.createElement('div');
-            timestampElement.classList.add('timestamp');
-            timestampElement.innerText = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            messageElement.appendChild(timestampElement);
 
             chatBox.appendChild(messageElement);
             chatBox.scrollTop = chatBox.scrollHeight;
 
             if (message.type === 'sent') {
-                messageSentSound.play();
+                messageSentSound.play(); // Play sent message sound
             }
         }
 
@@ -468,6 +548,15 @@
         function backToContacts() {
             contactListContainer.style.display = 'flex';
             chatContainer.style.display = 'none';
+        }
+
+        // Virtual keyboard functions
+        function addToMessage(char) {
+            inputBox.value += char;
+        }
+
+        function backspace() {
+            inputBox.value = inputBox.value.slice(0, -1);
         }
 
         fetchChats();
