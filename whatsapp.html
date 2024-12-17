@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WhatsApp Chat Simulation</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <link rel="manifest" href="/manifest.json">
     <style>
-        * {
+        /* Styles remain the same as your provided code */
+           * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -255,7 +255,6 @@
     min-height: 20px;       /* Ensure the circle has a minimum height */
     padding: 2px;           /* Padding to prevent text from touching the edges */
 }
-
     </style>
 </head>
 <body>
@@ -304,42 +303,7 @@
             </div>
         </div>
     </div>
-<!-- Install Button -->
-    <button id="install-btn" style="display: none; position: fixed; bottom: 20px; left: 20px; background-color: #25d366; color: white; border: none; padding: 15px; border-radius: 50%; font-size: 20px; cursor: pointer; z-index: 100;">
-        <i class="fas fa-cloud-download-alt"></i> Install
-    </button>
-    <script>
-        let deferredPrompt;
-        const installButton = document.getElementById('install-btn');
 
-        window.addEventListener('beforeinstallprompt', (event) => {
-            event.preventDefault();
-            deferredPrompt = event;
-            installButton.style.display = 'block';
-            installButton.addEventListener('click', () => {
-                installButton.style.display = 'none';
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        console.log('User accepted the A2HS prompt');
-                    } else {
-                        console.log('User dismissed the A2HS prompt');
-                    }
-                    deferredPrompt = null;
-                });
-            });
-        });
-
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/service-worker.js')
-                .then((registration) => {
-                    console.log('Service Worker registered with scope: ', registration.scope);
-                })
-                .catch((error) => {
-                    console.error('Service Worker registration failed: ', error);
-                });
-        }
-    </script>
     <script>
         const contactListDiv = document.getElementById('contact-list');
         const searchInput = document.getElementById('search-input');
@@ -364,42 +328,44 @@
             renderContacts(contacts);
         }
 
-// Render contacts in the contact list
-function renderContacts(contactList) {
-    contactListDiv.innerHTML = ''; // Clear the contact list before rendering
-    contactList.forEach(contact => {
-        const contactElement = document.createElement('div');
-        contactElement.classList.add('contact-item');
-        contactElement.innerHTML = `
-            <img src="${contact.profilePic}" alt="${contact.name}">
-            <div>
-                <div class="name">${contact.name}</div>
-                <div class="status">${contact.status}</div>
-            </div>
-        `;
+        // Render contacts in the contact list
+        function renderContacts(contactList) {
+            contactListDiv.innerHTML = ''; // Clear the contact list before rendering
+            contactList.forEach(contact => {
+                const contactElement = document.createElement('div');
+                contactElement.classList.add('contact-item');
+                contactElement.innerHTML = `
+                    <img src="${contact.profilePic}" alt="${contact.name}">
+                    <div>
+                        <div class="name">${contact.name}</div>
+                        <div class="status">${contact.status}</div>
+                    </div>
+                `;
 
-        // Count the number of received messages before the first sent message
-        let receivedMessageCount = 0;
-        for (let msg of contact.messages) {
-            if (msg.type === 'received') {
-                receivedMessageCount++;
-            } else if (msg.type === 'sent') {
-                break; // Stop counting as soon as the first sent message appears
-            }
+                // Count the number of received messages before the first sent message
+                let unreadCount = 0;
+                let foundSentMessage = false;
+
+                for (let msg of contact.messages) {
+                    if (msg.type === 'received' && !foundSentMessage) {
+                        unreadCount++;
+                    } else if (msg.type === 'sent') {
+                        foundSentMessage = true;
+                    }
+                }
+
+                // Show a green dot with the count of received messages until the first sent message
+                if (unreadCount > 0 && !contact.readMessages) {
+                    const newMessageDot = document.createElement('div');
+                    newMessageDot.classList.add('new-message');
+                    newMessageDot.innerText = unreadCount; // Show the count of unread messages
+                    contactElement.appendChild(newMessageDot);
+                }
+
+                contactElement.addEventListener('click', () => startChat(contact));
+                contactListDiv.appendChild(contactElement);
+            });
         }
-
-        // Show a green dot with the count of received messages until the first sent message
-        if (receivedMessageCount > 0) {
-            const newMessageDot = document.createElement('div');
-            newMessageDot.classList.add('new-message');
-            newMessageDot.innerText = receivedMessageCount; // Show the count of received messages
-            contactElement.appendChild(newMessageDot);
-        }
-
-        contactElement.addEventListener('click', () => startChat(contact));
-        contactListDiv.appendChild(contactElement);
-    });
-}
 
         // Start a chat with the selected contact
         function startChat(contact) {
@@ -410,6 +376,12 @@ function renderContacts(contactList) {
             chatName.textContent = contact.name;
             chatBox.innerHTML = '';
             inputBox.disabled = false;
+
+            // Mark the messages as read
+            if (!contact.readMessages) {
+                contact.readMessages = true; // Set as read
+                renderContacts(contacts); // Re-render contacts to remove unread indicator
+            }
             
             // Show only the first message
             const firstMessage = contact.messages[0];
@@ -424,6 +396,8 @@ function renderContacts(contactList) {
         }
 
         async function simulateConversation(messages) {
+            if (currentChat && currentChat.isChatSimulated) return; // If the chat has been simulated, do not simulate again
+
             for (let i = 0; i < messages.length; i++) {
                 const message = messages[i];
                 
@@ -438,6 +412,8 @@ function renderContacts(contactList) {
                     await new Promise(resolve => setTimeout(resolve, 1500)); // Wait between messages
                 }
             }
+
+            currentChat.isChatSimulated = true; // Mark chat as simulated to avoid re-simulation
         }
 
         async function showTypingIndicator(messageText) {
