@@ -2,61 +2,61 @@
   "countries": [
     {
       "name": "MrBeast (USA)",
-      "population": 336,  // 336 million subscribers
+      "population": 336,
       "flagImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/MrBeast_2023_%28cropped%29.jpg/330px-MrBeast_2023_%28cropped%29.jpg",
       "color": "#f39c12"
     },
     {
       "name": "T-Series (India)",
-      "population": 281,  // 281 million subscribers
+      "population": 281,  
       "flagImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/T-series-logo.svg/180px-T-series-logo.svg.png",
       "color": "#3498db"
     },
     {
       "name": "Cocomelon - Nursery Rhymes (USA)",
-      "population": 186,  // 186 million subscribers
+      "population": 186,  
       "flagImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Cocomelon-label-hd.png/330px-Cocomelon-label-hd.png",
       "color": "#e74c3c"
     },
     {
       "name": "SET India (India)",
-      "population": 180,  // 180 million subscribers
+      "population": 180,  
       "flagImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Sony_SET_logo.svg/225px-Sony_SET_logo.svg.png",
       "color": "#2ecc71"
     },
     {
       "name": "Vlad and Niki (Russia)",
-      "population": 129,  // 129 million subscribers
+      "population": 129,  
       "flagImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtwQoB_j2LepovMycppLD1IVERUW21pdkkig&s",
       "color": "#9b59b6"
     },
     {
       "name": "Kids Diana Show (USA/Ukraine)",
-      "population": 128,  // 128 million subscribers
+      "population": 128,  
       "flagImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmJHji8h3AWoGFJsSC1QQ6mLeMLu5xk6LiEw&s",
       "color": "#16a085"
     },
     {
       "name": "Like Nastya (USA/Russia)",
-      "population": 123,  // 123 million subscribers
+      "population": 123,  
       "flagImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Anastasia_Radzinskaya.png/330px-Anastasia_Radzinskaya.png",
       "color": "#f1c40f"
     },
     {
       "name": "Zee Music (India)",
-      "population": 112,  // 112 million subscribers
+      "population": 112,  
       "flagImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Zee_Music_Company.svg/330px-Zee_Music_Company.svg.png",
       "color": "#e67e22"
     },
     {
       "name": "PewDiePie (Sweden)",
-      "population": 110,  // 110 million subscribers
+      "population": 110,  
       "flagImage": "https://upload.wikimedia.org/wikipedia/commons/5/53/Pewdiepie_head_shot.jpg",
       "color": "#1abc9c"
     },
     {
       "name": "WWE (USA)",
-      "population": 106,  // 106 million subscribers
+      "population": 106,  
       "flagImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/WWE_official_logo.svg/225px-WWE_official_logo.svg.png",
       "color": "#34495e"
     }
