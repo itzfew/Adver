@@ -1,21 +1,6 @@
 {
   "countries": [
     {
-      "name": "India2",
-      "population": 7.49,
-      "flagImage": "https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_India.svg"
-    },
-    {
-      "name": "India1",
-      "population": 5.49,
-      "flagImage": "https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_India.svg"
-    },
-    {
-      "name": "India0",
-      "population": 3.49,
-      "flagImage": "https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_India.svg"
-    },
-    {
       "name": "India",
       "population": 1.49,
       "flagImage": "https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_India.svg"
