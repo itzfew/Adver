@@ -101,29 +101,21 @@
     // URL for the JSON data
     const jsonUrl = 'https://raw.githubusercontent.com/itzfew/Adver/refs/heads/main/bar.json';
 
-    // Colors for each country bar (you can adjust this in the JSON or here)
-    const countryColors = {
-      'India': '#3498db',
-      'China': '#e74c3c',
-      'USA': '#f39c12',
-      'Brazil': '#2ecc71'
-    };
-
     // Function to update the bar with animation
     function updateBar(country, population) {
       return new Promise(resolve => {
         const bar = document.getElementById(`${country.name.toLowerCase()}-bar`);
-        const populationLabel = `${population.toFixed(2)}`;  // Remove "B" suffix
+        const populationLabel = `${population.toFixed(2)}`;  // Format population
         const barWidth = (population / 1.7) * 100;  // Adjust the width scale to ensure proper spacing
 
         // Dynamically set transition duration based on the width (percentage) of the bar
-        const duration = (barWidth / 100) * 5; // Proportional to the width, e.g., 100% width takes 5s, 50% takes 2.5s.
+        const duration = (barWidth / 100) * 5; // Proportional to the width
 
-        // Set the width of the bar and duration dynamically
+        // Set the width of the bar and transition duration
         bar.style.transitionDuration = `${duration}s`;
         setTimeout(() => {
           bar.style.width = `${barWidth}%`;  // Animate the bar width
-          bar.style.backgroundColor = countryColors[country.name];
+          bar.style.backgroundColor = country.color; // Apply color from JSON
           bar.querySelector('.population-label').textContent = populationLabel;
 
           // Fade in the country item
@@ -132,12 +124,12 @@
           // Scroll the page to the current bar element (smooth scroll)
           bar.scrollIntoView({
             behavior: 'smooth',
-            block: 'center', // Scroll to the center of the screen
+            block: 'center',
           });
 
           // Resolve the promise after the animation duration
           setTimeout(resolve, duration * 1000);
-        }, 100); // A slight delay before the animation starts
+        }, 100); // Slight delay before animation
       });
     }
 
