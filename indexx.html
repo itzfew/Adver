@@ -425,22 +425,40 @@
         }
 
         async function sendMessage(message) {
-            const messageElement = document.createElement('div');
-            messageElement.classList.add('message', message.type);
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message', message.type);
+
+        // Check if the message is an image URL
+        if (isImageUrl(message.text)) {
+            const imgElement = document.createElement('img');
+            imgElement.src = message.text;
+            imgElement.alt = "Image message";
+            imgElement.style.maxWidth = "200px";  // Limit the size of the image
+            imgElement.style.borderRadius = "8px";  // Optional: add border-radius for better appearance
+            messageElement.appendChild(imgElement);
+        } else {
             messageElement.innerText = message.text;
-
-            const timeElement = document.createElement('div');
-            timeElement.classList.add('message-time');
-            timeElement.innerText = getFormattedTime();
-            messageElement.appendChild(timeElement);
-
-            chatBox.appendChild(messageElement);
-            chatBox.scrollTop = chatBox.scrollHeight;
-
-            if (message.type === 'sent') {
-                messageSentSound.play();
-            }
         }
+
+        const timeElement = document.createElement('div');
+        timeElement.classList.add('message-time');
+        timeElement.innerText = getFormattedTime();
+        messageElement.appendChild(timeElement);
+
+        chatBox.appendChild(messageElement);
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        if (message.type === 'sent') {
+            messageSentSound.play();
+        }
+    }
+
+    // Helper function to check if a string is an image URL
+    function isImageUrl(url) {
+        const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp'];
+        return imageExtensions.some(extension => url.toLowerCase().endsWith(extension));
+    }
+
 
         function getFormattedTime() {
             const now = new Date();
