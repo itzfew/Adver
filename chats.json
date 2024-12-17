@@ -1,123 +1,270 @@
 [
-    {
-        "name": "Mom",
-        "profilePic": "https://randomuser.me/api/portraits/women/1.jpg",
-        "status": "Available",
-        "messages": [
-            { 
-                "type": "received", 
-                "text": "Hi sweetie! 😊 Where were you yesterday?", 
-                "url": "https://randomuser.me/api/portraits/women/11.jpg"
-            },
-            { "type": "sent", "text": "Hey Mom! Just out with friends." },
-            { 
-                "type": "received", 
-                "text": "Hi sweetie! 😊 Where were you yesterday?", 
-                "url": "https://randomuser.me/api/portraits/women/11.jpg"
-            },
-            { "type": "received", "text": "Missed you at dinner. Dad made your fave chicken!" },
-            { "type": "sent", "text": "https://randomuser.me/api/portraits/women/11.jpg" },
-            { "type": "received", "text": "I saved you a plate, don't worry!" },
-            { "type": "sent", "text": "Haha, thanks! I’ll be home soon." },
-            { "type": "received", "text": "You didn't answer your phone... Everything okay?" },
-            { "type": "sent", "text": "Yeah, just got caught up. Sorry about that!" },
-            { "type": "received", "text": "You were out pretty late last night, huh?" },
-            { "type": "sent", "text": "Just needed some time. You know how it is." },
-            { "type": "received", "text": "I get it. Just don’t forget to let me know next time!" },
-            { "type": "sent", "text": "I will, promise." },
-            { "type": "received", "text": "I was worried when I didn’t see you." },
-            { "type": "sent", "text": "Sorry about that, Mom. I’ll keep you updated." },
-            { "type": "received", "text": "Okay, but you know I’ll always be here for you, right?" },
-            { "type": "sent", "text": "I know, thanks Mom. ❤️" },
-            { "type": "received", "text": "I left your favorite snacks out for you!" },
-            { "type": "sent", "text": "Aww, you're the best!" },
-            { "type": "received", "text": "Anyway, I’m glad you’re safe. Don’t stay out too late next time!" },
-            { "type": "sent", "text": "Got it! I’ll be home soon." },
-            { "type": "received", "text": "Okay, love you! Bye!" },
-            { "type": "sent", "text": "Love you too! 😊 Bye!" }
-        ]
-    },
-    {
-        "name": "Dad",
-        "profilePic": "https://randomuser.me/api/portraits/men/20.jpg",
-        "status": "Busy",
-        "messages": [
-            { "type": "received", "text": "Hey, kiddo! Where were you last night?" },
-            { "type": "sent", "text": "Hey Dad, I was out with friends." },
-            { "type": "received", "text": "Didn’t hear from you. Hope everything’s good." },
-            { "type": "sent", "text": "Yeah, all good, just got caught up!" },
-            { "type": "received", "text": "I made your favorite chicken. Was hoping you’d join me." },
-            { "type": "sent", "text": "Ah, missed it! I’ll be home in a bit." },
-            { "type": "received", "text": "You didn’t pick up your phone. Busy?" },
-            { "type": "sent", "text": "Yeah, had some stuff going on. Sorry." },
-            { "type": "received", "text": "No worries. Just wanted to make sure you were okay." },
-            { "type": "sent", "text": "I’m fine, don’t worry!" },
-            { "type": "received", "text": "Alright, but let me know next time if you’re staying out." },
-            { "type": "sent", "text": "Will do. Promise!" },
-            { "type": "received", "text": "I missed our chats last night. You’ve been busy!" },
-            { "type": "sent", "text": "Yeah, I guess I’ve been a bit all over the place." },
-            { "type": "received", "text": "Well, I’m here when you need me." },
-            { "type": "sent", "text": "I know, thanks Dad!" },
-            { "type": "received", "text": "Alright, I’ll save some dessert for you." },
-            { "type": "sent", "text": "Sweet, see you soon." },
-            { "type": "received", "text": "Take care, don’t stay out too late!" },
-            { "type": "sent", "text": "Got it. Thanks, Dad. Bye!" }
-        ]
-    },
-    {
-        "name": "Friend",
-        "profilePic": "https://randomuser.me/api/portraits/men/1.jpg",
-        "status": "Available",
-        "messages": [
-            { "type": "received", "text": "Yo! Where were you yesterday?" },
-            { "type": "sent", "text": "Hey, I was just out with some friends." },
-            { "type": "received", "text": "Tried calling you, but you didn’t pick up!" },
-            { "type": "sent", "text": "Sorry! Got caught up. What’s up?" },
-            { "type": "received", "text": "Nothing much. We should hang soon!" },
-            { "type": "sent", "text": "Definitely! Let me know when you’re free." },
-            { "type": "received", "text": "I went to that coffee shop you recommended. It’s so good!" },
-            { "type": "sent", "text": "I told you! Glad you liked it." },
-            { "type": "received", "text": "Are you busy this weekend? We should catch up." },
-            { "type": "sent", "text": "I’m down! Let’s plan something." },
-            { "type": "received", "text": "Cool! Let me know when you’re free." },
-            { "type": "sent", "text": "Awesome, I’ll check my schedule." },
-            { "type": "received", "text": "What’s your schedule looking like next week?" },
-            { "type": "sent", "text": "I’m free after Wednesday. How about you?" },
-            { "type": "received", "text": "I’m free too! We’ll figure something out." },
-            { "type": "sent", "text": "Yes! Let’s do it this weekend." },
-            { "type": "received", "text": "It’s a plan!" },
-            { "type": "sent", "text": "What’s your schedule looking like next week?" },
-            { "type": "received", "text": "I’m free after Wednesday. How about you?" },
-            { "type": "sent", "text": "I’m free too! We’ll figure something out." },
-            { "type": "received", "text": "For sure! Catch you later." },
-            { "type": "sent", "text": "Later! Have a good one!" }
-        ]
-    },
-    {
-        "name": "Sister",
-        "profilePic": "https://randomuser.me/api/portraits/women/5.jpg",
-        "status": "Can't talk right now",
-        "messages": [
-            { "type": "received", "text": "Hey, where were you last night?" },
-            { "type": "sent", "text": "Just out with friends." },
-            { "type": "received", "text": "You didn’t come home until late. Everything okay?" },
-            { "type": "sent", "text": "Yeah, all good, just needed some time." },
-            { "type": "received", "text": "Mom was freaking out a little!" },
-            { "type": "sent", "text": "I know, I heard. Sorry about that." },
-            { "type": "received", "text": "Next time just let me know, okay?" },
-            { "type": "sent", "text": "I will, promise!" },
-            { "type": "received", "text": "I covered for you with Mom and Dad. They were asking a lot of questions!" },
-            { "type": "sent", "text": "Haha, thanks for that. I owe you one!" },
-            { "type": "received", "text": "I got you! Just don’t stay out too late next time." },
-            { "type": "sent", "text": "I won’t. I’m heading home now." },
-            { "type": "received", "text": "Good. And don’t forget to text me when you’re back." },
-            { "type": "sent", "text": "I will. See you in a bit!" },
-            { "type": "received", "text": "Also, I left your favorite snack in the fridge." },
-            { "type": "sent", "text": "You’re the best! 😘" },
-            { "type": "received", "text": "Anyway, I’m glad you’re safe. Don’t stay out too late next time!" },
-            { "type": "sent", "text": "I won’t! Promise." },
-            { "type": "received", "text": "Okay, bye for now! Be safe." },
-            { "type": "sent", "text": "Bye! Love you!" }
-        ]
-    }
+  {
+    "name": "Mom",
+    "profilePic": "https://randomuser.me/api/portraits/women/1.jpg",
+    "status": "Busy, but always here for you ❤️",
+    "messages": [
+      {
+        "type": "sent",
+        "text": "Hey Mom, how are you?"
+      },
+      {
+        "type": "received",
+        "text": "I'm good, dear. How's everything going?"
+      },
+      {
+        "type": "sent",
+        "text": "I lost Mittens 😢"
+      },
+      {
+        "type": "received",
+        "text": "Oh no! What happened?"
+      },
+      {
+        "type": "sent",
+        "text": "She ran out when I opened the door! I can't find her."
+      },
+      {
+        "type": "received",
+        "text": "Did you check under the bushes?"
+      },
+      {
+        "type": "sent",
+        "text": "Yes, I looked everywhere! I think she’s hiding."
+      },
+      {
+        "type": "received",
+        "text": "Maybe she’s just exploring the neighborhood."
+      },
+      {
+        "type": "sent",
+        "text": "I really hope so. She's been gone for 3 hours!"
+      },
+      {
+        "type": "received",
+        "text": "She'll come back, don't worry. Cats always do."
+      },
+      {
+        "type": "sent",
+        "text": "I hope so. I’ll keep an eye out. 🙁"
+      },
+      {
+        "type": "received",
+        "text": "Keep me posted! I’m sure she’ll be fine."
+      },
+      {
+        "type": "sent",
+        "text": "I’m thinking about putting her favorite treat outside."
+      },
+      {
+        "type": "received",
+        "text": "That’s a good idea. Cats love their treats."
+      },
+      {
+        "type": "sent",
+        "text": "Thanks, Mom. I’ll keep you updated!"
+      }
+    ]
+  },
+  {
+    "name": "Dad",
+    "profilePic": "https://randomuser.me/api/portraits/men/1.jpg",
+    "status": "Just trying to relax for once 😌",
+    "messages": [
+      {
+        "type": "sent",
+        "text": "Hey Dad, what's up?"
+      },
+      {
+        "type": "received",
+        "text": "Just finished work, finally!"
+      },
+      {
+        "type": "sent",
+        "text": "I can't find Mittens! She’s missing!"
+      },
+      {
+        "type": "received",
+        "text": "Oh no! When did she go missing?"
+      },
+      {
+        "type": "sent",
+        "text": "She ran out this afternoon when I opened the door."
+      },
+      {
+        "type": "received",
+        "text": "Did you check the yard?"
+      },
+      {
+        "type": "sent",
+        "text": "Yes, I’ve checked the whole yard. She’s nowhere to be found."
+      },
+      {
+        "type": "received",
+        "text": "Maybe she’s hiding somewhere. Have you tried calling her?"
+      },
+      {
+        "type": "sent",
+        "text": "I called her name, but no answer."
+      },
+      {
+        "type": "received",
+        "text": "She’s probably just exploring. Don’t worry."
+      },
+      {
+        "type": "sent",
+        "text": "I hope you’re right. It’s been a few hours now."
+      },
+      {
+        "type": "received",
+        "text": "You should leave some food outside. She might smell it."
+      },
+      {
+        "type": "sent",
+        "text": "Great idea! I’ll try that."
+      },
+      {
+        "type": "received",
+        "text": "Let me know if she comes back."
+      },
+      {
+        "type": "sent",
+        "text": "I will! Thanks, Dad."
+      }
+    ]
+  },
+  {
+    "name": "Brother",
+    "profilePic": "https://randomuser.me/api/portraits/men/2.jpg",
+    "status": "Always up for some fun!",
+    "messages": [
+      {
+        "type": "sent",
+        "text": "Yo, what’s up?"
+      },
+      {
+        "type": "received",
+        "text": "Nothing much, just chilling. What's going on?"
+      },
+      {
+        "type": "sent",
+        "text": "I can’t find Mittens anywhere!"
+      },
+      {
+        "type": "received",
+        "text": "What do you mean? Like, gone missing?"
+      },
+      {
+        "type": "sent",
+        "text": "Yeah, she ran out of the house a few hours ago."
+      },
+      {
+        "type": "received",
+        "text": "Did you check the neighborhood?"
+      },
+      {
+        "type": "sent",
+        "text": "Yeah, I’ve checked all around. No sign of her."
+      },
+      {
+        "type": "received",
+        "text": "She’s probably just roaming around. Cats do that."
+      },
+      {
+        "type": "sent",
+        "text": "I hope so. I’m getting worried."
+      },
+      {
+        "type": "received",
+        "text": "Have you tried calling her name?"
+      },
+      {
+        "type": "sent",
+        "text": "Yeah, but nothing. It’s like she’s vanished."
+      },
+      {
+        "type": "received",
+        "text": "Bro, relax. Cats come back eventually."
+      },
+      {
+        "type": "sent",
+        "text": "I know. I just don’t want anything to happen to her."
+      },
+      {
+        "type": "received",
+        "text": "Try putting some food outside. That might bring her back."
+      },
+      {
+        "type": "sent",
+        "text": "Good idea! I’ll do that now. Thanks."
+      }
+    ]
+  },
+  {
+    "name": "Sister",
+    "profilePic": "https://randomuser.me/api/portraits/women/2.jpg",
+    "status": "Living my best life!",
+    "messages": [
+      {
+        "type": "sent",
+        "text": "Hey sis, what's up?"
+      },
+      {
+        "type": "received",
+        "text": "Hey! Just relaxing. What’s going on?"
+      },
+      {
+        "type": "sent",
+        "text": "I can’t find Mittens anywhere!"
+      },
+      {
+        "type": "received",
+        "text": "What? She’s missing?"
+      },
+      {
+        "type": "sent",
+        "text": "Yeah! She ran out when I opened the door."
+      },
+      {
+        "type": "received",
+        "text": "Oh no, that’s not good. Have you checked the backyard?"
+      },
+      {
+        "type": "sent",
+        "text": "Yes, I’ve checked everywhere. I’m really worried."
+      },
+      {
+        "type": "received",
+        "text": "Maybe she’s just hiding. Cats do that sometimes."
+      },
+      {
+        "type": "sent",
+        "text": "I hope so. It’s been hours now."
+      },
+      {
+        "type": "received",
+        "text": "She’ll come back. Just give it time."
+      },
+      {
+        "type": "sent",
+        "text": "I think I’ll leave some food outside for her."
+      },
+      {
+        "type": "received",
+        "text": "Good idea! She might smell it and come back."
+      },
+      {
+        "type": "sent",
+        "text": "Thanks for the advice! I’ll try that."
+      },
+      {
+        "type": "received",
+        "text": "Let me know if she returns!"
+      },
+      {
+        "type": "sent",
+        "text": "Will do! Fingers crossed. 🤞"
+      }
+    ]
+  }
 ]
