@@ -3,7 +3,7 @@
 const CACHE_NAME = 'chat-simulation-cache-v1';
 const urlsToCache = [
     '/',
-    '/index.html',
+    '/indexx.html',
     '/styles.css', // Add your CSS file path here
     '/script.js',  // Add your JS file path here
     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css',
