@@ -5,34 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Population Growth by Country</title>
   <style>
+    html, body {
+      height: 100%; /* Ensure full height of the viewport */
+      margin: 0;    /* Remove default margin */
+      overflow: hidden; /* Prevent body from scrolling */
+    }
+
     body {
-      font-family: Arial, sans-serif;
       display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      height: 100vh;
-      margin: 0;
+      justify-content: flex-start;
+      align-items: center;
       background-color: #f7f9fc;
-      flex-direction: column;
-      padding: 20px;
     }
 
     .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
       width: 100%;
-      max-width: 900px;
-      text-align: center;
-      margin-top: 20px;
-      position: relative;
+      height: 100vh; /* Full height of the viewport */
+      padding: 20px;
+      overflow-y: auto; /* Allow scrolling inside the container */
+      box-sizing: border-box; /* Prevent padding from affecting height */
     }
 
     .country-list {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      margin-bottom: 20px;
-      max-height: 500px;
-      overflow-y: auto;
-      align-items: flex-start; /* Ensure all bars are aligned to the same left side */
+      width: 100%;
+      padding-bottom: 20px; /* Padding to prevent last item from being cut off */
+      overflow-y: auto; /* Allow scrolling if items overflow */
     }
 
     .country-item {
@@ -84,17 +88,9 @@
       position: absolute;
       top: 0;
       right: -101px;
-      height:100px;
+      height: 100px;
       width: 100px;
       object-fit: contain;
-    }
-
-    .country-list-item {
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: center;
-      width: 100%;
     }
 
     /* Additional styles to handle responsiveness */
