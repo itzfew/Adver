@@ -32,6 +32,7 @@
       margin-bottom: 20px;
       max-height: 500px;
       overflow-y: auto;
+      align-items: flex-start; /* Ensure all bars are aligned to the same left side */
     }
 
     .country-item {
@@ -46,9 +47,21 @@
       transition: opacity 1s ease-in-out;
     }
 
+    .country-name {
+      font-weight: bold;
+      margin-right: 20px;
+      margin-left: 20px;
+      text-align: left;
+      white-space: normal; /* Allow text to wrap */
+      word-wrap: break-word; /* Ensure long words break onto new lines */
+      flex-basis: 20%; /* Ensure the country name doesn't take up too much space */
+      min-width: 100px; /* Minimum width for country name */
+      display: block;
+    }
+
     .bar {
-      height: 40px;
-      width: 0%; /* Initially zero width */
+      height: 100px;
+      width: 5%; /* Initially set to 5% */
       position: relative;
       border-radius: 5px;
       margin-right: 15px;
@@ -75,17 +88,19 @@
       object-fit: contain;
     }
 
-    .country-name {
-      font-weight: bold;
-      margin-right: 20px;
-      margin-left: 20px;
-    }
-
     .country-list-item {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       justify-content: flex-start;
       align-items: center;
+      width: 100%;
+    }
+
+    /* Additional styles to handle responsiveness */
+    @media screen and (max-width: 768px) {
+      .country-name {
+        font-size: 14px; /* Smaller font size for smaller screens */
+      }
     }
   </style>
 </head>
@@ -102,11 +117,13 @@
     const jsonUrl = 'https://raw.githubusercontent.com/itzfew/Adver/refs/heads/main/bar.json';
 
     // Function to update the bar with animation
-    function updateBar(country, population) {
+    function updateBar(country, population, maxPopulation) {
       return new Promise(resolve => {
         const bar = document.getElementById(`${country.name.toLowerCase()}-bar`);
         const populationLabel = `${population.toFixed(2)}`;  // Format population
-        const barWidth = (population / 1.7) * 100;  // Adjust the width scale to ensure proper spacing
+
+        // Calculate bar width as a proportion of the max population (max width is 70%)
+        const barWidth = Math.min(70, (population / maxPopulation) * 70);  // Bar width will be capped at 70%
 
         // Dynamically set transition duration based on the width (percentage) of the bar
         const duration = (barWidth / 100) * 5; // Proportional to the width
@@ -145,8 +162,9 @@
         .then(data => {
           console.log('Fetched JSON data:', data);  // Debugging: log the fetched data
           const countries = data.countries; // Assuming the JSON format has a 'countries' key
+          const maxPopulation = Math.max(...countries.map(country => country.population));  // Find the max population
           createCountryList(countries);
-          animateBars(countries);
+          animateBars(countries, maxPopulation);
         })
         .catch(error => {
           console.error('Error fetching the population data:', error);
@@ -188,14 +206,14 @@
     }
 
     // Function to display the bars one by one with smooth filling animation
-    function animateBars(countries) {
+    function animateBars(countries, maxPopulation) {
       // Sort countries by population in ascending order
       countries.sort((a, b) => a.population - b.population);
 
       // Use a Promise chain to animate bars one by one
       let animationChain = Promise.resolve();
       countries.forEach(country => {
-        animationChain = animationChain.then(() => updateBar(country, country.population));
+        animationChain = animationChain.then(() => updateBar(country, country.population, maxPopulation));
       });
     }
 
