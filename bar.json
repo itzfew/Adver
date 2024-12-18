@@ -2,62 +2,62 @@
   "countries": [
     {
       "name": "Elon Musk (USA)",
-      "number": 474,
-      "image": "https://imageio.forbes.com/specials-images/imageserve/65bad6565a64974b8714cf25/Elon-Musk/0x0.jpg?format=jpg&width=1440",
+      "population": 474,
+      "flagImage": "https://imageio.forbes.com/specials-images/imageserve/65bad6565a64974b8714cf25/Elon-Musk/0x0.jpg?format=jpg&width=1440",
       "color": "#f1c40f"
     },
     {
       "name": "Jeff Bezos (USA)",
-      "number": 251,
-      "image": "https://imageio.forbes.com/specials-images/imageserve/667f7a5cf240464ffd887cc9/Jeff-Bezos/0x0.jpg?format=jpg&width=1440",
+      "population": 251,
+      "flagImage": "https://imageio.forbes.com/specials-images/imageserve/667f7a5cf240464ffd887cc9/Jeff-Bezos/0x0.jpg?format=jpg&width=1440",
       "color": "#16a085"
     },
     {
       "name": "Mark Zuckerberg (USA)",
-      "number": 221,
-      "image": "https://imageio.forbes.com/specials-images/imageserve/66fb12d900e71322eb1da6a9/960x0-1/0x0.jpg?format=jpg&width=1440",
+      "population": 221,
+      "flagImage": "https://imageio.forbes.com/specials-images/imageserve/66fb12d900e71322eb1da6a9/960x0-1/0x0.jpg?format=jpg&width=1440",
       "color": "#3498db"
     },
     {
       "name": "Larry Ellison (USA)",
-      "number": 194,
-      "image": "https://imageio.forbes.com/specials-images/imageserve/66fb128fcf623d278a81abf1/960x0/0x0.jpg?format=jpg&width=1440",
+      "population": 194,
+      "flagImage": "https://imageio.forbes.com/specials-images/imageserve/66fb128fcf623d278a81abf1/960x0/0x0.jpg?format=jpg&width=1440",
       "color": "#e74c3c"
     },
     {
       "name": "Bernard Arnault (France)",
-      "number": 178,
-      "image": "https://imageio.forbes.com/specials-images/imageserve/649efca325bb136e4de78691/Bernard-Arnault/0x0.jpg?format=jpg&width=1440",
+      "population": 178,
+      "flagImage": "https://imageio.forbes.com/specials-images/imageserve/649efca325bb136e4de78691/Bernard-Arnault/0x0.jpg?format=jpg&width=1440",
       "color": "#2ecc71"
     },
     {
       "name": "Larry Page (USA)",
-      "number": 175,
-      "image": "https://imageio.forbes.com/specials-images/imageserve/65e1cb378438078685d2a3ed/960x0-2/0x0.jpg?format=jpg&width=1440",
+      "population": 175,
+      "flagImage": "https://imageio.forbes.com/specials-images/imageserve/65e1cb378438078685d2a3ed/960x0-2/0x0.jpg?format=jpg&width=1440",
       "color": "#9b59b6"
     },
     {
       "name": "Bill Gates (USA)",
-      "number": 165,
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHXIp09xheZugHqsYCDQDtsjytdKBYmD5FKqTu6LI8fJMAZxYNVoDTGoDvqnGW2_MHgCl2U4Gd8X2Z4JUNibNhGQ",
+      "population": 165,
+      "flagImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHXIp09xheZugHqsYCDQDtsjytdKBYmD5FKqTu6LI8fJMAZxYNVoDTGoDvqnGW2_MHgCl2U4Gd8X2Z4JUNibNhGQ",
       "color": "#f1c40f"
     },
     {
       "name": "Sergey Brin (USA)",
-      "number": 164,
-      "image": "https://imageio.forbes.com/specials-images/imageserve/67241db6a90b4b35738a67b1/0x0-1/0x0.jpg?format=jpg&width=1440",
+      "population": 164,
+      "flagImage": "https://imageio.forbes.com/specials-images/imageserve/67241db6a90b4b35738a67b1/0x0-1/0x0.jpg?format=jpg&width=1440",
       "color": "#e67e22"
     },
     {
       "name": "Steve Ballmer (USA)",
-      "number": 156,
-      "image": "https://imageio.forbes.com/specials-images/imageserve/65e1cb125b96599ba49fd1aa/960x0-3/0x0.jpg?format=jpg&width=1440",
+      "population": 156,
+      "flagImage": "https://imageio.forbes.com/specials-images/imageserve/65e1cb125b96599ba49fd1aa/960x0-3/0x0.jpg?format=jpg&width=1440",
       "color": "#1abc9c"
     },
     {
       "name": "Warren Buffett (USA)",
-      "number": 143,
-      "image": "https://imageio.forbes.com/specials-images/imageserve/66aaa00ba1aa88ecb2a22e47/960x0-2/0x0.jpg?format=jpg&width=1440",
+      "population": 143,
+      "flagImage": "https://imageio.forbes.com/specials-images/imageserve/66aaa00ba1aa88ecb2a22e47/960x0-2/0x0.jpg?format=jpg&width=1440",
       "color": "#34495e"
     }
   ]
