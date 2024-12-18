@@ -318,7 +318,7 @@
   
   {
     "name": "Friend",
-    "profilePic": "https://randomuser.me/api/portraits/men/1.jpg",
+    "profilePic": "https://randomuser.me/api/portraits/men/61.jpg",
     "status": "Chill mode on 🧘",
     "messages": [
       {
@@ -512,6 +512,189 @@
       {
         "type": "received",
         "text": "Exactly! Uske baad toh, dogs ko samajhna hi asaan hoga."
+      }
+    ]
+  },
+  {
+    "name": "GF",
+    "profilePic": "https://randomuser.me/api/portraits/women/50.jpg",
+    "status": "I’m your sunshine 🌞",
+    "messages": [
+      {
+        "type": "sent",
+        "text": "Morning, sunshine! 🌞 How’s my favorite girl today?"
+      },
+      {
+        "type": "received",
+        "text": "Good morning, my love! ❤️ Aaj toh thoda mood off hai…"
+      },
+      {
+        "type": "sent",
+        "text": "What happened? 🤔 Talk to me."
+      },
+      {
+        "type": "received",
+        "text": "Bas yaar, thoda thaka feel ho raha hoon. Lagta hai tumhare bina zindagi kuch khaali hai 😔"
+      },
+      {
+        "type": "sent",
+        "text": "Aww, don't be sad. I’m here. Tumhare saath hoon, toh sab theek ho jaayega 💖"
+      },
+      {
+        "type": "received",
+        "text": "Mujhe tumhari yaad aayi thi, bas. Ab thoda better feel kar rahi hoon."
+      },
+      {
+        "type": "sent",
+        "text": "Hmmm... okay, let's make this day better! Aaj kuch mazedaar karte hain!"
+      },
+      {
+        "type": "received",
+        "text": "Hmmm, mazedaar? Tumhare saath sab kuch mazedaar hota hai! 😘"
+      },
+      {
+        "type": "sent",
+        "text": "Woh toh hai! Tumhare saath toh boring bhi fun lagta hai! 😜"
+      },
+      {
+        "type": "received",
+        "text": "Haha, seriously! Agar tum saath ho, toh din kaun boring feel karega? 😉"
+      },
+      {
+        "type": "sent",
+        "text": "By the way, kal tumne jo mujhe message bheja tha, thoda confusing tha… 🤔"
+      },
+      {
+        "type": "received",
+        "text": "Arre, woh? Mujhe laga tum samjh gaye ho. Tumhare liye toh main hamesha confuse hi hoon!"
+      },
+      {
+        "type": "sent",
+        "text": "Confused? Aur tum dono kaise ho? 🤣 Anyway, sab samajh gaya tha."
+      },
+      {
+        "type": "received",
+        "text": "Aww, I was just testing you. Tum toh sab kuch samajh jaate ho! 😉"
+      },
+      {
+        "type": "sent",
+        "text": "Chalo, ek kaam karo, mujhe ek sweet message bhejo, I need that energy today! ❤️"
+      },
+      {
+        "type": "received",
+        "text": "You are the best part of my life. Tumhare bina kuch bhi bekaar hai. Love you forever! 💕"
+      },
+      {
+        "type": "sent",
+        "text": "I swear, tum itni sweet ho, mujhe diabetes ho jaayegi! 😆"
+      },
+      {
+        "type": "received",
+        "text": "Hahaha, is that a good thing or a bad thing? 😜"
+      },
+      {
+        "type": "sent",
+        "text": "Totally good! You’re the sweetest thing in my life. 🥺"
+      },
+      {
+        "type": "received",
+        "text": "Aww, stop making me blush. 😳"
+      },
+      {
+        "type": "sent",
+        "text": "Okay, now stop being cute… you’ll make my heart skip a beat. ❤️"
+      },
+      {
+        "type": "received",
+        "text": "I can’t stop being cute if I try, babe. 😏"
+      },
+      {
+        "type": "sent",
+        "text": "Okay, serious mode now. Kabhi galti se bhi mujhe ignore mat karna, samjhi?"
+      },
+      {
+        "type": "received",
+        "text": "What? Main tumhe ignore karoon? Never! 😤 Tumse door jaana mere liye possible hi nahi."
+      },
+      {
+        "type": "sent",
+        "text": "That's better! I can’t live without you either. ❤️"
+      },
+      {
+        "type": "received",
+        "text": "You’re mine forever, and I’m yours. No one can change that. 💍"
+      },
+      {
+        "type": "sent",
+        "text": "By the way, ab aaj tumse milne ka wait nahi ho raha. Jitna time tumhare saath bitana chahoon, utna nahi milta! 😭"
+      },
+      {
+        "type": "received",
+        "text": "Mujhe bhi! Tum se milke aisa lagta hai jaise duniya ki saari khushiyan mere paas ho. 💖"
+      },
+      {
+        "type": "sent",
+        "text": "Stop it, ab mujhe tumse milke kisi aur duniya mein jaana hai! 😂"
+      },
+      {
+        "type": "received",
+        "text": "Hahaha, okay fine, let's meet soon! Tumne bola toh, everything's possible! 😘"
+      },
+      {
+        "type": "sent",
+        "text": "But yaar, one thing. Tum khud ko itna cute kyun banati ho? 😅"
+      },
+      {
+        "type": "received",
+        "text": "Main cute na hoti toh tumhe kaise apne saath rakhti? 😉"
+      },
+      {
+        "type": "sent",
+        "text": "Touché! You win again! 😜"
+      },
+      {
+        "type": "received",
+        "text": "Haha, yeh toh hona hi tha! Tum se better kya expect kar sakti ho? 😎"
+      },
+      {
+        "type": "sent",
+        "text": "Okay, wait! Mujhe lagta hai tum thoda over sweet ho gayi ho aaj! 😜"
+      },
+      {
+        "type": "received",
+        "text": "Over sweet? Nah! Main toh bas tumhe apne pyaar mein dooba rahi hoon. 💖"
+      },
+      {
+        "type": "sent",
+        "text": "Tumhara pyaar toh main kab se dooba hoon! 😌"
+      },
+      {
+        "type": "received",
+        "text": "Meri jaan! Ab zyada pyaar karogi, toh main toh waise hi pyaar se mar jaungi! 😘"
+      },
+      {
+        "type": "sent",
+        "text": "Meri jaan, tumse pyaar karna mera kaam hai. Tumhare bina kuch bekaar hai! 😔"
+      },
+      {
+        "type": "received",
+        "text": "Aww, ab aise mat kehna. Tumhare bina meri zindagi ka koi matlab nahi! 💓"
+      },
+      {
+        "type": "sent",
+        "text": "Promise karna tum hamesha mere saath rahoge, chahe kuch ho jaaye?"
+      },
+      {
+        "type": "received",
+        "text": "Promise. Tum hi toh ho mera sab kuch. Tumse door jaane ka sochna bhi impossible hai! 💕"
+      },
+      {
+        "type": "sent",
+        "text": "I love you more than anything in this world. 😘"
+      },
+      {
+        "type": "received",
+        "text": "I love you too, baby. Tum mere liye duniya ho! ❤️"
       }
     ]
   }
