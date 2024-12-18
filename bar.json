@@ -2,7 +2,7 @@
   "countries": [
     {
       "name": "MrBeast (USA)",
-      "population": 336M,
+      "population": 336,
       "flagImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/MrBeast_2023_%28cropped%29.jpg/330px-MrBeast_2023_%28cropped%29.jpg",
       "color": "#f39c12"
     },
