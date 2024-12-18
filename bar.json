@@ -2,61 +2,61 @@
   "countries": [
     {
       "name": "Elon Musk (USA)",
-      "netWorth": 474,
+      "number": 474,
       "image": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Elon_Musk_2015.jpg",
       "color": "#f1c40f"
     },
     {
       "name": "Jeff Bezos (USA)",
-      "netWorth": 251,
+      "number": 251,
       "image": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Jeff_Bezos_2016.jpg",
       "color": "#16a085"
     },
     {
       "name": "Mark Zuckerberg (USA)",
-      "netWorth": 221,
+      "number": 221,
       "image": "https://upload.wikimedia.org/wikipedia/commons/5/51/Mark_Zuckerberg_2018.jpg",
       "color": "#3498db"
     },
     {
       "name": "Larry Ellison (USA)",
-      "netWorth": 194,
+      "number": 194,
       "image": "https://upload.wikimedia.org/wikipedia/commons/0/01/Larry_Ellison_Oracle.jpg",
       "color": "#e74c3c"
     },
     {
       "name": "Bernard Arnault (France)",
-      "netWorth": 178,
+      "number": 178,
       "image": "https://upload.wikimedia.org/wikipedia/commons/4/45/Bernard_Arnault_2014.jpg",
       "color": "#2ecc71"
     },
     {
       "name": "Larry Page (USA)",
-      "netWorth": 175,
+      "number": 175,
       "image": "https://upload.wikimedia.org/wikipedia/commons/3/31/Larry_Page_2015.jpg",
       "color": "#9b59b6"
     },
     {
       "name": "Bill Gates (USA)",
-      "netWorth": 165,
+      "number": 165,
       "image": "https://upload.wikimedia.org/wikipedia/commons/a/a0/Bill_Gates_2018.jpg",
       "color": "#f1c40f"
     },
     {
       "name": "Sergey Brin (USA)",
-      "netWorth": 164,
+      "number": 164,
       "image": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Sergey_Brin_2014.jpg",
       "color": "#e67e22"
     },
     {
       "name": "Steve Ballmer (USA)",
-      "netWorth": 156,
+      "number": 156,
       "image": "https://upload.wikimedia.org/wikipedia/commons/a/af/Steve_Ballmer_2014.jpg",
       "color": "#1abc9c"
     },
     {
       "name": "Warren Buffett (USA)",
-      "netWorth": 143,
+      "number": 143,
       "image": "https://upload.wikimedia.org/wikipedia/commons/4/4f/Warren_Buffett_2011.jpg",
       "color": "#34495e"
     }
