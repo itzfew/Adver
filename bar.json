@@ -1,63 +1,63 @@
- {
+{
   "countries": [
     {
-      "name": "MrBeast (USA)",
-      "population": 336,
-      "flagImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/MrBeast_2023_%28cropped%29.jpg/330px-MrBeast_2023_%28cropped%29.jpg",
+      "name": "Dushyant Kukreja (India)",
+      "population": 44,
+      "flagImage": "https://bloggerspassion.com/wp-content/uploads/2024/08/dushyant-kukreja.webp",
       "color": "#f39c12"
     },
     {
-      "name": "T-Series (India)",
-      "population": 281,
-      "flagImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/T-series-logo.svg/180px-T-series-logo.svg.png",
+      "name": "Ajey Nagar (India)",
+      "population": 43,
+      "flagImage": "https://bloggerspassion.com/wp-content/uploads/2023/06/carryminati-300x186.jpg",
       "color": "#3498db"
     },
     {
-      "name": "Cocomelon - Nursery Rhymes (USA)",
-      "population": 186,
-      "flagImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Cocomelon-label-hd.png/330px-Cocomelon-label-hd.png",
+      "name": "Ajju Bhai (India)",
+      "population": 41.9,
+      "flagImage": "https://bloggerspassion.com/wp-content/uploads/2023/06/total-gaming-300x150.png",
       "color": "#e74c3c"
     },
     {
-      "name": "SET India (India)",
-      "population": 180,
-      "flagImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Sony_SET_logo.svg/225px-Sony_SET_logo.svg.png",
+      "name": "Ujjwal Chaurasia (India)",
+      "population": 41.7,
+      "flagImage": "https://bloggerspassion.com/wp-content/uploads/2024/07/ujjwal-chaurasia.webp",
       "color": "#2ecc71"
     },
     {
-      "name": "Vlad and Niki (Russia)",
-      "population": 129,
-      "flagImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtwQoB_j2LepovMycppLD1IVERUW21pdkkig&s",
+      "name": "Dilraj Singh Rawat (India)",
+      "population": 34.2,
+      "flagImage": "https://bloggerspassion.com/wp-content/uploads/2023/06/Dilraj-Singh-Rawat.webp",
       "color": "#9b59b6"
     },
     {
-      "name": "Kids Diana Show (USA/Ukraine)",
-      "population": 128,
-      "flagImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmJHji8h3AWoGFJsSC1QQ6mLeMLu5xk6LiEw&s",
+      "name": "Round2hell (India)",
+      "population": 43.1,
+      "flagImage": "https://bloggerspassion.com/wp-content/uploads/2024/08/round2hell.webp",
       "color": "#16a085"
     },
     {
-      "name": "Like Nastya (USA/Russia)",
-      "population": 123,
-      "flagImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Anastasia_Radzinskaya.png/330px-Anastasia_Radzinskaya.png",
+      "name": "Amit Sharma (India)",
+      "population": 30.9,
+      "flagImage": "https://bloggerspassion.com/wp-content/uploads/2023/06/Amit-Sharma-213x300.jpeg",
       "color": "#f1c40f"
     },
     {
-      "name": "Zee Music (India)",
-      "population": 112,
-      "flagImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Zee_Music_Company.svg/330px-Zee_Music_Company.svg.png",
+      "name": "Ashish Chanchlani (India)",
+      "population": 30.4,
+      "flagImage": "https://bloggerspassion.com/wp-content/uploads/2023/06/Ashish-Chanchlani.webp",
       "color": "#e67e22"
     },
     {
-      "name": "PewDiePie (Sweden)",
-      "population": 110,
-      "flagImage": "https://upload.wikimedia.org/wikipedia/commons/5/53/Pewdiepie_head_shot.jpg",
+      "name": "Sandeep Maheshwari (India)",
+      "population": 28.5,
+      "flagImage": "https://bloggerspassion.com/wp-content/uploads/2023/06/Sandeep-Maheshwari-300x300.jpg",
       "color": "#1abc9c"
     },
     {
-      "name": "WWE (USA)",
-      "population": 106,
-      "flagImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/WWE_official_logo.svg/225px-WWE_official_logo.svg.png",
+      "name": "Bhuvan Bam (India)",
+      "population": 26.4,
+      "flagImage": "https://bloggerspassion.com/wp-content/uploads/2023/06/Bhuvan-Bam.webp",
       "color": "#34495e"
     }
   ]
