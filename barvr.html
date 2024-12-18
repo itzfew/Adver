@@ -17,13 +17,13 @@
       align-items: flex-end;
       background-color: #f7f9fc;
     }
-    
+
     @keyframes moveHorizontally {
       0% {
-        transform: translateX(45%); /* Start from the beginning */
+        transform: translateX(45%); /* Start from the right (off-screen) */
       }
       100% {
-        transform: translateX(-100%); /* Move to the left off-screen */
+        transform: translateX(-85%); /* Move all the way left (off-screen) */
       }
     }
 
@@ -45,7 +45,7 @@
       align-items: flex-end;
       flex-direction: row;
       height: 100%; /* Full height for the list */
-      animation: moveHorizontally 30s linear infinite; /* Infinite scrolling */
+      animation: moveHorizontally 30s linear forwards; /* Animation for scrolling */
     }
 
     .country-item {
