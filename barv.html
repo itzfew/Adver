@@ -76,10 +76,10 @@ h1 {
       flex-direction: column; /* Stack elements vertically */
       justify-content: flex-end; /* Align to the bottom */
       align-items: center;
-      margin-right: 40%; /* Space between country items */
+      margin-right:2%; /* Space between country items */
       position: relative;
       height: 80%; /* Limit the height of the country item */
-      width: 200px; /* Set a fixed width for the item */
+      width: 100px; /* Set a fixed width for the item */
       opacity: 0; /* Initially hidden */
       transition: opacity 1s ease-in-out;
     }
@@ -92,7 +92,7 @@ h1 {
     }
 
     .bar {
-  width: 200px; /* Fixed width of the vertical bar */
+  width: 100px; /* Fixed width of the vertical bar */
   height: 0%; /* Initially set height to 0% */
   position: relative;
   bottom: 0; /* Position bar at the bottom of its container */
@@ -116,7 +116,7 @@ h1 {
     .country-flag {
       position: absolute;
       top: -101px; /* Position flag above the bar */
-      width: 200px; /* Set flag width */
+      width: 100px; /* Set flag width */
       height: 100px; /* Set flag height */
       object-fit: contain;
     }
@@ -130,7 +130,7 @@ h1 {
         width: 100px; /* Reduce width for smaller screens */
       }
       .country-flag {
-        width: 200px; /* Reduce flag size for smaller screens */
+        width: 100px; /* Reduce flag size for smaller screens */
         height: 100px;
       }
     }
