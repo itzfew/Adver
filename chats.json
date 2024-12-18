@@ -314,5 +314,206 @@
         "text": "Will do! Fingers crossed. 🤞"
       }
     ]
+  },
+  
+  {
+    "name": "Friend",
+    "profilePic": "https://randomuser.me/api/portraits/men/1.jpg",
+    "status": "Chill mode on 🧘",
+    "messages": [
+      {
+        "type": "sent",
+        "text": "Oye! Kya scene chal raha?"
+      },
+      {
+        "type": "received",
+        "text": "Kya baat hai! Bas chill hoon. Tu?"
+      },
+      {
+        "type": "sent",
+        "text": "Same yaar, bas thoda bore ho raha hoon."
+      },
+      {
+        "type": "received",
+        "text": "Haan, wahi. Kuch interesting batana!"
+      },
+      {
+        "type": "sent",
+        "text": "Interesting? Hmm, accha sun, tumhe pata hai, dolphins ke paas names hote hain?"
+      },
+      {
+        "type": "received",
+        "text": "Kya? Dolphins naam bhi rakhti hain? 😱"
+      },
+      {
+        "type": "sent",
+        "text": "Haan yaar, ek dusre ko call karte hain apne naam se!"
+      },
+      {
+        "type": "received",
+        "text": "Matlab dolphin ki apni “identity crisis”? 😆"
+      },
+      {
+        "type": "sent",
+        "text": "Haha, exactly! 😂"
+      },
+      {
+        "type": "received",
+        "text": "Matlab, apni hi language mein hi mast chal raha hai."
+      },
+      {
+        "type": "sent",
+        "text": "Arre, tumne yeh suna tha? Agar bees ko pyaas lage toh woh udh nahi sakte!"
+      },
+      {
+        "type": "received",
+        "text": "Kya? Bees ko udne ka pyaas se kya lena dena? 😆"
+      },
+      {
+        "type": "sent",
+        "text": "Haan! Pyaas lag gayi toh gir jaati hain. Nature ke laws, bhai!"
+      },
+      {
+        "type": "received",
+        "text": "Aree yaar, yeh kaunse padhayi ka chapter tha! 😅"
+      },
+      {
+        "type": "sent",
+        "text": "Yaar, tumhe pata hai crocodiles kabhi khud ko chhupake bhi rakhte hain?"
+      },
+      {
+        "type": "received",
+        "text": "Matlab apne ghar ke under? 😜"
+      },
+      {
+        "type": "sent",
+        "text": "Haan! Nature mein sab ka style alag hai!"
+      },
+      {
+        "type": "received",
+        "text": "Bindaas! Croc bhi apni privacy chahta hai. 😂"
+      },
+      {
+        "type": "sent",
+        "text": "Waise, woh black holes ke baare mein suna?"
+      },
+      {
+        "type": "received",
+        "text": "Kya black holes? Bina jaane humne nahi jaana! 😜"
+      },
+      {
+        "type": "sent",
+        "text": "Matlab, woh kuch cheezon ko kha jaate hain aur light tak nahi nikalne dete."
+      },
+      {
+        "type": "received",
+        "text": "Kya? Matlab black hole bhi apni “billionaire” lifestyle jeeta hai! 😂"
+      },
+      {
+        "type": "sent",
+        "text": "Haha, exactly! Bohat hi greedy hote hain."
+      },
+      {
+        "type": "received",
+        "text": "Waise, tumne kabhi sunha hai ki cats apne owner ko yeh samajh kar pyaar karti hain ki wo unke “servants” hain? 😆"
+      },
+      {
+        "type": "sent",
+        "text": "Kya! Cats ka bhi apna “master-servant” system?"
+      },
+      {
+        "type": "received",
+        "text": "Bilkul! Pyaar karte hain, par apni convenience ke liye! 😹"
+      },
+      {
+        "type": "sent",
+        "text": "Yaar, tumne yeh suna? Kuch birds apni “mating dance” ke liye, diamond ya glass collect karte hain!"
+      },
+      {
+        "type": "received",
+        "text": "Arey yaar, toh yeh hain apne bird version ke “gold diggers”! 💎"
+      },
+      {
+        "type": "sent",
+        "text": "Hahaha! Bilkul! Ab tumhe lag raha hai ki kuch birds humse zyada stylish hain!"
+      },
+      {
+        "type": "received",
+        "text": "Haan yaar, unki life style se sab seekhna chahiye!"
+      },
+      {
+        "type": "sent",
+        "text": "Sahi pakde hain! Waise tumhare sabse weird dream kya tha?"
+      },
+      {
+        "type": "received",
+        "text": "Ek baar dream mein main swimming pool mein tha aur jellyfish ke saath dance kar raha tha. 😂"
+      },
+      {
+        "type": "sent",
+        "text": "Hahahaha, jellyfish ke saath party!"
+      },
+      {
+        "type": "received",
+        "text": "Arre, dream mein toh sab chal raha hota hai! 😆"
+      },
+      {
+        "type": "sent",
+        "text": "Sach hai yaar, aise dreams hamesha best hote hain!"
+      },
+      {
+        "type": "received",
+        "text": "Waise, kabhi socha hai, animals ki duniya mein sabse intelligent kaun?"
+      },
+      {
+        "type": "sent",
+        "text": "Chimpanzees? 😜"
+      },
+      {
+        "type": "received",
+        "text": "Haan, bilkul! Aur woh apne tools bhi banate hain!"
+      },
+      {
+        "type": "sent",
+        "text": "Bindaas! Koi kitna bhi smart ho, monkey toh sab pe bhaari hai! 🐒"
+      },
+      {
+        "type": "received",
+        "text": "Haha! Yaar, ab soch raha hoon main bhi monkey ke jaise kuch naya try karoon! 😎"
+      },
+      {
+        "type": "sent",
+        "text": "Kya? Tum bhi? Yaar, tumhe toh idea aa gaya!"
+      },
+      {
+        "type": "received",
+        "text": "Haan, monkey ki tarah hangout karo, aur ideas lo! 😂"
+      },
+      {
+        "type": "sent",
+        "text": "Agle weekend, monkey ki tarah chalte hain sab! 🐵"
+      },
+      {
+        "type": "received",
+        "text": "Best idea! Waise, tumhe pata hai ki kisi bhi dog ka bark ki frequency actually human ear se alag hoti hai!"
+      },
+      {
+        "type": "sent",
+        "text": "Kya! Dogs ke bhi apni secret frequencies hoti hain! 🐕"
+      },
+      {
+        "type": "received",
+        "text": "Haan, aur unko sun ke hum samajh nahi paate."
+      },
+      {
+        "type": "sent",
+        "text": "Ab hum bhi unki frequency pe “evolve” karna padega! 😂"
+      },
+      {
+        "type": "received",
+        "text": "Exactly! Uske baad toh, dogs ko samajhna hi asaan hoga."
+      }
+    ]
   }
+
 ]
