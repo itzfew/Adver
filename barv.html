@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Population Growth by Country</title>
+  <title>Top 10 YouTube Channels</title>
+  <!-- Font Awesome CDN for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     html, body {
       height: 100%; /* Ensure full height of the viewport */
@@ -16,38 +18,8 @@
       justify-content: flex-start;
       align-items: flex-end;
       background-color: #f7f9fc;
-    }
-
-    h1 {
-      font-family: 'Roboto', sans-serif; /* Modern font */
-      font-size: 1rem; /* Larger font size */
-      font-weight: 700; /* Bold text */
-      color: white; /* White text color */
-      background: linear-gradient(45deg, #3498db, #9b59b6, #f1c40f); /* Gradient background */
-      padding: 10px 0; /* Padding for vertical space */
-      margin: 0; /* Remove default margin */
-      text-align: center; /* Center align text */
-      width: 100%; /* Make sure the heading spans the full width */
-      position: fixed; /* Fix position at the top of the screen */
-      top: 0; /* Align at the very top of the screen */
-      left: 0; /* Align to the left edge of the screen */
-      z-index: 10; /* Ensure it stays on top of other elements */
-      border-radius: 0 0 10px; /* Rounded corners at the bottom */
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow for depth */
-      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Text shadow */
-      letter-spacing: 2px; /* Spacing between letters */
-      animation: fadeIn 2s ease-in-out; /* Fade-in animation */
-    }
-
-    @keyframes fadeIn {
-      0% {
-        opacity: 0;
-        transform: translateY(-50px); /* Start from above the screen */
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0); /* End at its final position */
-      }
+      flex-direction: column;
+      position: relative;
     }
 
     .container {
@@ -60,6 +32,7 @@
       padding: 20px;
       overflow-x: auto; /* Allow horizontal scrolling */
       box-sizing: border-box; /* Prevent padding from affecting width */
+      margin-top: 60px; /* Leave space for the header */
     }
 
     .country-list {
@@ -142,10 +115,70 @@
         height: 100px;
       }
     }
+
+    /* Buttons to start */
+    .control-buttons {
+      position: fixed;
+      top: 20px;
+      right: 5px;
+      z-index: 20;
+    }
+
+    .control-buttons button {
+      
+      color: black;
+      padding: 5px 10px;
+      border: solid 1px black ;
+      border-radius: 5px;
+      margin: 5px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    .control-buttons button:disabled {
+      background-color: #ddd;
+      cursor: not-allowed;
+    }
+
+    /* File input styles */
+    .file-inputs {
+      position: fixed;
+      top: 5px;
+      right: 10px;
+      z-index: 20;
+    }
+
+    .file-inputs input {
+      margin: 5px;
+    }
+
+    /* Full-screen video styling */
+    #background-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1; /* Place video behind other elements */
+      display: none; /* Initially hide the video */
+    }
   </style>
 </head>
 <body>
-  <h1>TOP 10 YOUTUBE CHANNELS </h1>
+
+  <!-- Buttons for controlling the animation -->
+  <div class="control-buttons">
+    <button id="start-button"><i class="fas fa-play"></i> Start</button>
+  </div>
+
+  <!-- File inputs for uploading background image, audio, or video -->
+  <div class="file-inputs">
+    <input type="file" id="image-upload" accept="image/*" />
+    <input type="file" id="audio-upload" accept="audio/*" />
+    <input type="file" id="video-upload" accept="video/*" />
+  </div>
+
   <div class="container">
     <div class="country-list" id="country-list">
       <!-- Dynamic Country Items will be added here -->
@@ -153,6 +186,9 @@
   </div>
 
   <script>
+    let animationInProgress = false;
+    let animationTimeouts = [];
+
     // URL for the JSON data
     const jsonUrl = 'https://raw.githubusercontent.com/itzfew/Adver/refs/heads/main/bar.json';
 
@@ -160,59 +196,51 @@
     function updateBar(country, population, maxPopulation) {
       return new Promise(resolve => {
         const bar = document.getElementById(`${country.name.toLowerCase()}-bar`);
-        const populationLabel = `${population.toFixed(2)}`;  // Format population
+        const populationLabel = `${population.toFixed(2)}`;
 
         // Calculate bar height as a proportion of the max population (max height is 80%)
-        const barHeight = Math.min(80, (population / maxPopulation) * 80);  // Bar height will be capped at 80%
+        const barHeight = Math.min(80, (population / maxPopulation) * 80);
 
         // Dynamically set transition duration based on the height (percentage) of the bar
-        const duration = (barHeight / 100) * 5; // Proportional to the height
+        const duration = (barHeight / 100) * 5;
 
-        // Set the height of the bar and transition duration
         bar.style.transitionDuration = `${duration}s`;
         setTimeout(() => {
-          bar.style.height = `${barHeight}%`;  // Animate the bar height
-          bar.style.backgroundColor = country.color; // Apply color from JSON
+          bar.style.height = `${barHeight}%`;
+          bar.style.backgroundColor = country.color;
           bar.querySelector('.population-label').textContent = populationLabel;
-
-          // Fade in the country item
           document.getElementById(`${country.name.toLowerCase()}-item`).style.opacity = 1;
 
-          // Scroll the page to the current bar element (smooth scroll)
           bar.scrollIntoView({
             behavior: 'smooth',
             block: 'center',
           });
 
-          // Resolve the promise after the animation duration
           setTimeout(resolve, duration * 1000);
-        }, 100); // Slight delay before animation
+        }, 100);
       });
     }
 
-    // Function to fetch the JSON data
+    // Function to fetch population data and animate the bars
     function fetchPopulationData() {
       fetch(jsonUrl)
         .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
+          if (!response.ok) throw new Error('Network response was not ok');
           return response.json();
         })
         .then(data => {
-          console.log('Fetched JSON data:', data);  // Debugging: log the fetched data
-          const countries = data.countries; // Assuming the JSON format has a 'countries' key
-          const maxPopulation = Math.max(...countries.map(country => country.population));  // Find the max population
+          const countries = data.countries;
+          const maxPopulation = Math.max(...countries.map(country => country.population));
           createCountryList(countries);
           animateBars(countries, maxPopulation);
         })
         .catch(error => {
-          console.error('Error fetching the population data:', error);
+          console.error('Error fetching population data:', error);
           alert('Error loading population data.');
         });
     }
 
-    // Function to dynamically create the country list items
+    // Function to dynamically create country list items
     function createCountryList(countries) {
       const countryListContainer = document.getElementById('country-list');
       countries.forEach(country => {
@@ -238,7 +266,7 @@
         countryName.textContent = country.name;
 
         bar.appendChild(populationLabel);
-        bar.appendChild(countryName); // Place the name inside the bar
+        bar.appendChild(countryName);
         bar.appendChild(countryFlag);
         countryItem.appendChild(bar);
         countryItem.appendChild(countryName);
@@ -246,20 +274,66 @@
       });
     }
 
-    // Function to display the bars one by one with smooth filling animation
+    // Function to animate bars
     function animateBars(countries, maxPopulation) {
-      // Sort countries by population in ascending order
       countries.sort((a, b) => a.population - b.population);
 
-      // Use a Promise chain to animate bars one by one
       let animationChain = Promise.resolve();
       countries.forEach(country => {
+        if (!animationInProgress) return;
         animationChain = animationChain.then(() => updateBar(country, country.population, maxPopulation));
       });
     }
 
-    // Start fetching data and animating bars
-    fetchPopulationData();
+    // Start animation when button is clicked
+    document.getElementById('start-button').addEventListener('click', () => {
+      animationInProgress = true;
+      fetchPopulationData();
+      document.getElementById('start-button').disabled = true;
+
+      // Play background video if available
+      const video = document.getElementById('background-video');
+      if (video) {
+        video.style.display = 'block';  // Make sure the video is visible
+        video.play();  // Start playing the video
+      }
+    });
+
+    // Handle file uploads
+    document.getElementById('image-upload').addEventListener('change', event => {
+      const file = event.target.files[0];
+      if (file && file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          document.body.style.backgroundImage = `url(${e.target.result})`;
+          document.body.style.backgroundSize = 'cover';
+          document.body.style.backgroundPosition = 'center';
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    document.getElementById('audio-upload').addEventListener('change', event => {
+      const file = event.target.files[0];
+      if (file && file.type.startsWith('audio/')) {
+        const audio = new Audio(URL.createObjectURL(file));
+        audio.loop = true;
+        audio.play();
+      }
+    });
+
+    document.getElementById('video-upload').addEventListener('change', event => {
+      const file = event.target.files[0];
+      if (file && file.type.startsWith('video/')) {
+        const video = document.createElement('video');
+        video.id = 'background-video';
+        video.src = URL.createObjectURL(file);
+        video.autoplay = false;
+        video.loop = true;
+        video.muted = true;
+        document.body.appendChild(video);
+      }
+    });
   </script>
 </body>
 </html>
