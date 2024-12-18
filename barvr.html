@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Population Growth by Country</title>
+  <style>
+    html, body {
+      height: 100%; /* Ensure full height of the viewport */
+      margin: 0;    /* Remove default margin */
+      overflow: hidden; /* Prevent body from scrolling */
+    }
+
+    body {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-end;
+      background-color: #f7f9fc;
+      overflow: hidden;
+    }
+@keyframes moveHorizontally {
+      0% {
+        transform: translateX(100%); /* Start off-screen to the right */
+      }
+      100% {
+        transform: translateX(-100%); /* Move to the left off-screen */
+      }
+    }
+    .container {
+      display: flex;
+      flex-direction: row; /* Arrange country items horizontally */
+      justify-content: flex-start;
+      align-items: flex-end; /* Align items at the bottom */
+      width: 100%;
+      height: 100vh; /* Full height of the viewport */
+      padding: 20px;
+      overflow-x: auto; /* Allow horizontal scrolling */
+      box-sizing: border-box; /* Prevent padding from affecting width */
+    }
+
+    .country-list {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-end;
+      flex-direction: row; /* Keep all countries in a horizontal line */
+      height: 100%; /* Full height for the list */
+      padding-right: 20px; /* Prevent last item from being cut off */
+      overflow-x: auto; /* Allow scrolling if country list overflows horizontally */
+      animation: moveHorizontally 30s infinite linear; /* Slow down horizontal movement */
+
+    }
+
+    .country-item {
+      display: flex;
+      flex-direction: column; /* Stack elements vertically */
+      justify-content: flex-end; /* Align to the bottom */
+      align-items: center;
+      margin-right: 2%; /* Space between country items */
+      position: relative;
+      height: 80%; /* Limit the height of the country item */
+      width: 200px; /* Set a fixed width for the item */
+      opacity: 1; /* Make sure the items are visible */
+    }
+
+    .bar {
+      width: 200px; /* Fixed width of the vertical bar */
+      height: 0%; /* Initially set height to 0% */
+      position: relative;
+      bottom: 0; /* Position bar at the bottom of its container */
+      border-radius: 5px;
+      background-color: #3498db; /* Default color */
+      margin: 0 10px; /* Add horizontal margin for spacing */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: none; /* Remove animation */
+    }
+
+    .country-name {
+      position: absolute; /* Absolute positioning to center the name */
+      color: white;
+      font-size: 12px; /* Smaller font size */
+      font-weight: bold;
+      text-align: center;
+      z-index: 2; /* Ensure the text stays on top of the bar */
+      letter-spacing: 1px;
+    }
+
+    .population-label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-weight: bold;
+      font: italic small-caps bold 22px/30px Georgia, serif;
+      color: white;
+      font-size: 16px;
+    }
+
+    .country-flag {
+      position: absolute;
+      top: -101px; /* Position flag above the bar */
+      width: 200px; /* Set flag width */
+      height: 100px; /* Set flag height */
+      object-fit: contain;
+    }
+
+    /* Additional styles to handle responsiveness */
+    @media screen and (max-width: 768px) {
+      .country-name {
+        font-size: 14px; /* Smaller font size for smaller screens */
+      }
+      .country-item {
+        width: 100px; /* Reduce width for smaller screens */
+      }
+      .country-flag {
+        width: 100px; /* Reduce flag size for smaller screens */
+        height: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="container">
+    <div class="country-list" id="country-list">
+      <!-- Dynamic Country Items will be added here -->
+    </div>
+  </div>
+
+  <script>
+    // URL for the JSON data
+    const jsonUrl = 'https://raw.githubusercontent.com/itzfew/Adver/refs/heads/main/bar.json';
+
+    // Function to update the bar with population height
+    function updateBar(country, population, maxPopulation) {
+      const bar = document.getElementById(`${country.name.toLowerCase()}-bar`);
+      const populationLabel = `${population.toFixed(2)}`;  // Format population
+
+      // Calculate bar height as a proportion of the max population (max height is 80%)
+      const barHeight = Math.min(80, (population / maxPopulation) * 80);  // Bar height will be capped at 80%
+
+      // Set the height of the bar instantly (no animation)
+      bar.style.height = `${barHeight}%`;
+      bar.style.backgroundColor = country.color; // Apply color from JSON
+      bar.querySelector('.population-label').textContent = populationLabel;
+
+      // Make sure the country item is visible
+      document.getElementById(`${country.name.toLowerCase()}-item`).style.opacity = 1;
+    }
+
+    // Function to fetch the JSON data
+    function fetchPopulationData() {
+      fetch(jsonUrl)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log('Fetched JSON data:', data);  // Debugging: log the fetched data
+          const countries = data.countries; // Assuming the JSON format has a 'countries' key
+          const maxPopulation = Math.max(...countries.map(country => country.population));  // Find the max population
+          createCountryList(countries);
+          fillBars(countries, maxPopulation);  // Fill bars instantly
+        })
+        .catch(error => {
+          console.error('Error fetching the population data:', error);
+          alert('Error loading population data.');
+        });
+    }
+
+    // Function to dynamically create the country list items
+    function createCountryList(countries) {
+      const countryListContainer = document.getElementById('country-list');
+      
+      // Sort countries by population in ascending order
+      countries.sort((a, b) => a.population - b.population);
+
+      countries.forEach(country => {
+        const countryItem = document.createElement('div');
+        countryItem.classList.add('country-item');
+        countryItem.id = `${country.name.toLowerCase()}-item`;
+
+        const bar = document.createElement('div');
+        bar.classList.add('bar');
+        bar.id = `${country.name.toLowerCase()}-bar`;
+
+        const populationLabel = document.createElement('div');
+        populationLabel.classList.add('population-label');
+        populationLabel.id = `${country.name.toLowerCase()}-pop`;
+        populationLabel.textContent = `${country.population.toFixed(2)}`;
+
+        const countryFlag = document.createElement('img');
+        countryFlag.classList.add('country-flag');
+        countryFlag.src = country.flagImage;
+
+        const countryName = document.createElement('div');
+        countryName.classList.add('country-name');
+        countryName.textContent = country.name;
+
+        bar.appendChild(populationLabel);
+        bar.appendChild(countryName); // Place the name inside the bar
+        bar.appendChild(countryFlag);
+        countryItem.appendChild(bar);
+        countryItem.appendChild(countryName);
+        countryListContainer.appendChild(countryItem);
+      });
+    }
+
+    // Function to fill the bars with population data (without animation)
+    function fillBars(countries, maxPopulation) {
+      countries.forEach(country => {
+        updateBar(country, country.population, maxPopulation);
+      });
+    }
+
+    // Start fetching data and filling bars
+    fetchPopulationData();
+  </script>
+</body>
+</html>
