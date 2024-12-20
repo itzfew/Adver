@@ -1,19 +1,109 @@
 {
   "items": [
     {
-      "name": "Country A",
-      "value": 12345678,
-      "label": "people",
+      "name": "United States",
+      "value": 25.43,
+      "label": "$ trillion",
       "color": "#3498db",
-      "image": "https://example.com/imageA.png"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg"
     },
     {
-      "name": "Country B",
-      "value": 23456789,
-      "label": "GDP",
+      "name": "China",
+      "value": 14.72,
+      "label": "$ trillion",
       "color": "#e74c3c",
-      "image": "https://example.com/imageB.png"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/0/01/Flag_of_China.svg"
+    },
+    {
+      "name": "Japan",
+      "value": 4.25,
+      "label": "$ trillion",
+      "color": "#2ecc71",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Flag_of_Japan.svg"
+    },
+    {
+      "name": "Germany",
+      "value": 3.85,
+      "label": "$ trillion",
+      "color": "#f39c12",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Germany.svg"
+    },
+    {
+      "name": "India",
+      "value": 3.41,
+      "label": "$ trillion",
+      "color": "#1abc9c",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_India.svg"
+    },
+    {
+      "name": "United Kingdom",
+      "value": 2.67,
+      "label": "$ trillion",
+      "color": "#9b59b6",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_Kingdom.svg"
+    },
+    {
+      "name": "France",
+      "value": 2.63,
+      "label": "$ trillion",
+      "color": "#e67e22",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg"
+    },
+    {
+      "name": "Russia",
+      "value": 2.24,
+      "label": "$ trillion",
+      "color": "#16a085",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg"
+    },
+    {
+      "name": "Canada",
+      "value": 2.16,
+      "label": "$ trillion",
+      "color": "#f1c40f",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg"
+    },
+    {
+      "name": "Italy",
+      "value": 2.04,
+      "label": "$ trillion",
+      "color": "#2c3e50",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg"
+    },
+    {
+      "name": "Brazil",
+      "value": 1.92,
+      "label": "$ trillion",
+      "color": "#3498db",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"
+    },
+    {
+      "name": "Australia",
+      "value": 1.69,
+      "label": "$ trillion",
+      "color": "#e74c3c",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Flag_of_Australia.svg"
+    },
+    {
+      "name": "South Korea",
+      "value": 1.67,
+      "label": "$ trillion",
+      "color": "#2ecc71",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Flag_of_South_Korea.svg"
+    },
+    {
+      "name": "Mexico",
+      "value": 1.46,
+      "label": "$ trillion",
+      "color": "#f39c12",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Flag_of_Mexico.svg"
+    },
+    {
+      "name": "Spain",
+      "value": 1.41,
+      "label": "$ trillion",
+      "color": "#1abc9c",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg"
     }
-    
   ]
 }
