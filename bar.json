@@ -5,21 +5,21 @@
       "population": 1393409038,
       "color": "#3498db",
       "flagImage": "india-flag.png",
-      "label": "M"  // Use 'M' as the label for millions
+      "label": "M" 
     },
     {
       "name": "United States",
       "population": 331002651,
       "color": "#e74c3c",
       "flagImage": "us-flag.png",
-      "label": "M"  // Use 'M' for millions
+      "label": "M"  
     },
     {
       "name": "China",
       "population": 1411778724,
       "color": "#1abc9c",
       "flagImage": "china-flag.png",
-      "label": "B"  // Use 'B' for billions
+      "label": "B"  
     }
   ]
 }
