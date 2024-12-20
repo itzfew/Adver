@@ -1,109 +1,67 @@
-  {
+{
   "items": [
     {
-      "name": "United States",
-      "value": 25.43,
-      "label": "$ trillion",
-      "color": "#3498db",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg"
+      "name": "Baahubali 2: The Conclusion",
+      "value": 2500,
+      "label": "INR crore",
+      "color": "#ff5733",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Baahubali_2_-_The_Conclusion_poster.jpg"
     },
     {
-      "name": "China",
-      "value": 14.72,
-      "label": "$ trillion",
-      "color": "#e74c3c",
-      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsnjmtOWejmCEvNUhaEU3d48KDstTm3uLFgA3tzCsnLCKXxYKMzT-LK3SvIgM&s=10"
+      "name": "RRR",
+      "value": 1387,
+      "label": "INR crore",
+      "color": "#33b5ff",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/3/35/RRR_poster.jpg"
     },
     {
-      "name": "Japan",
-      "value": 4.25,
-      "label": "$ trillion",
-      "color": "#2ecc71",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Flag_of_Japan.svg"
-    },
-    {
-      "name": "Germany",
-      "value": 3.85,
-      "label": "$ trillion",
-      "color": "#f39c12",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Germany.svg"
-    },
-    {
-      "name": "India",
-      "value": 3.41,
-      "label": "$ trillion",
-      "color": "#1abc9c",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_India.svg"
-    },
-    {
-      "name": "United Kingdom",
-      "value": 2.67,
-      "label": "$ trillion",
-      "color": "#9b59b6",
-      "image": "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg"
-    },
-    {
-      "name": "France",
-      "value": 2.63,
-      "label": "$ trillion",
-      "color": "#e67e22",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg"
-    },
-    {
-      "name": "Russia",
-      "value": 2.24,
-      "label": "$ trillion",
-      "color": "#16a085",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Flag_of_Russia.svg"
-    },
-    {
-      "name": "Canada",
-      "value": 2.16,
-      "label": "$ trillion",
+      "name": "KGF: Chapter 2",
+      "value": 1300,
+      "label": "INR crore",
       "color": "#f1c40f",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/f/fc/KGF_Chapter_2_poster.jpg"
     },
     {
-      "name": "Italy",
-      "value": 2.04,
-      "label": "$ trillion",
-      "color": "#2c3e50",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg"
-    },
-    {
-      "name": "Brazil",
-      "value": 1.92,
-      "label": "$ trillion",
-      "color": "#3498db",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/0/05/Flag_of_Brazil.svg"
-    },
-    {
-      "name": "Australia",
-      "value": 1.69,
-      "label": "$ trillion",
+      "name": "Pushpa 2: The Rule",
+      "value": 1414,
+      "label": "INR crore",
       "color": "#e74c3c",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Flag_of_Australia.svg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/4/46/Pushpa_2_The_Rule_poster.jpg"
     },
     {
-      "name": "South Korea",
-      "value": 1.67,
-      "label": "$ trillion",
+      "name": "Kalki 2898 AD",
+      "value": 1200,
+      "label": "INR crore",
+      "color": "#8e44ad",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/f/f3/Kalki_2898_AD_poster.jpg"
+    },
+    {
+      "name": "2.0",
+      "value": 800,
+      "label": "INR crore",
+      "color": "#16a085",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/e/ec/2.0_2018_film_poster.jpg"
+    },
+    {
+      "name": "Salaar: Part 1 – Ceasefire",
+      "value": 700,
+      "label": "INR crore",
       "color": "#2ecc71",
-      "image": "https://www.lallemandpharma.com/wp-content/uploads/2017/12/225px-Flag_of_South_Korea.svg_.png"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Salaar_poster.jpg"
     },
     {
-      "name": "Mexico",
-      "value": 1.46,
-      "label": "$ trillion",
+      "name": "Jailer",
+      "value": 650,
+      "label": "INR crore",
       "color": "#f39c12",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Flag_of_Mexico.svg"
+      "image": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Jailer_poster.jpg"
     },
     {
-      "name": "Spain",
-      "value": 1.41,
-      "label": "$ trillion",
-      "color": "#1abc9c",
-      "image": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Flag_of_Spain.svg"
+      "name": "Baahubali: The Beginning",
+      "value": 650,
+      "label": "INR crore",
+      "color": "#2c3e50",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/e/ea/Baahubali_The_Beginning_poster.jpg"
     }
   ]
 }
