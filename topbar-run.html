@@ -53,7 +53,7 @@
       flex-direction: column; /* Stack elements vertically */
       justify-content: flex-end; /* Align to the bottom */
       align-items: center;
-      margin-right: 3%; /* Space between items */
+      margin-right: 5%; /* Space between items */
       position: relative;
       height: 80%; /* Limit the height of the item */
       width: 100px; /* Set a fixed width for the item */
@@ -151,7 +151,7 @@
       const valueLabel = formatValue(value, item.label);
 
       // Calculate bar height as a proportion of the max value (max height is 80%)
-      const barHeight = Math.min(80, (value / maxValue) * 80);  // Bar height will be capped at 80%
+      const barHeight = Math.min(90, (value / maxValue) * 90);  // Bar height will be capped at 80%
 
       // Set the height of the bar instantly (no animation)
       bar.style.height = `${barHeight}%`;
