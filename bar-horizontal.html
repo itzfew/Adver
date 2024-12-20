@@ -17,7 +17,7 @@
       align-items: center;
       background-color: #f7f9fc;
       width: 100%; /* Ensure body is 100% width */
-  overflow-x: hidden; /* Prevent horizontal overflow */
+      overflow-x: hidden; /* Prevent horizontal overflow */
     }
 
     .container {
@@ -30,8 +30,8 @@
       padding: 20px;
       overflow-y: auto; /* Allow scrolling inside the container */
       box-sizing: border-box; /* Prevent padding from affecting height */
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-}
+      overflow-x: hidden; /* Prevent horizontal scrolling */
+    }
 
     .country-list {
       display: flex;
@@ -64,6 +64,12 @@
       flex-basis: 10%; /* Ensure the country name doesn't take up too much space */
       min-width: 60px; /* Minimum width for country name */
       display: block;
+    }
+
+    .rank {
+      margin-right: 10px;
+      font-weight: bold;
+      color: #3498db;
     }
 
     .bar {
@@ -181,10 +187,20 @@
     // Function to dynamically create the country list items
     function createCountryList(countries) {
       const countryListContainer = document.getElementById('country-list');
-      countries.forEach(country => {
+      // Sort countries by population (ascending order)
+      countries.sort((a, b) => a.value - b.value);
+
+      // Reverse the sorted list to make the lowest value appear last (at the bottom)
+      countries.reverse();
+
+      countries.forEach((country, index) => {
         const countryItem = document.createElement('div');
         countryItem.classList.add('country-item');
         countryItem.id = `${country.name.toLowerCase()}-item`;
+
+        const rank = document.createElement('div');
+        rank.classList.add('rank');
+        rank.textContent = countries.length - index;  // Show rank from highest to lowest (reverse order)
 
         const countryName = document.createElement('div');
         countryName.classList.add('country-name');
@@ -205,6 +221,7 @@
 
         bar.appendChild(populationLabel);
         bar.appendChild(countryFlag);
+        countryItem.appendChild(rank);
         countryItem.appendChild(countryName);
         countryItem.appendChild(bar);
         countryListContainer.appendChild(countryItem);
