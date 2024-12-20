@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Population Growth by Country</title>
+  <title>Data Visualization by Country</title>
   <style>
     html, body {
       height: 100%; /* Ensure full height of the viewport */
@@ -29,7 +29,7 @@
 
     .container {
       display: flex;
-      flex-direction: row; /* Arrange country items horizontally */
+      flex-direction: row; /* Arrange items horizontally */
       justify-content: flex-start;
       align-items: flex-end; /* Align items at the bottom */
       width: 100%;
@@ -37,9 +37,9 @@
       padding: 20px;
       overflow: hidden; /* Prevent the container from scrolling */
       box-sizing: border-box;
-    } 
+    }
 
-    .country-list {
+    .item-list {
       display: flex;
       justify-content: flex-start;
       align-items: flex-end;
@@ -48,14 +48,14 @@
       animation: moveHorizontally 30s linear forwards; /* Animation for scrolling */
     }
 
-    .country-item {
+    .item {
       display: flex;
       flex-direction: column; /* Stack elements vertically */
       justify-content: flex-end; /* Align to the bottom */
       align-items: center;
-      margin-right: 3%; /* Space between country items */
+      margin-right: 3%; /* Space between items */
       position: relative;
-      height: 80%; /* Limit the height of the country item */
+      height: 80%; /* Limit the height of the item */
       width: 100px; /* Set a fixed width for the item */
       opacity: 1; /* Make sure the items are visible */
     }
@@ -74,7 +74,7 @@
       transition: none; /* Remove animation */
     }
 
-    .country-name {
+    .item-name {
       position: absolute; /* Absolute positioning to center the name */
       color: white;
       font-size: 12px; /* Smaller font size */
@@ -84,7 +84,7 @@
       letter-spacing: 1px;
     }
 
-    .population-label {
+    .value-label {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -95,27 +95,40 @@
       font-size: 16px;
     }
 
-    .country-flag {
+    .item-image {
       position: absolute;
-      top: -100px; /* Position flag above the bar */
-      width: 200px; /* Set flag width */
-      height: 200px; /* Set flag height */
-      object-fit: contain;
+      top: -100px; /* Position image above the bar */
+      width: 200px; /* Set image width */
+      height: 200px; /* Set image height */
+      object-fit: contain; 
       border: 2px solid black; 
-      border-radius: 50%; /* Make the flag circular */
+      border-radius: 50%; /* Make the image circular */
     }
 
     /* Additional styles to handle responsiveness */
+    @media screen and (max-width: 1024px) {
+      .item-name {
+        font-size: 16px; /* Smaller font size for medium screens */
+      }
+      .item {
+        width: 80px; /* Reduce width for medium screens */
+      }
+      .item-image {
+        width: 120px; /* Reduce image size for medium screens */
+        height: 120px;
+      }
+    }
+
     @media screen and (max-width: 768px) {
-      .country-name {
-        font-size: 14px; /* Smaller font size for smaller screens */
+      .item-name {
+        font-size: 12px; /* Smaller font size for small screens */
       }
-      .country-item {
-        width: 100px; /* Reduce width for smaller screens */
+      .item {
+        width: 60px; /* Further reduce width for small screens */
       }
-      .country-flag {
-        width: 100px; /* Reduce flag size for smaller screens */
-        height: 100px;
+      .item-image {
+        width: 80px; /* Further reduce image size for small screens */
+        height: 80px;
       }
     }
   </style>
@@ -123,34 +136,40 @@
 <body>
   
   <div class="container">
-    <div class="country-list" id="country-list">
-      <!-- Dynamic Country Items will be added here -->
+    <div class="item-list" id="item-list">
+      <!-- Dynamic Items will be added here -->
     </div>
   </div>
 
   <script>
-    // URL for the JSON data
+    // URL for the JSON data (adjust this URL as needed)
     const jsonUrl = 'https://raw.githubusercontent.com/itzfew/Adver/refs/heads/main/bar.json';
 
-    // Function to update the bar with population height
-    function updateBar(country, population, maxPopulation) {
-      const bar = document.getElementById(`${country.name.toLowerCase()}-bar`);
-      const populationLabel = `${population.toFixed(2)}`;  // Format population
+    // Function to update the bar with specific data value
+    function updateBar(item, value, maxValue) {
+      const bar = document.getElementById(`${item.name.toLowerCase()}-bar`);
+      const valueLabel = formatValue(value, item.label);
 
-      // Calculate bar height as a proportion of the max population (max height is 80%)
-      const barHeight = Math.min(80, (population / maxPopulation) * 80);  // Bar height will be capped at 80%
+      // Calculate bar height as a proportion of the max value (max height is 80%)
+      const barHeight = Math.min(80, (value / maxValue) * 80);  // Bar height will be capped at 80%
 
       // Set the height of the bar instantly (no animation)
       bar.style.height = `${barHeight}%`;
-      bar.style.backgroundColor = country.color; // Apply color from JSON
-      bar.querySelector('.population-label').textContent = populationLabel;
+      bar.style.backgroundColor = item.color; // Apply color from JSON
+      bar.querySelector('.value-label').textContent = valueLabel;
 
-      // Make sure the country item is visible
-      document.getElementById(`${country.name.toLowerCase()}-item`).style.opacity = 1;
+      // Make sure the item is visible
+      document.getElementById(`${item.name.toLowerCase()}-item`).style.opacity = 1;
+    }
+
+    // Function to format value with the appropriate label/unit fetched from JSON
+    function formatValue(value, label) {
+      // Just use the label from the JSON directly
+      return value.toFixed(2) + ' ' + (label || '');  // If no label is found, default to empty string
     }
 
     // Function to fetch the JSON data
-    function fetchPopulationData() {
+    function fetchData() {
       fetch(jsonUrl)
         .then(response => {
           if (!response.ok) {
@@ -160,64 +179,63 @@
         })
         .then(data => {
           console.log('Fetched JSON data:', data);  // Debugging: log the fetched data
-          const countries = data.countries; // Assuming the JSON format has a 'countries' key
-          const maxPopulation = Math.max(...countries.map(country => country.population));  // Find the max population
-          createCountryList(countries);
-          fillBars(countries, maxPopulation);  // Fill bars instantly
+          const items = data.items; // Assuming the JSON format has an 'items' key
+          const maxValue = Math.max(...items.map(item => item.value));  // Find the max value
+          createItemList(items);
+          fillBars(items, maxValue);  // Fill bars instantly
         })
         .catch(error => {
-          console.error('Error fetching the population data:', error);
-          alert('Error loading population data.');
+          console.error('Error fetching the data:', error);
+          alert('Error loading data.');
         });
     }
 
-    // Function to dynamically create the country list items
-    function createCountryList(countries) {
-      const countryListContainer = document.getElementById('country-list');
+    // Function to dynamically create the item list
+    function createItemList(items) {
+      const itemListContainer = document.getElementById('item-list');
       
-      // Sort countries by population in ascending order
-      countries.sort((a, b) => a.population - b.population);
+      // Sort items by value in ascending order
+      items.sort((a, b) => a.value - b.value);
 
-      countries.forEach(country => {
-        const countryItem = document.createElement('div');
-        countryItem.classList.add('country-item');
-        countryItem.id = `${country.name.toLowerCase()}-item`;
+      items.forEach(item => {
+        const itemElement = document.createElement('div');
+        itemElement.classList.add('item');
+        itemElement.id = `${item.name.toLowerCase()}-item`;
 
         const bar = document.createElement('div');
         bar.classList.add('bar');
-        bar.id = `${country.name.toLowerCase()}-bar`;
+        bar.id = `${item.name.toLowerCase()}-bar`;
 
-        const populationLabel = document.createElement('div');
-        populationLabel.classList.add('population-label');
-        populationLabel.id = `${country.name.toLowerCase()}-pop`;
-        populationLabel.textContent = `${country.population.toFixed(2)}`;
+        const valueLabel = document.createElement('div');
+        valueLabel.classList.add('value-label');
+        valueLabel.id = `${item.name.toLowerCase()}-value`;
 
-        const countryFlag = document.createElement('img');
-        countryFlag.classList.add('country-flag');
-        countryFlag.src = country.flagImage;
+        const itemImage = document.createElement('img');
+        itemImage.classList.add('item-image');
+        itemImage.src = item.image; // Using "image" instead of "flagImage"
 
-        const countryName = document.createElement('div');
-        countryName.classList.add('country-name');
-        countryName.textContent = country.name;
+        const itemName = document.createElement('div');
+        itemName.classList.add('item-name');
+        itemName.textContent = item.name;
 
-        bar.appendChild(populationLabel);
-        bar.appendChild(countryName); // Place the name inside the bar
-        bar.appendChild(countryFlag);
-        countryItem.appendChild(bar);
-        countryItem.appendChild(countryName);
-        countryListContainer.appendChild(countryItem);
+        bar.appendChild(valueLabel);
+        bar.appendChild(itemName); // Place the name inside the bar
+        bar.appendChild(itemImage);
+        itemElement.appendChild(bar);
+        itemElement.appendChild(itemName);
+        itemListContainer.appendChild(itemElement);
       });
     }
 
-    // Function to fill the bars with population data (without animation)
-    function fillBars(countries, maxPopulation) {
-      countries.forEach(country => {
-        updateBar(country, country.population, maxPopulation);
+    // Function to fill the bars with data values (without animation)
+    function fillBars(items, maxValue) {
+      items.forEach(item => {
+        updateBar(item, item.value, maxValue);
       });
     }
 
     // Start fetching data and filling bars
-    fetchPopulationData();
+    fetchData();
   </script>
 </body>
 </html>
