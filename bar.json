@@ -3,42 +3,42 @@
     {
       "name": "United States",
       "value": 25.43,
-      "label": "$-trillion",
+      "label": "$ trillion",
       "color": "#3498db",
       "image": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg"
     },
     {
       "name": "China",
       "value": 14.72,
-      "label": "$-trillion",
+      "label": "$ trillion",
       "color": "#e74c3c",
       "image": "https://upload.wikimedia.org/wikipedia/commons/0/01/Flag_of_China.svg"
     },
     {
       "name": "Japan",
       "value": 4.25,
-      "label": "$-trillion",
+      "label": "$ trillion",
       "color": "#2ecc71",
       "image": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Flag_of_Japan.svg"
     },
     {
       "name": "Germany",
       "value": 3.85,
-      "label": "$-trillion",
+      "label": "$ trillion",
       "color": "#f39c12",
       "image": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Germany.svg"
     },
     {
       "name": "India",
       "value": 3.41,
-      "label": "$-trillion",
+      "label": "$ trillion",
       "color": "#1abc9c",
       "image": "https://upload.wikimedia.org/wikipedia/commons/4/41/Flag_of_India.svg"
     },
     {
       "name": "United Kingdom",
       "value": 2.67,
-      "label": "$-trillion",
+      "label": "$ trillion",
       "color": "#9b59b6",
       "image": "https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg"
     },
