@@ -122,7 +122,7 @@
 
         // Calculate the bar width as a proportion of the max value, with a minimum of 5%
         let barWidth = (value / maxValue) * 70; // Bar width will be a percentage of the max value, capped at 70%
-        barWidth = Math.max(barWidth, 10); // Ensure a minimum width of 5%
+        barWidth = Math.max(barWidth, 20); // Ensure a minimum width of 5%
 
         // Set the initial width to 0% and then animate to the calculated width
         bar.style.width = '0%';  // Start at 0%
