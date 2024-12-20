@@ -5,101 +5,110 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Economic Growth by Country</title>
   <style>
-    html, body {
-      height: 100%; /* Ensure full height of the viewport */
-      margin: 0;    /* Remove default margin */
-      overflow: hidden; /* Prevent body from scrolling */
-    }
+  html, body {
+  height: 100%; /* Ensure full height of the viewport */
+  margin: 0;    /* Remove default margin */
+  overflow: hidden; /* Prevent body from scrolling */
+}
 
-    body {
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-      background-color: #f7f9fc;
-    }
+body {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #f7f9fc;
+  width: 100%; /* Ensure body is 100% width */
+  overflow-x: hidden; /* Prevent horizontal overflow */
+}
 
-    .container {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      width: 100%;
-      height: 100vh; /* Full height of the viewport */
-      padding: 20px;
-      overflow-y: auto; /* Allow scrolling inside the container */
-      box-sizing: border-box; /* Prevent padding from affecting height */
-    }
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100vh; /* Full height of the viewport */
+  padding: 20px;
+  box-sizing: border-box; /* Prevent padding from affecting height */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
 
-    .country-list {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      width: 100%;
-      padding-bottom: 20px; /* Padding to prevent last item from being cut off */
-      overflow-y: auto; /* Allow scrolling if items overflow */
-    }
+.country-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  padding-bottom: 20px; /* Padding to prevent last item from being cut off */
+  overflow-y: auto; /* Allow scrolling if items overflow */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+}
 
-    .country-item {
-      display: flex;
-      justify-content: flex-start;
-      margin-bottom: 20px;
-      align-items: center;
-      position: relative;
-      width: 100%;
-      padding-left: 10px;
-      opacity: 0; /* Initially hidden */
-      transition: opacity 1s ease-in-out;
-    }
+.country-item {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  max-width: 100%; /* Ensure that no item exceeds the container's width */
+  padding-left: 10px;
+  opacity: 0; /* Initially hidden */
+  transition: opacity 1s ease-in-out;
+  overflow: hidden; /* Prevent overflow from child elements */
+}
 
-    .country-name {
-      font-weight: bold;
-      margin-right: 0px;
-      margin-left: 0px;
-      text-align: left;
-      white-space: normal; /* Allow text to wrap */
-      word-wrap: break-word; /* Ensure long words break onto new lines */
-      flex-basis: 10%; /* Ensure the country name doesn't take up too much space */
-      min-width: 60px; /* Minimum width for country name */
-      display: block;
-    }
+.country-name {
+  font-weight: bold;
+  margin-right: 0px;
+  margin-left: 0px;
+  text-align: left;
+  white-space: normal; /* Allow text to wrap */
+  word-wrap: break-word; /* Ensure long words break onto new lines */
+  flex-basis: 10%; /* Ensure the country name doesn't take up too much space */
+  min-width: 60px; /* Minimum width for country name */
+  display: block;
+  max-width: 100%; /* Prevent name from overflowing */
+}
 
-    .bar {
-      height: 100px;
-      width: 0%; /* Start at 0% */
-      position: relative;
-      border-radius: 5px;
-      margin-right: 15px;
-      background-color: #3498db; /* Default color */
-      transition: width 2s ease; /* Animate width change in 2 seconds */
-    }
+.bar {
+  height: 100px;
+  width: 0%; /* Start at 0% */
+  position: relative;
+  border-radius: 5px;
+  margin-right: 15px;
+  background-color: #3498db; /* Default color */
+  transition: width 2s ease; /* Animate width change in 2 seconds */
+  max-width: 100%; /* Ensure the bar does not overflow */
+}
 
-    .population-label {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-weight: bold;
-      font: italic small-caps bold 10px/11px Georgia, serif;
-      color: white;
-      font-size: 14px;
-    }
+.population-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  font: italic small-caps bold 10px/11px Georgia, serif;
+  color: white;
+  font-size: 14px;
+}
 
-    .country-flag {
-      position: absolute;
-      top: 0;
-      right: -101px;
-      height: 100px;
-      width: 100px;
-      object-fit: contain;
-      transition: opacity 1s ease-in-out; /* Smooth transition for flags */
-    }
+.country-flag {
+  position: absolute;
+  top: 0;
+  right: -101px;
+  height: 100px;
+  width: 100px;
+  object-fit: contain;
+  transition: opacity 1s ease-in-out; /* Smooth transition for flags */
+}
 
-    /* Additional styles to handle responsiveness */
-    @media screen and (max-width: 768px) {
-      .country-name {
-        font-size: 14px; /* Smaller font size for smaller screens */
-      }
-    }
+/* Additional styles to handle responsiveness */
+@media screen and (max-width: 768px) {
+  .country-name {
+    font-size: 14px; /* Smaller font size for smaller screens */
+  }
+}
+
+ 
   </style>
 </head>
 <body>
