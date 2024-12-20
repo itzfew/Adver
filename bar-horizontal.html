@@ -53,13 +53,13 @@
 
     .country-name {
       font-weight: bold;
-      margin-right: 20px;
-      margin-left: 20px;
+      margin-right: 0px;
+      margin-left: 0px;
       text-align: left;
       white-space: normal; /* Allow text to wrap */
       word-wrap: break-word; /* Ensure long words break onto new lines */
-      flex-basis: 20%; /* Ensure the country name doesn't take up too much space */
-      min-width: 100px; /* Minimum width for country name */
+      flex-basis: 10%; /* Ensure the country name doesn't take up too much space */
+      min-width: 60px; /* Minimum width for country name */
       display: block;
     }
 
@@ -79,9 +79,9 @@
       left: 50%;
       transform: translate(-50%, -50%);
       font-weight: bold;
-      font: italic small-caps bold 22px/30px Georgia, serif;
+      font: italic small-caps bold 10px/11px Georgia, serif;
       color: white;
-      font-size: 24px;
+      font-size: 14px;
     }
 
     .country-flag {
@@ -122,7 +122,7 @@
 
         // Calculate the bar width as a proportion of the max value, with a minimum of 5%
         let barWidth = (value / maxValue) * 70; // Bar width will be a percentage of the max value, capped at 70%
-        barWidth = Math.max(barWidth, 5); // Ensure a minimum width of 5%
+        barWidth = Math.max(barWidth, 10); // Ensure a minimum width of 5%
 
         // Set the initial width to 0% and then animate to the calculated width
         bar.style.width = '0%';  // Start at 0%
