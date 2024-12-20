@@ -1,25 +1,19 @@
 {
-  "countries": [
+  "items": [
     {
-      "name": "India",
-      "population": 1393409038,
+      "name": "Country A",
+      "value": 12345678,
+      "label": "people",
       "color": "#3498db",
-      "flagImage": "india-flag.png",
-      "label": "M" 
+      "image": "https://example.com/imageA.png"
     },
     {
-      "name": "United States",
-      "population": 331002651,
+      "name": "Country B",
+      "value": 23456789,
+      "label": "GDP",
       "color": "#e74c3c",
-      "flagImage": "us-flag.png",
-      "label": "M"  
-    },
-    {
-      "name": "China",
-      "population": 1411778724,
-      "color": "#1abc9c",
-      "flagImage": "china-flag.png",
-      "label": "B"  
+      "image": "https://example.com/imageB.png"
     }
+    
   ]
 }
