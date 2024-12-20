@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Population Growth by Country</title>
+  <title>Economic Growth by Country</title>
   <style>
     html, body {
       height: 100%; /* Ensure full height of the viewport */
@@ -65,12 +65,12 @@
 
     .bar {
       height: 100px;
-      width: 5%; /* Initially set to 5% */
+      width: 0%; /* Start at 0% */
       position: relative;
       border-radius: 5px;
       margin-right: 15px;
       background-color: #3498db; /* Default color */
-      transition: width 1s ease;
+      transition: width 2s ease; /* Animate width change in 2 seconds */
     }
 
     .population-label {
@@ -91,6 +91,7 @@
       height: 100px;
       width: 100px;
       object-fit: contain;
+      transition: opacity 1s ease-in-out; /* Smooth transition for flags */
     }
 
     /* Additional styles to handle responsiveness */
@@ -111,29 +112,34 @@
 
   <script>
     // URL for the JSON data
-    const jsonUrl = 'https://raw.githubusercontent.com/itzfew/Adver/refs/heads/main/bar.json';
+    const jsonUrl = 'https://raw.githubusercontent.com/itzfew/Adver/refs/heads/main/bar.json'; // Your JSON URL
 
     // Function to update the bar with animation
-    function updateBar(country, population, maxPopulation) {
+    function updateBar(country, value, maxValue) {
       return new Promise(resolve => {
         const bar = document.getElementById(`${country.name.toLowerCase()}-bar`);
-        const populationLabel = `${population.toFixed(2)}`;  // Format population
+        const valueLabel = `${value.toFixed(2)} ${country.label}`;  // Format the value with label
 
-        // Calculate bar width as a proportion of the max population (max width is 70%)
-        const barWidth = Math.min(70, (population / maxPopulation) * 70);  // Bar width will be capped at 70%
+        // Calculate the bar width as a proportion of the max value, with a minimum of 5%
+        let barWidth = (value / maxValue) * 70; // Bar width will be a percentage of the max value, capped at 70%
+        barWidth = Math.max(barWidth, 5); // Ensure a minimum width of 5%
 
-        // Dynamically set transition duration based on the width (percentage) of the bar
-        const duration = (barWidth / 100) * 5; // Proportional to the width
-
-        // Set the width of the bar and transition duration
-        bar.style.transitionDuration = `${duration}s`;
+        // Set the initial width to 0% and then animate to the calculated width
+        bar.style.width = '0%';  // Start at 0%
         setTimeout(() => {
+          bar.style.transitionDuration = '2s'; // Ensure the width transition takes 2 seconds
           bar.style.width = `${barWidth}%`;  // Animate the bar width
           bar.style.backgroundColor = country.color; // Apply color from JSON
-          bar.querySelector('.population-label').textContent = populationLabel;
 
-          // Fade in the country item
+          // Set the population label
+          bar.querySelector('.population-label').textContent = valueLabel;
+
+          // Fade in the country item (for smooth transition)
           document.getElementById(`${country.name.toLowerCase()}-item`).style.opacity = 1;
+
+          // Fade in the country flag
+          const flag = bar.querySelector('.country-flag');
+          flag.style.opacity = 1;
 
           // Scroll the page to the current bar element (smooth scroll)
           bar.scrollIntoView({
@@ -141,9 +147,9 @@
             block: 'center',
           });
 
-          // Resolve the promise after the animation duration
-          setTimeout(resolve, duration * 1000);
-        }, 100); // Slight delay before animation
+          // Resolve the promise after 2 seconds animation duration
+          setTimeout(resolve, 2000);
+        }, 100); // Small delay before animation starts
       });
     }
 
@@ -158,8 +164,8 @@
         })
         .then(data => {
           console.log('Fetched JSON data:', data);  // Debugging: log the fetched data
-          const countries = data.countries; // Assuming the JSON format has a 'countries' key
-          const maxPopulation = Math.max(...countries.map(country => country.population));  // Find the max population
+          const countries = data.items; // Assuming the JSON format has a 'countries' key
+          const maxPopulation = Math.max(...countries.map(country => country.value));  // Find the max value
           createCountryList(countries);
           animateBars(countries, maxPopulation);
         })
@@ -188,11 +194,11 @@
         const populationLabel = document.createElement('div');
         populationLabel.classList.add('population-label');
         populationLabel.id = `${country.name.toLowerCase()}-pop`;
-        populationLabel.textContent = `${country.population.toFixed(2)}`;
+        populationLabel.textContent = `${country.value.toFixed(2)} ${country.label}`;
 
         const countryFlag = document.createElement('img');
         countryFlag.classList.add('country-flag');
-        countryFlag.src = country.flagImage;
+        countryFlag.src = country.image;
 
         bar.appendChild(populationLabel);
         bar.appendChild(countryFlag);
@@ -205,12 +211,12 @@
     // Function to display the bars one by one with smooth filling animation
     function animateBars(countries, maxPopulation) {
       // Sort countries by population in ascending order
-      countries.sort((a, b) => a.population - b.population);
+      countries.sort((a, b) => a.value - b.value);
 
       // Use a Promise chain to animate bars one by one
       let animationChain = Promise.resolve();
       countries.forEach(country => {
-        animationChain = animationChain.then(() => updateBar(country, country.population, maxPopulation));
+        animationChain = animationChain.then(() => updateBar(country, country.value, maxPopulation));
       });
     }
 
