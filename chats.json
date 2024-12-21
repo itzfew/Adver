@@ -1,702 +1,217 @@
 [
   {
-    "name": "Mom",
-    "profilePic": "https://randomuser.me/api/portraits/women/1.jpg",
-    "status": "Busy, but always here for you ❤️",
+    "name": "Crush",
+    "profilePic": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzuZkslEQmeFF2mXV4o1q0InHJRYbZH_BGAA&s",
+    "status": "Flirting mode activated 😏",
     "messages": [
       {
         "type": "sent",
-        "text": "Hey Mom, how are you?"
+        "text": "Are you a magician?"
       },
       {
         "type": "received",
-        "text": "I'm good, dear. How's everything going?"
+        "text": "Why?"
       },
       {
         "type": "sent",
-        "text": "I lost Mittens 😢"
+        "text": "Because whenever I look at you, everyone else disappears."
       },
       {
-        "type": "received",
-        "text": "Oh no! What happened?"
-      },
-      {
-        "type": "sent",
-        "text": "She ran out when I opened the door! I can't find her."
-      },
-      {
-        "type": "received",
-        "text": "Did you check under the bushes?"
-      },
-      {
-        "type": "sent",
-        "text": "Yes, I looked everywhere! I think she’s hiding."
-      },
-      {
-        "type": "received",
-        "text": "Maybe she’s just exploring the neighborhood."
-      },
-      {
-        "type": "sent",
-        "text": "I really hope so. She's been gone for 3 hours!"
-      },
-      {
-        "type": "received",
-        "text": "She'll come back, don't worry. Cats always do."
-      },
-      {
-        "type": "sent",
-        "text": "I hope so. I’ll keep an eye out. 🙁"
-      },
-      {
-        "type": "received",
-        "text": "Keep me posted! I’m sure she’ll be fine."
-      },
-      {
-        "type": "sent",
-        "text": "I’m thinking about putting her favorite treat outside."
-      },
-      {
-        "type": "received",
-        "text": "That’s a good idea. Cats love their treats."
-      },
-      {
-        "type": "sent",
-        "text": "Thanks, Mom. I’ll keep you updated!"
-      }
-    ]
-  },
-  {
-    "name": "Dad",
-    "profilePic": "https://randomuser.me/api/portraits/men/31.jpg",
-    "status": "Just trying to relax for once 😌",
-    "messages": [
-      {
-        "type": "sent",
-        "text": "Hey Dad, what's up?"
-      },
-      {
-        "type": "received",
-        "text": "Just finished work, finally!"
-      },
-      {
-        "type": "sent",
-        "text": "I can't find Mittens! She’s missing!"
-      },
-      {
-        "type": "received",
-        "text": "Oh no! When did she go missing?"
-      },
-      {
-        "type": "sent",
-        "text": "She ran out this afternoon when I opened the door."
-      },
-      {
-        "type": "received",
-        "text": "Did you check the yard?"
-      },
-      {
-        "type": "sent",
-        "text": "Yes, I’ve checked the whole yard. She’s nowhere to be found."
-      },
-      {
-        "type": "received",
-        "text": "Maybe she’s hiding somewhere. Have you tried calling her?"
-      },
-      {
-        "type": "sent",
-        "text": "I called her name, but no answer."
-      },
-      {
-        "type": "received",
-        "text": "She’s probably just exploring. Don’t worry."
-      },
-      {
-        "type": "sent",
-        "text": "I hope you’re right. It’s been a few hours now."
-      },
-      {
-        "type": "received",
-        "text": "You should leave some food outside. She might smell it."
-      },
-      {
-        "type": "sent",
-        "text": "Great idea! I’ll try that."
-      },
-      {
-        "type": "received",
-        "text": "Let me know if she comes back."
-      },
-      {
-        "type": "sent",
-        "text": "I will! Thanks, Dad."
-      }
-    ]
-  },
-  {
-    "name": "Brother",
-    "profilePic": "https://randomuser.me/api/portraits/men/3.jpg",
-    "status": "Always up for some fun!",
-    "messages": [
-      {
-        "type": "sent",
-        "text": "Yo, what’s up?"
-      },
-      {
-        "type": "received",
-        "text": "Nothing much, just chilling. What's going on?"
-      },
-      {
-        "type": "sent",
-        "text": "I can’t find Mittens anywhere!"
-      },
-      {
-        "type": "received",
-        "text": "What do you mean? Like, gone missing?"
-      },
-      {
-        "type": "sent",
-        "text": "Yeah, she ran out of the house a few hours ago."
-      },
-      {
-        "type": "received",
-        "text": "Did you check the neighborhood?"
-      },
-      {
-        "type": "sent",
-        "text": "Yeah, I’ve checked all around. No sign of her."
-      },
-      {
-        "type": "received",
-        "text": "She’s probably just roaming around. Cats do that."
-      },
-      {
-        "type": "sent",
-        "text": "I hope so. I’m getting worried."
-      },
-      {
-        "type": "received",
-        "text": "Have you tried calling her name?"
-      },
-      {
-        "type": "sent",
-        "text": "Yeah, but nothing. It’s like she’s vanished."
-      },
-      {
-        "type": "received",
-        "text": "Bro, relax. Cats come back eventually."
-      },
-      {
-        "type": "sent",
-        "text": "I know. I just don’t want anything to happen to her."
-      },
-      {
-        "type": "received",
-        "text": "Try putting some food outside. That might bring her back."
-      },
-      {
-        "type": "sent",
-        "text": "Good idea! I’ll do that now. Thanks."
-      }
-    ]
-  },
-  {
-  "name": "Police",
-  "profilePic": "https://kansasreflector.com/wp-content/uploads/2022/04/police-1536x1024.jpg", 
-  "status": "We are here to help.",
-  "messages": [
-    {
-      "type": "sent",
-      "text": "Hello, this is Jothan. My cat, Mittens, is missing, and I need your help to find her. She went missing on December 16th at around 2:30 PM. I’ve looked everywhere around the house and outside, but I can’t find her."
-    },
-    {
-      "type": "received",
-      "text": "Thank you for reaching out. We're sorry to hear about Mittens. Could you provide more details about her so we can assist in finding her?"
-    },
-    {
-      "type": "sent",
-      "text": "Sure! She’s a small, light gray tabby cat with distinct white markings on her paws and chest. She has bright green eyes and a pink collar with a little bell. I’ve attached a recent photo of her so you can recognize her easily."
-    },
-    {
-      "type": "sent",
-      "text": "https://www.catster.com/wp-content/uploads/2023/11/Tabby-cat-looking-up-with-long-whiskers_Krysten-Merriman_Pexels.jpg"
-    },
-    {
-      "type": "received",
-      "text": "Thank you for the details. We’ll keep an eye out for her. Can you provide the exact area where she was last seen?"
-    },
-    
-    {
-      "type": "sent",
-      "text": "She was last seen near the front yard, just outside the house. We live on Maple Street, near the corner of Oak Avenue. There’s a small park nearby, and she loves to wander there sometimes."
-    },
-    {
-      "type": "received",
-      "text": "Got it! We’ll send officers to check the area around Maple Street and the park. In the meantime, make sure to leave some food outside in case she returns on her own."
-    },
-    {
-      "type": "sent",
-      "text": "Thank you! I’ve also posted about her on social media and informed my neighbors. Please let me know if you get any updates."
-    },
-    {
-      "type": "received",
-      "text": "We’ll be sure to update you if we find any leads. Rest assured, we’ll do everything we can to help bring Mittens home."
-    },
-    {
-      "type": "sent",
-      "text": "Thank you so much for your help! I appreciate it."
-    }
-  ]
-  },
-  {
-    "name": "Sister",
-    "profilePic": "https://randomuser.me/api/portraits/women/2.jpg",
-    "status": "Living my best life!",
-    "messages": [
-      {
-        "type": "sent",
-        "text": "Hey sis, what's up?"
-      },
-      {
-        "type": "received",
-        "text": "Hey! Just relaxing. What’s going on?"
-      },
-      {
-        "type": "sent",
-        "text": "I can’t find Mittens anywhere!"
-      },
-      {
-        "type": "received",
-        "text": "What? She’s missing?"
-      },
-      {
-        "type": "sent",
-        "text": "Yeah! She ran out when I opened the door."
-      },
-      {
-        "type": "received",
-        "text": "Oh no, that’s not good. Have you checked the backyard?"
-      },
-      {
-        "type": "sent",
-        "text": "Yes, I’ve checked everywhere. I’m really worried."
-      },
-      {
-        "type": "received",
-        "text": "Maybe she’s just hiding. Cats do that sometimes."
-      },
-      {
-        "type": "sent",
-        "text": "I hope so. It’s been hours now."
-      },
-      {
-        "type": "received",
-        "text": "She’ll come back. Just give it time."
-      },
-      {
-        "type": "sent",
-        "text": "I think I’ll leave some food outside for her."
-      },
-      {
-        "type": "received",
-        "text": "Good idea! She might smell it and come back."
-      },
-      {
-        "type": "sent",
-        "text": "Thanks for the advice! I’ll try that."
-      },
-      {
-        "type": "received",
-        "text": "Let me know if she returns!"
-      },
-      {
-        "type": "sent",
-        "text": "Will do! Fingers crossed. 🤞"
-      }
-    ]
-  },
-  
-  {
-    "name": "Friend",
-    "profilePic": "https://randomuser.me/api/portraits/men/61.jpg",
-    "status": "Chill mode on 🧘",
-    "messages": [
-      {
-        "type": "sent",
-        "text": "Oye! Kya scene chal raha?"
-      },
-      {
-        "type": "received",
-        "text": "Kya baat hai! Bas chill hoon. Tu?"
-      },
-      {
-        "type": "sent",
-        "text": "Same yaar, bas thoda bore ho raha hoon."
-      },
-      {
-        "type": "received",
-        "text": "Haan, wahi. Kuch interesting batana!"
-      },
-      {
-        "type": "sent",
-        "text": "Interesting? Hmm, accha sun, tumhe pata hai, dolphins ke paas names hote hain?"
-      },
-      {
-        "type": "received",
-        "text": "Kya? Dolphins naam bhi rakhti hain? 😱"
-      },
-      {
-        "type": "sent",
-        "text": "Haan yaar, ek dusre ko call karte hain apne naam se!"
-      },
-      {
-        "type": "received",
-        "text": "Matlab dolphin ki apni “identity crisis”? 😆"
-      },
-      {
-        "type": "sent",
-        "text": "Haha, exactly! 😂"
-      },
-      {
-        "type": "received",
-        "text": "Matlab, apni hi language mein hi mast chal raha hai."
-      },
-      {
-        "type": "sent",
-        "text": "Arre, tumne yeh suna tha? Agar bees ko pyaas lage toh woh udh nahi sakte!"
-      },
-      {
-        "type": "received",
-        "text": "Kya? Bees ko udne ka pyaas se kya lena dena? 😆"
-      },
-      {
-        "type": "sent",
-        "text": "Haan! Pyaas lag gayi toh gir jaati hain. Nature ke laws, bhai!"
-      },
-      {
-        "type": "received",
-        "text": "Aree yaar, yeh kaunse padhayi ka chapter tha! 😅"
-      },
-      {
-        "type": "sent",
-        "text": "Yaar, tumhe pata hai crocodiles kabhi khud ko chhupake bhi rakhte hain?"
-      },
-      {
-        "type": "received",
-        "text": "Matlab apne ghar ke under? 😜"
-      },
-      {
-        "type": "sent",
-        "text": "Haan! Nature mein sab ka style alag hai!"
-      },
-      {
-        "type": "received",
-        "text": "Bindaas! Croc bhi apni privacy chahta hai. 😂"
-      },
-      {
-        "type": "sent",
-        "text": "Waise, woh black holes ke baare mein suna?"
-      },
-      {
-        "type": "received",
-        "text": "Kya black holes? Bina jaane humne nahi jaana! 😜"
-      },
-      {
-        "type": "sent",
-        "text": "Matlab, woh kuch cheezon ko kha jaate hain aur light tak nahi nikalne dete."
-      },
-      {
-        "type": "received",
-        "text": "Kya? Matlab black hole bhi apni “billionaire” lifestyle jeeta hai! 😂"
-      },
-      {
-        "type": "sent",
-        "text": "Haha, exactly! Bohat hi greedy hote hain."
-      },
-      {
-        "type": "received",
-        "text": "Waise, tumne kabhi sunha hai ki cats apne owner ko yeh samajh kar pyaar karti hain ki wo unke “servants” hain? 😆"
-      },
-      {
-        "type": "sent",
-        "text": "Kya! Cats ka bhi apna “master-servant” system?"
-      },
-      {
-        "type": "received",
-        "text": "Bilkul! Pyaar karte hain, par apni convenience ke liye! 😹"
-      },
-      {
         "type": "sent",
-        "text": "Yaar, tumne yeh suna? Kuch birds apni “mating dance” ke liye, diamond ya glass collect karte hain!"
+        "text": "Is your name Google?"
       },
       {
         "type": "received",
-        "text": "Arey yaar, toh yeh hain apne bird version ke “gold diggers”! 💎"
+        "text": "Why?"
       },
       {
         "type": "sent",
-        "text": "Hahaha! Bilkul! Ab tumhe lag raha hai ki kuch birds humse zyada stylish hain!"
-      },
-      {
-        "type": "received",
-        "text": "Haan yaar, unki life style se sab seekhna chahiye!"
+        "text": "Because you've got everything I've been searching for."
       },
       {
         "type": "sent",
-        "text": "Sahi pakde hain! Waise tumhare sabse weird dream kya tha?"
+        "text": "Do you have a map?"
       },
       {
         "type": "received",
-        "text": "Ek baar dream mein main swimming pool mein tha aur jellyfish ke saath dance kar raha tha. 😂"
+        "text": "No, why?"
       },
       {
         "type": "sent",
-        "text": "Hahahaha, jellyfish ke saath party!"
-      },
-      {
-        "type": "received",
-        "text": "Arre, dream mein toh sab chal raha hota hai! 😆"
+        "text": "I just keep getting lost in your eyes."
       },
       {
         "type": "sent",
-        "text": "Sach hai yaar, aise dreams hamesha best hote hain!"
+        "text": "Are you a camera?"
       },
       {
         "type": "received",
-        "text": "Waise, kabhi socha hai, animals ki duniya mein sabse intelligent kaun?"
+        "text": "Why?"
       },
       {
         "type": "sent",
-        "text": "Chimpanzees? 😜"
-      },
-      {
-        "type": "received",
-        "text": "Haan, bilkul! Aur woh apne tools bhi banate hain!"
+        "text": "Because every time I look at you, I smile."
       },
       {
         "type": "sent",
-        "text": "Bindaas! Koi kitna bhi smart ho, monkey toh sab pe bhaari hai! 🐒"
+        "text": "Is your name Wi-Fi?"
       },
       {
         "type": "received",
-        "text": "Haha! Yaar, ab soch raha hoon main bhi monkey ke jaise kuch naya try karoon! 😎"
+        "text": "What? Why?"
       },
       {
         "type": "sent",
-        "text": "Kya? Tum bhi? Yaar, tumhe toh idea aa gaya!"
-      },
-      {
-        "type": "received",
-        "text": "Haan, monkey ki tarah hangout karo, aur ideas lo! 😂"
+        "text": "Because I'm really feeling a connection."
       },
       {
         "type": "sent",
-        "text": "Agle weekend, monkey ki tarah chalte hain sab! 🐵"
+        "text": "Do you believe in love at first sight, or should I walk by again?"
       },
       {
         "type": "received",
-        "text": "Best idea! Waise, tumhe pata hai ki kisi bhi dog ka bark ki frequency actually human ear se alag hoti hai!"
+        "text": "Hmm, maybe just walk by again... 😆"
       },
       {
         "type": "sent",
-        "text": "Kya! Dogs ke bhi apni secret frequencies hoti hain! 🐕"
+        "text": "Are you a time traveler?"
       },
       {
         "type": "received",
-        "text": "Haan, aur unko sun ke hum samajh nahi paate."
-      },
-      {
-        "type": "sent",
-        "text": "Ab hum bhi unki frequency pe “evolve” karna padega! 😂"
+        "text": "Why do you ask?"
       },
-      {
-        "type": "received",
-        "text": "Exactly! Uske baad toh, dogs ko samajhna hi asaan hoga."
-      }
-    ]
-  },
-  {
-    "name": "GF",
-    "profilePic": "https://randomuser.me/api/portraits/women/50.jpg",
-    "status": "I’m your sunshine 🌞",
-    "messages": [
       {
         "type": "sent",
-        "text": "Morning, sunshine! 🌞 How’s my favorite girl today?"
+        "text": "Because I see you in my future."
       },
       {
-        "type": "received",
-        "text": "Good morning, my love! ❤️ Aaj toh thoda mood off hai…"
-      },
-      {
         "type": "sent",
-        "text": "What happened? 🤔 Talk to me."
+        "text": "Is your name Ariel?"
       },
       {
         "type": "received",
-        "text": "Bas yaar, thoda thaka feel ho raha hoon. Lagta hai tumhare bina zindagi kuch khaali hai 😔"
+        "text": "Nope! Why?"
       },
       {
         "type": "sent",
-        "text": "Aww, don't be sad. I’m here. Tumhare saath hoon, toh sab theek ho jaayega 💖"
-      },
-      {
-        "type": "received",
-        "text": "Mujhe tumhari yaad aayi thi, bas. Ab thoda better feel kar rahi hoon."
+        "text": "Because we mermaid for each other."
       },
       {
         "type": "sent",
-        "text": "Hmmm... okay, let's make this day better! Aaj kuch mazedaar karte hain!"
+        "text": "Do you have a Band-Aid?"
       },
       {
         "type": "received",
-        "text": "Hmmm, mazedaar? Tumhare saath sab kuch mazedaar hota hai! 😘"
+        "text": "No, why?"
       },
       {
         "type": "sent",
-        "text": "Woh toh hai! Tumhare saath toh boring bhi fun lagta hai! 😜"
-      },
-      {
-        "type": "received",
-        "text": "Haha, seriously! Agar tum saath ho, toh din kaun boring feel karega? 😉"
+        "text": "Because I just scraped my knee falling for you."
       },
       {
         "type": "sent",
-        "text": "By the way, kal tumne jo mujhe message bheja tha, thoda confusing tha… 🤔"
+        "text": "Are you a parking ticket?"
       },
       {
         "type": "received",
-        "text": "Arre, woh? Mujhe laga tum samjh gaye ho. Tumhare liye toh main hamesha confuse hi hoon!"
+        "text": "Haha, why?"
       },
       {
         "type": "sent",
-        "text": "Confused? Aur tum dono kaise ho? 🤣 Anyway, sab samajh gaya tha."
+        "text": "Because you've got FINE written all over you."
       },
       {
-        "type": "received",
-        "text": "Aww, I was just testing you. Tum toh sab kuch samajh jaate ho! 😉"
-      },
-      {
         "type": "sent",
-        "text": "Chalo, ek kaam karo, mujhe ek sweet message bhejo, I need that energy today! ❤️"
+        "text": "Are you French?"
       },
       {
         "type": "received",
-        "text": "You are the best part of my life. Tumhare bina kuch bhi bekaar hai. Love you forever! 💕"
+        "text": "Why?"
       },
       {
         "type": "sent",
-        "text": "I swear, tum itni sweet ho, mujhe diabetes ho jaayegi! 😆"
-      },
-      {
-        "type": "received",
-        "text": "Hahaha, is that a good thing or a bad thing? 😜"
+        "text": "Because Eiffel for you."
       },
       {
         "type": "sent",
-        "text": "Totally good! You’re the sweetest thing in my life. 🥺"
+        "text": "Do you have a pencil?"
       },
       {
         "type": "received",
-        "text": "Aww, stop making me blush. 😳"
+        "text": "No, what’s up?"
       },
       {
         "type": "sent",
-        "text": "Okay, now stop being cute… you’ll make my heart skip a beat. ❤️"
-      },
-      {
-        "type": "received",
-        "text": "I can’t stop being cute if I try, babe. 😏"
+        "text": "Because I want to erase your past and write our future."
       },
       {
         "type": "sent",
-        "text": "Okay, serious mode now. Kabhi galti se bhi mujhe ignore mat karna, samjhi?"
+        "text": "Are you a light bulb?"
       },
       {
         "type": "received",
-        "text": "What? Main tumhe ignore karoon? Never! 😤 Tumse door jaana mere liye possible hi nahi."
+        "text": "Why?"
       },
       {
         "type": "sent",
-        "text": "That's better! I can’t live without you either. ❤️"
+        "text": "Because you brighten up the room."
       },
       {
-        "type": "received",
-        "text": "You’re mine forever, and I’m yours. No one can change that. 💍"
-      },
-      {
         "type": "sent",
-        "text": "By the way, ab aaj tumse milne ka wait nahi ho raha. Jitna time tumhare saath bitana chahoon, utna nahi milta! 😭"
+        "text": "Is your name Chapstick?"
       },
       {
         "type": "received",
-        "text": "Mujhe bhi! Tum se milke aisa lagta hai jaise duniya ki saari khushiyan mere paas ho. 💖"
+        "text": "Why?"
       },
       {
         "type": "sent",
-        "text": "Stop it, ab mujhe tumse milke kisi aur duniya mein jaana hai! 😂"
-      },
-      {
-        "type": "received",
-        "text": "Hahaha, okay fine, let's meet soon! Tumne bola toh, everything's possible! 😘"
+        "text": "Because you're da balm."
       },
       {
         "type": "sent",
-        "text": "But yaar, one thing. Tum khud ko itna cute kyun banati ho? 😅"
+        "text": "Are you a snowstorm?"
       },
       {
         "type": "received",
-        "text": "Main cute na hoti toh tumhe kaise apne saath rakhti? 😉"
+        "text": "What? Why?"
       },
       {
         "type": "sent",
-        "text": "Touché! You win again! 😜"
-      },
-      {
-        "type": "received",
-        "text": "Haha, yeh toh hona hi tha! Tum se better kya expect kar sakti ho? 😎"
+        "text": "Because you're making my heart race and my hands freeze."
       },
       {
         "type": "sent",
-        "text": "Okay, wait! Mujhe lagta hai tum thoda over sweet ho gayi ho aaj! 😜"
+        "text": "Is your name Starbucks?"
       },
       {
         "type": "received",
-        "text": "Over sweet? Nah! Main toh bas tumhe apne pyaar mein dooba rahi hoon. 💖"
+        "text": "Haha, why?"
       },
       {
         "type": "sent",
-        "text": "Tumhara pyaar toh main kab se dooba hoon! 😌"
-      },
-      {
-        "type": "received",
-        "text": "Meri jaan! Ab zyada pyaar karogi, toh main toh waise hi pyaar se mar jaungi! 😘"
+        "text": "Because I like you a latte."
       },
       {
         "type": "sent",
-        "text": "Meri jaan, tumse pyaar karna mera kaam hai. Tumhare bina kuch bekaar hai! 😔"
+        "text": "Do you have a sunburn, or are you always this hot?"
       },
       {
         "type": "received",
-        "text": "Aww, ab aise mat kehna. Tumhare bina meri zindagi ka koi matlab nahi! 💓"
+        "text": "Haha, definitely always this hot."
       },
       {
         "type": "sent",
-        "text": "Promise karna tum hamesha mere saath rahoge, chahe kuch ho jaaye?"
+        "text": "Are you a beaver?"
       },
       {
         "type": "received",
-        "text": "Promise. Tum hi toh ho mera sab kuch. Tumse door jaane ka sochna bhi impossible hai! 💕"
+        "text": "Why?"
       },
       {
         "type": "sent",
-        "text": "I love you more than anything in this world. 😘"
-      },
-      {
-        "type": "received",
-        "text": "I love you too, baby. Tum mere liye duniya ho! ❤️"
+        "text": "Because daaaaam. 🦫"
       }
     ]
   }
-
 ]
