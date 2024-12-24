@@ -1,249 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animate Overflow</title>
-    <style>
-        html,
-        body {
-            height: 100%;
-            /* Ensure full height of the viewport */
-            margin: 0;
-            /* Remove default margin */
-            overflow: hidden;
-            /* Prevent body from scrolling */
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Diagonal Bar Graph Simulation with Images</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: white;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
 
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            /* Center content vertically */
-            background-color: #f7f9fc;
-            width: 100%;
-            /* Ensure body is 100% width */
-        }
+    .graph-container {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+    }
 
-        .container {
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-            align-items: flex-end;
-            width: 100%;
-            height: 100vh;
-            /* Full height of the viewport */
-            padding: 20px;
-            box-sizing: border-box;
-            /* Prevent padding from affecting width */
-            overflow: hidden;
-            /* Prevent scrolling inside the container */
-        }
+    .graph {
+      position: absolute;
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: flex-end;
+      animation: graph-marquee-bottom-left 25s linear infinite;
+    }
 
-        .country-list {
-            display: flex;
-            flex-direction: row;
-            justify-content: flex-end;
-            height: 100%;
-            padding-right: 20px;
-            /* Padding to prevent last item from being cut off */
-        }
+    .bar {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      background-color: #007BFF;
+      color: white;
+      margin: 10px;
+      text-align: center;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      width: 250px; /* Fixed bar width */
+    }
 
-        .country-item {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            margin-right: 20px;
-            align-items: center;
-            position: relative;
-            height: 90%;
-            padding-bottom: 0;
-            /* Remove bottom padding */
-            opacity: 1;
-            /* Initially visible */
-            animation: marqueeXY 20s linear infinite;
-            /* Apply animation for 20 seconds */
-        }
+    .bar img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
 
-        .country-name {
-            font-weight: bold;
-            text-align: center;
-            margin-top: 10px;
-            white-space: normal;
-            /* Allow text to wrap */
-            word-wrap: break-word;
-            /* Ensure long words break onto new lines */
-            flex-basis: 10%;
-            /* Ensure the country name doesn't take up too much space */
-            min-width: 60px;
-            /* Minimum width for country name */
-            display: block;
-        }
+    .bar div {
+      margin: 5px 0;
+    }
 
-        .rank {
-            margin-bottom: 10px;
-            font-weight: bold;
-            color: #3498db;
-        }
+    .bar-title {
+      font-size: 14px;
+    }
 
-        .bar {
-            width: 250px;
-            /* Set width to 250px */
-            height: 0;
-            /* Start at 0 */
-            position: relative;
-            border-radius: 5px;
-            background-color: #3498db;
-            /* Default color */
-        }
+    .bar-value {
+      font-size: 18px;
+      font-weight: bold;
+    }
 
-        .population-label {
-            position: absolute;
-            bottom: 50%;
-            left: 50%;
-            transform: translate(-50%, 50%);
-            font-weight: bold;
-            font: italic small-caps bold 10px/11px Georgia, serif;
-            color: white;
-            font-size: 14px;
-        }
+    @keyframes graph-marquee-bottom-left {
+      0% {
+        transform: translate(100%, -100%);
+      }
+      100% {
+        transform: translate(-100%, 100%);
+      }
+    }
 
-        .country-flag {
-            height: 50px;
-            /* Adjusted height for better fit */
-            width: 50px;
-            object-fit: contain;
-            opacity: 1;
-            /* Initially visible */
-            border: 1px solid black;
-            border-radius: 30px;
-            margin-bottom: 5px;
-            /* Space between the flag and the text */
-        }
-
-        .label-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* Animation keyframes */
-        @keyframes marqueeXY {
-            0% {
-                transform: translate(100vw, -10vh);
-            }
-
-            100% {
-                transform: translate(-100vw, 10vh);
-            }
-        }
-
-        /* Additional styles to handle responsiveness */
-        @media screen and (max-width: 768px) {
-            .country-name {
-                font-size: 14px;
-                /* Smaller font size for smaller screens */
-            }
-
-            .bar {
-                width: 100px;
-                /* Smaller width for bars on smaller screens */
-            }
-        }
-    </style>
+    h1 {
+      position: absolute;
+      top: 20px;
+      text-align: center;
+      width: 100%;
+      font-size: 24px;
+    }
+  </style>
 </head>
-
 <body>
-
-    <div class="container">
-        <div class="country-list" id="country-list">
-            <!-- Dynamic Country Items will be added here -->
-        </div>
+  <h1>Diagonal Bar Graph Simulation with Images</h1>
+  <div class="graph-container">
+    <div class="graph">
+      <!-- Bars will be generated dynamically -->
     </div>
+  </div>
 
-    <script>
-        // URL for the JSON data
-        const jsonUrl = 'https://raw.githubusercontent.com/itzfew/Adver/refs/heads/main/bar.json'; // Your JSON URL
+  <script>
+    const data = [
+      { name: "Babish Culinary", earnings: 4.8, image: "https://via.placeholder.com/50" },
+      { name: "Indian Chef", earnings: 4.6, image: "https://via.placeholder.com/50" },
+      { name: "Mark R", earnings: 4.3, image: "https://via.placeholder.com/50" },
+      { name: "Alex Cuisine", earnings: 4.0, image: "https://via.placeholder.com/50" },
+      { name: "Korean Food", earnings: 3.9, image: "https://via.placeholder.com/50" },
+      { name: "Spanish Chef", earnings: 3.7, image: "https://via.placeholder.com/50" },
+      { name: "Italian Flavors", earnings: 3.5, image: "https://via.placeholder.com/50" },
+      { name: "Chef John", earnings: 3.3, image: "https://via.placeholder.com/50" },
+      { name: "Japan Eats", earnings: 3.2, image: "https://via.placeholder.com/50" },
+      { name: "Mexican Spice", earnings: 3.0, image: "https://via.placeholder.com/50" }
+    ];
 
-        // Function to fetch the JSON data
-        function fetchPopulationData() {
-            fetch(jsonUrl)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Fetched JSON data:', data); // Debugging: log the fetched data
-                    const countries = data.items; // Assuming the JSON format has a 'items' key
-                    const maxPopulation = Math.max(...countries.map(country => country.value)); // Find the max value
-                    createCountryList(countries, maxPopulation);
-                })
-                .catch(error => {
-                    console.error('Error fetching the population data:', error);
-                    alert('Error loading population data.');
-                });
-        }
+    const graph = document.querySelector('.graph');
 
-        // Function to dynamically create the country list items
-        function createCountryList(countries, maxPopulation) {
-            const countryListContainer = document.getElementById('country-list');
-            // Sort countries by population (ascending order)
-            countries.sort((a, b) => a.value - b.value);
+    function createGraph() {
+      // Sort data by earnings in ascending order
+      data.sort((a, b) => a.earnings - b.earnings);
 
-            // Limit to 10 countries for the animation
-            const limitedCountries = countries.slice(0, 10);
+      data.forEach(item => {
+        const bar = document.createElement('div');
+        bar.className = 'bar';
 
-            limitedCountries.forEach((country, index) => {
-                const countryItem = document.createElement('div');
-                countryItem.classList.add('country-item');
-                countryItem.id = `${country.name.toLowerCase()}-item`;
+        // Set bar height based on earnings
+        bar.style.height = `${item.earnings * 50}px`;
 
-                const rank = document.createElement('div');
-                rank.classList.add('rank');
-                rank.textContent = index + 1; // Show rank from lowest to highest
+        const img = document.createElement('img');
+        img.src = item.image;
+        img.alt = item.name;
 
-                const labelContainer = document.createElement('div');
-                labelContainer.classList.add('label-container');
+        const value = document.createElement('div');
+        value.className = 'bar-value';
+        value.textContent = `$${item.earnings}M`;
 
-                const countryFlag = document.createElement('img');
-                countryFlag.classList.add('country-flag');
-                countryFlag.src = country.image;
+        const title = document.createElement('div');
+        title.className = 'bar-title';
+        title.textContent = item.name;
 
-                const countryName = document.createElement('div');
-                countryName.classList.add('country-name');
-                countryName.textContent = country.name;
+        bar.appendChild(img);
+        bar.appendChild(value);
+        bar.appendChild(title);
+        graph.appendChild(bar);
+      });
+    }
 
-                labelContainer.appendChild(countryFlag);
-                labelContainer.appendChild(countryName);
-
-                const bar = document.createElement('div');
-                bar.classList.add('bar');
-                bar.id = `${country.name.toLowerCase()}-bar`;
-
-                const barHeight = Math.max((country.value / maxPopulation) * 70, 20); // Calculate the bar height as a proportion of max value, with a minimum of 20%
-                bar.style.height = `${barHeight}%`; // Set the bar height
-                bar.style.backgroundColor = country.color; // Apply color from JSON
-
-                const populationLabel = document.createElement('div');
-                populationLabel.classList.add('population-label');
-                populationLabel.id = `${country.name.toLowerCase()}-pop`;
-                populationLabel.textContent = `${country.value.toFixed(2)} ${country.label}`;
-
-                bar.appendChild(populationLabel);
-                countryItem.appendChild(labelContainer);
-                countryItem.appendChild(bar);
-                countryItem.appendChild(rank);
-                countryListContainer.appendChild(countryItem);
-            });
-        }
-
-        // Start fetching data
-        fetchPopulationData();
-    </script>
-
+    createGraph();
+  </script>
 </body>
-
 </html>
