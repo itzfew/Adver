@@ -49,6 +49,7 @@
       transition: transform 0.3s ease-in-out;
       background-size: cover;
       background-position: center;
+      border: 2px solid #fff; /* Adding border around the whole bar */
     }
 
     .bar:hover {
@@ -56,15 +57,20 @@
     }
 
     .bar img {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
+      width: 100%; /* Full width of the bar */
+      height: 200px; /* Fixed height for all images */
+      object-fit: cover; /* Maintain aspect ratio and cover the area */
+      border-radius: 5px;
       margin-bottom: 10px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
     }
 
-    .bar div {
-      margin: 5px 0;
+    .bar-content {
+      background-color: rgba(0, 0, 0, 0.7); /* Adding background to the entire content */
+      padding: 10px;
+      border-radius: 5px;
+      width: 100%;
+      box-sizing: border-box; /* Ensure padding and border are included in element's total width and height */
     }
 
     .bar-title {
@@ -75,6 +81,7 @@
     .bar-number {
       font-size: 20px;
       font-weight: bold; /* Make text bold */
+      margin-top: 5px;
     }
 
     @keyframes graph-marquee-left {
@@ -103,8 +110,8 @@
       }
 
       .bar img {
-        width: 40px;
-        height: 40px; /* Smaller image size */
+        width: 100%; /* Full width of the bar */
+        height: 150px; /* Adjusted height for smaller screens */
       }
 
       .bar-title {
@@ -127,8 +134,8 @@
       }
 
       .bar img {
-        width: 45px;
-        height: 45px; /* Adjust image size */
+        width: 100%; /* Full width of the bar */
+        height: 175px; /* Adjusted height for medium screens */
       }
 
       .bar-title {
@@ -151,8 +158,8 @@
       }
 
       .bar img {
-        width: 60px;
-        height: 60px; /* Larger image size */
+        width: 100%; /* Full width of the bar */
+        height: 200px; /* Fixed height for larger screens */
       }
 
       .bar-title {
@@ -207,8 +214,8 @@
     function createGraph(data) {
       const graph = document.querySelector('.graph');
 
-      // Sort data by number in ascending order
-      data.sort((a, b) => a.number - b.number);
+      // Sort data by number in descending order
+      data.sort((a, b) => b.number - a.number);
 
       data.forEach(item => {
         const bar = document.createElement('div');
@@ -225,6 +232,9 @@
         img.src = item.image;
         img.alt = item.name;
 
+        const barContent = document.createElement('div');
+        barContent.className = 'bar-content';
+
         const number = document.createElement('div');
         number.className = 'bar-number';
         number.textContent = `${item.number}`;
@@ -233,9 +243,10 @@
         title.className = 'bar-title';
         title.textContent = item.name;
 
+        barContent.appendChild(title);
+        barContent.appendChild(number);
         bar.appendChild(img);
-        bar.appendChild(title);
-        bar.appendChild(number);
+        bar.appendChild(barContent);
         graph.appendChild(bar);
       });
     }
