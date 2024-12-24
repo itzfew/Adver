@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3D Diagonal Bar Graph Simulation with Colors</title>
+  <title>3D Diagonal Bar Graph Simulation with Textures</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -31,12 +31,13 @@
       justify-content: center; /* Center bars horizontally */
       align-items: flex-end;
       animation: graph-marquee-left 35s linear infinite; /* Animate along X-axis */
+      transform-style: preserve-3d; /* Enhance 3D effect */
     }
 
     .bar {
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      justify-content: flex-start; /* Ensure content starts from the top */
       align-items: center;
       margin: 10px;
       text-align: center;
@@ -47,10 +48,12 @@
       height: 400px; /* Fixed height of 400px */
       transform: rotateY(15deg) skewY(-10deg); /* Adding 3D rotation and skew */
       transition: transform 0.3s ease-in-out;
+      background-size: cover;
+      background-position: center;
     }
 
     .bar:hover {
-      transform: rotateY(0deg) skewY(0deg); /* Reset on hover */
+      transform: rotateY(0deg) skewY(0deg) translateZ(50px); /* Enhance 3D effect on hover */
     }
 
     .bar img {
@@ -67,11 +70,12 @@
 
     .bar-title {
       font-size: 14px;
+      font-weight: bold; /* Make text bold */
     }
 
     .bar-number {
       font-size: 18px;
-      font-weight: bold;
+      font-weight: bold; /* Make text bold */
     }
 
     @keyframes graph-marquee-left {
@@ -89,11 +93,85 @@
       text-align: center;
       width: 100%;
       font-size: 24px;
+      font-weight: bold; /* Make text bold */
+    }
+
+    /* Responsive Design */
+    @media (max-width: 600px) {
+      .bar {
+        width: 150px; /* Smaller width for small screens */
+        margin: 5px; /* Reduce margin */
+      }
+
+      .bar img {
+        width: 40px;
+        height: 40px; /* Smaller image size */
+      }
+
+      .bar-title {
+        font-size: 12px; /* Smaller text for titles */
+      }
+
+      .bar-number {
+        font-size: 16px; /* Smaller value text */
+      }
+
+      h1 {
+        font-size: 18px; /* Smaller title */
+      }
+    }
+
+    @media (min-width: 601px) and (max-width: 1024px) {
+      .bar {
+        width: 200px; /* Medium screen bar size */
+        margin: 8px; /* Adjust margin */
+      }
+
+      .bar img {
+        width: 45px;
+        height: 45px; /* Adjust image size */
+      }
+
+      .bar-title {
+        font-size: 13px; /* Medium screen title size */
+      }
+
+      .bar-number {
+        font-size: 17px; /* Medium screen value size */
+      }
+
+      h1 {
+        font-size: 20px; /* Medium screen title */
+      }
+    }
+
+    @media (min-width: 1025px) {
+      .bar {
+        width: 250px; /* Larger width for larger screens */
+        margin: 10px;
+      }
+
+      .bar img {
+        width: 50px;
+        height: 50px; /* Larger image size */
+      }
+
+      .bar-title {
+        font-size: 14px;
+      }
+
+      .bar-number {
+        font-size: 18px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>3D Diagonal Bar Graph Simulation with Colors</h1>
+  <h1>3D Diagonal Bar Graph Simulation with Textures</h1>
   <div class="graph-container">
     <div class="graph">
       <!-- Bars will be generated dynamically -->
@@ -137,8 +215,12 @@
         const bar = document.createElement('div');
         bar.className = 'bar';
         
-        // Assign a random color to each bar
-        bar.style.backgroundColor = getRandomColor();
+        // Check if texture is available, if not assign a random color
+        if (item.texture && item.texture !== 'black' && item.texture !== 'white') {
+          bar.style.backgroundImage = item.texture;
+        } else {
+          bar.style.backgroundColor = getRandomColor();
+        }
 
         const img = document.createElement('img');
         img.src = item.image;
@@ -153,8 +235,8 @@
         title.textContent = item.name;
 
         bar.appendChild(img);
-        bar.appendChild(number);
         bar.appendChild(title);
+        bar.appendChild(number);
         graph.appendChild(bar);
       });
     }
