@@ -1,214 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Animate Overflow</title>
-  <style>
-    html, body {
-      height: 100%; /* Ensure full height of the viewport */
-      margin: 0;    /* Remove default margin */
-      overflow: hidden; /* Prevent body from scrolling */
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animate Overflow</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            /* Ensure full height of the viewport */
+            margin: 0;
+            /* Remove default margin */
+            overflow: hidden;
+            /* Prevent body from scrolling */
+        }
 
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center; /* Center content vertically */
-      background-color: #f7f9fc;
-      width: 100%; /* Ensure body is 100% width */
-    }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Center content vertically */
+            background-color: #f7f9fc;
+            width: 100%;
+            /* Ensure body is 100% width */
+        }
 
-    .container {
-      display: flex;
-      flex-direction: row; 
-      justify-content: flex-start;
-      align-items: flex-end;
-      width: 100%;
-      height: 100vh; /* Full height of the viewport */
-      padding: 20px;
-      box-sizing: border-box; /* Prevent padding from affecting width */
-      overflow: auto; /* Allow scrolling inside the container */
-    }
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: flex-end;
+            width: 100%;
+            height: 100vh;
+            /* Full height of the viewport */
+            padding: 20px;
+            box-sizing: border-box;
+            /* Prevent padding from affecting width */
+            overflow: hidden;
+            /* Prevent scrolling inside the container */
+        }
 
-    .country-list {
-      display: flex;
-      flex-direction: row; 
-      justify-content: flex-end;
-      height: 100%;
-      padding-right: 20px; /* Padding to prevent last item from being cut off */
-    }
+        .country-list {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            height: 100%;
+            padding-right: 20px;
+            /* Padding to prevent last item from being cut off */
+        }
 
-    .country-item {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      margin-right: 20px; 
-      align-items: center;
-      position: relative;
-      height: 90%;
-      padding-bottom: 10px;
-      opacity: 1; /* Initially visible */
-      animation: marqueeXY 10s linear infinite; /* Apply animation */
-    }
+        .country-item {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            margin-right: 20px;
+            align-items: center;
+            position: relative;
+            height: 90%;
+            padding-bottom: 0;
+            /* Remove bottom padding */
+            opacity: 1;
+            /* Initially visible */
+            animation: marqueeXY 20s linear infinite;
+            /* Apply animation for 20 seconds */
+        }
 
-    .country-name {
-      font-weight: bold;
-      text-align: center;
-      margin-top: 10px;
-      white-space: normal; /* Allow text to wrap */
-      word-wrap: break-word; /* Ensure long words break onto new lines */
-      flex-basis: 10%; /* Ensure the country name doesn't take up too much space */
-      min-width: 60px; /* Minimum width for country name */
-      display: block;
-    }
+        .country-name {
+            font-weight: bold;
+            text-align: center;
+            margin-top: 10px;
+            white-space: normal;
+            /* Allow text to wrap */
+            word-wrap: break-word;
+            /* Ensure long words break onto new lines */
+            flex-basis: 10%;
+            /* Ensure the country name doesn't take up too much space */
+            min-width: 60px;
+            /* Minimum width for country name */
+            display: block;
+        }
 
-    .rank {
-      margin-bottom: 10px;
-      font-weight: bold;
-      color: #3498db;
-    }
+        .rank {
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #3498db;
+        }
 
-    .bar {
-      width: 100px;
-      height: 0; /* Start at 0 */
-      position: relative;
-      border-radius: 5px;
-      margin-top: 15px;
-      background-color: #3498db; /* Default color */
-    }
+        .bar {
+            width: 250px;
+            /* Set width to 250px */
+            height: 0;
+            /* Start at 0 */
+            position: relative;
+            border-radius: 5px;
+            background-color: #3498db;
+            /* Default color */
+        }
 
-    .population-label {
-      position: absolute;
-      bottom: 50%;
-      left: 50%;
-      transform: translate(-50%, 50%);
-      font-weight: bold;
-      font: italic small-caps bold 10px/11px Georgia, serif;
-      color: white;
-      font-size: 14px;
-    }
+        .population-label {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform: translate(-50%, 50%);
+            font-weight: bold;
+            font: italic small-caps bold 10px/11px Georgia, serif;
+            color: white;
+            font-size: 14px;
+        }
 
-    .country-flag {
-      height: 50px; /* Adjusted height for better fit */
-      width: 50px;
-      object-fit: contain;
-      opacity: 1; /* Initially visible */
-      border: 1px solid black;
-      border-radius: 30px;
-      margin-bottom: 5px; /* Space between the flag and the text */
-    }
+        .country-flag {
+            height: 50px;
+            /* Adjusted height for better fit */
+            width: 50px;
+            object-fit: contain;
+            opacity: 1;
+            /* Initially visible */
+            border: 1px solid black;
+            border-radius: 30px;
+            margin-bottom: 5px;
+            /* Space between the flag and the text */
+        }
 
-    .label-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+        .label-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    /* Animation keyframes */
-    @keyframes marqueeXY {
-      0% {
-        transform: translate(100vw, -10vh);
-      }
-      100% {
-        transform: translate(-100vw, 10vh);
-      }
-    }
+        /* Animation keyframes */
+        @keyframes marqueeXY {
+            0% {
+                transform: translate(100vw, -10vh);
+            }
 
-    /* Additional styles to handle responsiveness */
-    @media screen and (max-width: 768px) {
-      .country-name {
-        font-size: 14px; /* Smaller font size for smaller screens */
-      }
-    }
-  </style>
+            100% {
+                transform: translate(-100vw, 10vh);
+            }
+        }
+
+        /* Additional styles to handle responsiveness */
+        @media screen and (max-width: 768px) {
+            .country-name {
+                font-size: 14px;
+                /* Smaller font size for smaller screens */
+            }
+
+            .bar {
+                width: 100px;
+                /* Smaller width for bars on smaller screens */
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-  <div class="container">
-    <div class="country-list" id="country-list">
-      <!-- Dynamic Country Items will be added here -->
+    <div class="container">
+        <div class="country-list" id="country-list">
+            <!-- Dynamic Country Items will be added here -->
+        </div>
     </div>
-  </div>
 
-  <script>
-    // URL for the JSON data
-    const jsonUrl = 'https://raw.githubusercontent.com/itzfew/Adver/refs/heads/main/bar.json'; // Your JSON URL
+    <script>
+        // URL for the JSON data
+        const jsonUrl = 'https://raw.githubusercontent.com/itzfew/Adver/refs/heads/main/bar.json'; // Your JSON URL
 
-    // Function to fetch the JSON data
-    function fetchPopulationData() {
-      fetch(jsonUrl)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then(data => {
-          console.log('Fetched JSON data:', data);  // Debugging: log the fetched data
-          const countries = data.items; // Assuming the JSON format has a 'items' key
-          const maxPopulation = Math.max(...countries.map(country => country.value));  // Find the max value
-          createCountryList(countries, maxPopulation);
-        })
-        .catch(error => {
-          console.error('Error fetching the population data:', error);
-          alert('Error loading population data.');
-        });
-    }
+        // Function to fetch the JSON data
+        function fetchPopulationData() {
+            fetch(jsonUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Fetched JSON data:', data); // Debugging: log the fetched data
+                    const countries = data.items; // Assuming the JSON format has a 'items' key
+                    const maxPopulation = Math.max(...countries.map(country => country.value)); // Find the max value
+                    createCountryList(countries, maxPopulation);
+                })
+                .catch(error => {
+                    console.error('Error fetching the population data:', error);
+                    alert('Error loading population data.');
+                });
+        }
 
-    // Function to dynamically create the country list items
-    function createCountryList(countries, maxPopulation) {
-      const countryListContainer = document.getElementById('country-list');
-      // Sort countries by population (ascending order)
-      countries.sort((a, b) => a.value - b.value);
+        // Function to dynamically create the country list items
+        function createCountryList(countries, maxPopulation) {
+            const countryListContainer = document.getElementById('country-list');
+            // Sort countries by population (ascending order)
+            countries.sort((a, b) => a.value - b.value);
 
-      countries.forEach((country, index) => {
-        const countryItem = document.createElement('div');
-        countryItem.classList.add('country-item');
-        countryItem.id = `${country.name.toLowerCase()}-item`;
+            // Limit to 10 countries for the animation
+            const limitedCountries = countries.slice(0, 10);
 
-        const rank = document.createElement('div');
-        rank.classList.add('rank');
-        rank.textContent = index + 1;  // Show rank from lowest to highest
+            limitedCountries.forEach((country, index) => {
+                const countryItem = document.createElement('div');
+                countryItem.classList.add('country-item');
+                countryItem.id = `${country.name.toLowerCase()}-item`;
 
-        const labelContainer = document.createElement('div');
-        labelContainer.classList.add('label-container');
+                const rank = document.createElement('div');
+                rank.classList.add('rank');
+                rank.textContent = index + 1; // Show rank from lowest to highest
 
-        const countryFlag = document.createElement('img');
-        countryFlag.classList.add('country-flag');
-        countryFlag.src = country.image;
+                const labelContainer = document.createElement('div');
+                labelContainer.classList.add('label-container');
 
-        const countryName = document.createElement('div');
-        countryName.classList.add('country-name');
-        countryName.textContent = country.name;
+                const countryFlag = document.createElement('img');
+                countryFlag.classList.add('country-flag');
+                countryFlag.src = country.image;
 
-        labelContainer.appendChild(countryFlag);
-        labelContainer.appendChild(countryName);
+                const countryName = document.createElement('div');
+                countryName.classList.add('country-name');
+                countryName.textContent = country.name;
 
-        const bar = document.createElement('div');
-        bar.classList.add('bar');
-        bar.id = `${country.name.toLowerCase()}-bar`;
+                labelContainer.appendChild(countryFlag);
+                labelContainer.appendChild(countryName);
 
-        const barHeight = Math.max((country.value / maxPopulation) * 70, 20); // Calculate the bar height as a proportion of max value, with a minimum of 20%
-        bar.style.height = `${barHeight}%`; // Set the bar height
-        bar.style.backgroundColor = country.color; // Apply color from JSON
+                const bar = document.createElement('div');
+                bar.classList.add('bar');
+                bar.id = `${country.name.toLowerCase()}-bar`;
 
-        const populationLabel = document.createElement('div');
-        populationLabel.classList.add('population-label');
-        populationLabel.id = `${country.name.toLowerCase()}-pop`;
-        populationLabel.textContent = `${country.value.toFixed(2)} ${country.label}`;
+                const barHeight = Math.max((country.value / maxPopulation) * 70, 20); // Calculate the bar height as a proportion of max value, with a minimum of 20%
+                bar.style.height = `${barHeight}%`; // Set the bar height
+                bar.style.backgroundColor = country.color; // Apply color from JSON
 
-        bar.appendChild(populationLabel);
-        countryItem.appendChild(labelContainer);
-        countryItem.appendChild(bar);
-        countryItem.appendChild(rank);
-        countryListContainer.appendChild(countryItem);
-      });
-    }
+                const populationLabel = document.createElement('div');
+                populationLabel.classList.add('population-label');
+                populationLabel.id = `${country.name.toLowerCase()}-pop`;
+                populationLabel.textContent = `${country.value.toFixed(2)} ${country.label}`;
 
-    // Start fetching data
-    fetchPopulationData();
-  </script>
+                bar.appendChild(populationLabel);
+                countryItem.appendChild(labelContainer);
+                countryItem.appendChild(bar);
+                countryItem.appendChild(rank);
+                countryListContainer.appendChild(countryItem);
+            });
+        }
+
+        // Start fetching data
+        fetchPopulationData();
+    </script>
 
 </body>
+
 </html>
