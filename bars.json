@@ -3,13 +3,13 @@
     "name": "Company A",
     "number": 10,
     "image": "https://example.com/image-a.jpg",
-    "texture": "url('https://example.com/texture-a.jpg')"
+    "texture": "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRe15J2YHHoBs6cNIn5yMe3w1igOZHIX39paw&s')"
   },
   {
     "name": "Company B",
     "number": 20,
     "image": "https://example.com/image-b.jpg",
-    "texture": "url('https://example.com/texture-b.jpg')"
+    "texture": "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRe15J2YHHoBs6cNIn5yMe3w1igOZHIX39paw&s')"
   },
   {
     "name": "Company C",
