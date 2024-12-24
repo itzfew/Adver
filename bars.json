@@ -2,7 +2,7 @@
   {
     "name": "Company A",
     "number": 10,
-    "image": "https://example.com/image-a.jpg",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRe15J2YHHoBs6cNIn5yMe3w1igOZHIX39paw&s",
     "texture": "url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRe15J2YHHoBs6cNIn5yMe3w1igOZHIX39paw&s')"
   },
   {
