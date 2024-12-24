@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Diagonal Bar Graph Simulation with Images</title>
+  <title>3D Diagonal Bar Graph Simulation with Textures</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -19,6 +19,7 @@
       width: 100%;
       height: 100vh;
       overflow: hidden;
+      perspective: 1500px; /* Adding perspective for 3D effect */
     }
 
     .graph {
@@ -34,14 +35,19 @@
       flex-direction: column;
       justify-content: flex-end;
       align-items: center;
-      background-color: #007BFF;
-      color: white;
       margin: 10px;
       text-align: center;
       border-radius: 5px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
       padding: 10px;
-      width: 250px; /* Fixed bar width */
+      width: 250px;
+      background: linear-gradient(145deg, #3a7dff, #1e3bff);
+      transform: rotateY(15deg) skewY(-10deg); /* Adding 3D rotation and skew */
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .bar:hover {
+      transform: rotateY(0deg) skewY(0deg); /* Reset on hover */
     }
 
     .bar img {
@@ -49,6 +55,7 @@
       height: 50px;
       border-radius: 50%;
       margin-bottom: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
     }
 
     .bar div {
@@ -83,7 +90,7 @@
   </style>
 </head>
 <body>
-  <h1>Diagonal Bar Graph Simulation with Images</h1>
+  <h1>3D Diagonal Bar Graph Simulation with Textures</h1>
   <div class="graph-container">
     <div class="graph">
       <!-- Bars will be generated dynamically -->
@@ -91,28 +98,29 @@
   </div>
 
   <script>
-    const data = [
-      { name: "Babish Culinary", earnings: 4.8, image: "https://via.placeholder.com/50" },
-      { name: "Indian Chef", earnings: 4.6, image: "https://via.placeholder.com/50" },
-      { name: "Mark R", earnings: 4.3, image: "https://via.placeholder.com/50" },
-      { name: "Alex Cuisine", earnings: 4.0, image: "https://via.placeholder.com/50" },
-      { name: "Korean Food", earnings: 3.9, image: "https://via.placeholder.com/50" },
-      { name: "Spanish Chef", earnings: 3.7, image: "https://via.placeholder.com/50" },
-      { name: "Italian Flavors", earnings: 3.5, image: "https://via.placeholder.com/50" },
-      { name: "Chef John", earnings: 3.3, image: "https://via.placeholder.com/50" },
-      { name: "Japan Eats", earnings: 3.2, image: "https://via.placeholder.com/50" },
-      { name: "Mexican Spice", earnings: 3.0, image: "https://via.placeholder.com/50" }
-    ];
+    async function fetchData() {
+      try {
+        const response = await fetch('https://raw.githubusercontent.com/itzfew/Adver/refs/heads/main/bars.json');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error('There has been a problem with your fetch operation:', error);
+      }
+    }
 
-    const graph = document.querySelector('.graph');
+    function createGraph(data) {
+      const graph = document.querySelector('.graph');
 
-    function createGraph() {
       // Sort data by earnings in ascending order
       data.sort((a, b) => a.earnings - b.earnings);
 
       data.forEach(item => {
         const bar = document.createElement('div');
         bar.className = 'bar';
+        bar.style.backgroundImage = item.texture; // Apply texture
 
         // Set bar height based on earnings
         bar.style.height = `${item.earnings * 50}px`;
@@ -136,7 +144,11 @@
       });
     }
 
-    createGraph();
+    fetchData().then(data => {
+      if (data) {
+        createGraph(data);
+      }
+    });
   </script>
 </body>
 </html>
