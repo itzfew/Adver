@@ -1,12 +1,20 @@
 [
-  { "name": "Babish Culinary", "earnings": 4.8, "image": "https://via.placeholder.com/50", "color": "#007BFF", "texture": "url('https://via.placeholder.com/250/007BFF/ffffff')" },
-  { "name": "Indian Chef", "earnings": 4.6, "image": "https://via.placeholder.com/50", "color": "#FF6347", "texture": "url('https://via.placeholder.com/250/FF6347/ffffff')" },
-  { "name": "Mark R", "earnings": 4.3, "image": "https://via.placeholder.com/50", "color": "#32CD32", "texture": "url('https://via.placeholder.com/250/32CD32/ffffff')" },
-  { "name": "Alex Cuisine", "earnings": 4.0, "image": "https://via.placeholder.com/50", "color": "#FFD700", "texture": "url('https://via.placeholder.com/250/FFD700/ffffff')" },
-  { "name": "Korean Food", "earnings": 3.9, "image": "https://via.placeholder.com/50", "color": "#800080", "texture": "url('https://via.placeholder.com/250/800080/ffffff')" },
-  { "name": "Spanish Chef", "earnings": 3.7, "image": "https://via.placeholder.com/50", "color": "#FF4500", "texture": "url('https://via.placeholder.com/250/FF4500/ffffff')" },
-  { "name": "Italian Flavors", "earnings": 3.5, "image": "https://via.placeholder.com/50", "color": "#DC143C", "texture": "url('https://via.placeholder.com/250/DC143C/ffffff')" },
-  { "name": "Chef John", "earnings": 3.3, "image": "https://via.placeholder.com/50", "color": "#20B2AA", "texture": "url('https://via.placeholder.com/250/20B2AA/ffffff')" },
-  { "name": "Japan Eats", "earnings": 3.2, "image": "https://via.placeholder.com/50", "color": "#4682B4", "texture": "url('https://via.placeholder.com/250/4682B4/ffffff')" },
-  { "name": "Mexican Spice", "earnings": 3.0, "image": "https://via.placeholder.com/50", "color": "#8B0000", "texture": "url('https://via.placeholder.com/250/8B0000/ffffff')" }
+  {
+    "name": "Company A",
+    "number": 10,
+    "image": "https://example.com/image-a.jpg",
+    "texture": "url('https://example.com/texture-a.jpg')"
+  },
+  {
+    "name": "Company B",
+    "number": 20,
+    "image": "https://example.com/image-b.jpg",
+    "texture": "url('https://example.com/texture-b.jpg')"
+  },
+  {
+    "name": "Company C",
+    "number": 30,
+    "image": "https://example.com/image-c.jpg",
+    "texture": "url('https://example.com/texture-c.jpg')"
+  }
 ]
