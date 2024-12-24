@@ -44,9 +44,10 @@
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
       padding: 10px;
       width: 250px;
-      background: linear-gradient(145deg, #3a7dff, #1e3bff);
       transform: rotateY(15deg) skewY(-10deg); /* Adding 3D rotation and skew */
       transition: transform 0.3s ease-in-out;
+      background-size: cover;
+      background-position: center;
     }
 
     .bar:hover {
@@ -123,7 +124,10 @@
       data.forEach(item => {
         const bar = document.createElement('div');
         bar.className = 'bar';
-        bar.style.backgroundImage = item.texture; // Apply texture
+        
+        // Ensure the texture is not black or white
+        const texture = item.texture && item.texture !== 'black' && item.texture !== 'white' ? item.texture : 'url(default-texture.jpg)';
+        bar.style.backgroundImage = texture;
 
         // Set bar height based on earnings, ensuring a minimum height of 400px
         const barHeight = Math.max(item.earnings * 50, 400); // Minimum height of 400px
