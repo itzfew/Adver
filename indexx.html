@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3D Diagonal Bar Graph Simulation with Textures</title>
+  <title>3D Diagonal Bar Graph Simulation with Colors</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -44,10 +44,9 @@
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
       padding: 10px;
       width: 250px;
+      height: 400px; /* Fixed height of 400px */
       transform: rotateY(15deg) skewY(-10deg); /* Adding 3D rotation and skew */
       transition: transform 0.3s ease-in-out;
-      background-size: cover;
-      background-position: center;
     }
 
     .bar:hover {
@@ -70,7 +69,7 @@
       font-size: 14px;
     }
 
-    .bar-value {
+    .bar-number {
       font-size: 18px;
       font-weight: bold;
     }
@@ -94,7 +93,7 @@
   </style>
 </head>
 <body>
-  <h1>3D Diagonal Bar Graph Simulation with Textures</h1>
+  <h1>3D Diagonal Bar Graph Simulation with Colors</h1>
   <div class="graph-container">
     <div class="graph">
       <!-- Bars will be generated dynamically -->
@@ -115,38 +114,46 @@
       }
     }
 
+    function getRandomColor() {
+      // Function to generate a random color avoiding black and white
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      do {
+        color = '#';
+        for (let i = 0; i < 6; i++) {
+          color += letters[Math.floor(Math.random() * 16)];
+        }
+      } while (color === '#000000' || color === '#FFFFFF');
+      return color;
+    }
+
     function createGraph(data) {
       const graph = document.querySelector('.graph');
 
-      // Sort data by earnings in ascending order
-      data.sort((a, b) => a.earnings - b.earnings);
+      // Sort data by number in ascending order
+      data.sort((a, b) => a.number - b.number);
 
       data.forEach(item => {
         const bar = document.createElement('div');
         bar.className = 'bar';
         
-        // Ensure the texture is not black or white
-        const texture = item.texture && item.texture !== 'black' && item.texture !== 'white' ? item.texture : 'url(default-texture.jpg)';
-        bar.style.backgroundImage = texture;
-
-        // Set bar height based on earnings, ensuring a minimum height of 400px
-        const barHeight = Math.max(item.earnings * 50, 400); // Minimum height of 400px
-        bar.style.height = `${barHeight}px`;
+        // Assign a random color to each bar
+        bar.style.backgroundColor = getRandomColor();
 
         const img = document.createElement('img');
         img.src = item.image;
         img.alt = item.name;
 
-        const value = document.createElement('div');
-        value.className = 'bar-value';
-        value.textContent = `$${item.earnings}M`;
+        const number = document.createElement('div');
+        number.className = 'bar-number';
+        number.textContent = `${item.number}`;
 
         const title = document.createElement('div');
         title.className = 'bar-title';
         title.textContent = item.name;
 
         bar.appendChild(img);
-        bar.appendChild(value);
+        bar.appendChild(number);
         bar.appendChild(title);
         graph.appendChild(bar);
       });
