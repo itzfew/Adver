@@ -15,6 +15,6 @@
     "name": "Company C",
     "number": 30,
     "image": "https://example.com/image-c.jpg",
-    "texture": "" // No texture, will use random color
+    "texture": ""
   }
 ]
