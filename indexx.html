@@ -18,16 +18,19 @@
       position: relative;
       width: 100%;
       height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center; /* Center bars vertically */
       overflow: hidden;
       perspective: 1500px; /* Adding perspective for 3D effect */
     }
 
     .graph {
-      position: absolute;
       display: flex;
       flex-wrap: nowrap;
+      justify-content: center; /* Center bars horizontally */
       align-items: flex-end;
-      animation: graph-marquee-bottom-left 25s linear infinite;
+      animation: graph-marquee-left 35s linear infinite; /* Animate along X-axis */
     }
 
     .bar {
@@ -71,12 +74,12 @@
       font-weight: bold;
     }
 
-    @keyframes graph-marquee-bottom-left {
+    @keyframes graph-marquee-left {
       0% {
-        transform: translate(100%, -100%);
+        transform: translateX(100%);
       }
       100% {
-        transform: translate(-100%, 100%);
+        transform: translateX(-100%);
       }
     }
 
@@ -122,8 +125,9 @@
         bar.className = 'bar';
         bar.style.backgroundImage = item.texture; // Apply texture
 
-        // Set bar height based on earnings
-        bar.style.height = `${item.earnings * 50}px`;
+        // Set bar height based on earnings, ensuring a minimum height of 400px
+        const barHeight = Math.max(item.earnings * 50, 400); // Minimum height of 400px
+        bar.style.height = `${barHeight}px`;
 
         const img = document.createElement('img');
         img.src = item.image;
