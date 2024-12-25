@@ -1,21 +1,18 @@
 [
   {
-    "name": "Crush",
-    "profilePic": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzuZkslEQmeFF2mXV4o1q0InHJRYbZH_BGAA&s",
-    "status": "Flirting mode activated 😏",
-    "messages": [
-      {
-        "type": "sent",
-        "text": "Are you a magician?"
-      },
-      {
-        "type": "received",
-        "text": "Why?"
-      },
-      {
-        "type": "sent",
-        "text": "Because whenever I look at you, everyone else disappears."
-      }
-    ]
+    "type": "sent",
+    "text": "Hey, how's it going?"
+  },
+  {
+    "type": "received",
+    "text": "I'm doing well, thanks! How about you?"
+  },
+  {
+    "type": "sent",
+    "text": "I'm good! Just trying out this WhatsApp clone."
+  },
+  {
+    "type": "received",
+    "text": "Looks great! Keep up the good work!"
   }
 ]
