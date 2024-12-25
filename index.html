@@ -90,6 +90,7 @@
             padding: 15px;
             background-color: #fff;
             border-top: 1px solid #ddd;
+            align-items: center;
         }
 
         .input-box input {
@@ -121,6 +122,7 @@
         .attachment-icons {
             display: flex;
             gap: 15px;
+            margin-left: 10px;
         }
 
         /* Fullscreen mode */
@@ -144,6 +146,35 @@
             background-color: #f1f1f1;
         }
 
+        /* Keyboard Styles */
+        .keyboard {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 10px;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-top: 1px solid #ddd;
+        }
+
+        .keyboard button {
+            padding: 15px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .keyboard button:hover {
+            background-color: #25d366;
+            color: white;
+        }
+
+        .keyboard button:active {
+            background-color: #128c7e;
+        }
+
     </style>
 </head>
 <body>
@@ -154,14 +185,62 @@
 
         <!-- Input Box -->
         <div class="input-box">
-            <!-- Attachment Icons -->
-            <div class="attachment-icons">
-                <i class="fas fa-paperclip" title="Attachment"></i>
-                <i class="fas fa-camera" title="Camera"></i>
-                <i class="fas fa-microphone" title="Voice Message"></i>
-            </div>
             <!-- Message Input -->
             <input type="text" id="message-input" placeholder="Type a message..." onkeyup="sendMessage(event)">
+            
+            <!-- Attachment Icons -->
+            <div class="attachment-icons">
+              
+                <i class="fas fa-camera" title="Camera" onclick="openCamera()"></i>
+                <i class="fas fa-microphone" title="Voice Message" onclick="recordVoice()"></i>
+                <i class="fas fa-paper-plane" title="Send" onclick="sendMessageClick()"></i>
+            </div>
+        </div>
+
+        <!-- Keyboard -->
+        <div class="keyboard">
+            <!-- Adding buttons for numbers and letters -->
+            <button onclick="insertText('1')">1</button>
+            <button onclick="insertText('2')">2</button>
+            <button onclick="insertText('3')">3</button>
+            <button onclick="insertText('4')">4</button>
+            <button onclick="insertText('5')">5</button>
+            <button onclick="insertText('6')">6</button>
+            <button onclick="insertText('7')">7</button>
+            <button onclick="insertText('8')">8</button>
+            <button onclick="insertText('9')">9</button>
+            <button onclick="insertText('0')">0</button>
+
+            <button onclick="insertText('Q')">Q</button>
+            <button onclick="insertText('W')">W</button>
+            <button onclick="insertText('E')">E</button>
+            <button onclick="insertText('R')">R</button>
+            <button onclick="insertText('T')">T</button>
+            <button onclick="insertText('Y')">Y</button>
+            <button onclick="insertText('U')">U</button>
+            <button onclick="insertText('I')">I</button>
+            <button onclick="insertText('O')">O</button>
+            <button onclick="insertText('P')">P</button>
+
+            <button onclick="insertText('A')">A</button>
+            <button onclick="insertText('S')">S</button>
+            <button onclick="insertText('D')">D</button>
+            <button onclick="insertText('F')">F</button>
+            <button onclick="insertText('G')">G</button>
+            <button onclick="insertText('H')">H</button>
+            <button onclick="insertText('J')">J</button>
+            <button onclick="insertText('K')">K</button>
+            <button onclick="insertText('L')">L</button>
+
+            <button onclick="insertText(' ')">Space</button>
+            <button onclick="insertText('Z')">Z</button>
+            <button onclick="insertText('X')">X</button>
+            <button onclick="insertText('C')">C</button>
+            <button onclick="insertText('V')">V</button>
+            <button onclick="insertText('B')">B</button>
+            <button onclick="insertText('N')">N</button>
+            <button onclick="insertText('M')">M</button>
+            <button onclick="deleteLast()">Del</button>
         </div>
     </div>
 
@@ -220,6 +299,53 @@
                 input.value = ""; // Clear the input
                 displayMessages();
             }
+        }
+
+        // Function to send message via button click
+        function sendMessageClick() {
+            const input = document.getElementById('message-input');
+            if (input.value.trim() !== "") {
+                const newMessage = {
+                    type: "sent",
+                    text: input.value.trim(),
+                };
+
+                messages.push(newMessage);
+
+                // Simulate auto reply after 1 second
+                setTimeout(() => {
+                    const replyMessage = {
+                        type: "received",
+                        text: "Auto-reply: " + input.value.trim(),
+                    };
+                    messages.push(replyMessage);
+                    displayMessages();
+                }, 1000);
+
+                input.value = ""; // Clear the input
+                displayMessages();
+            }
+        }
+
+        // Insert text into the message input field
+        function insertText(text) {
+            const input = document.getElementById('message-input');
+            input.value += text;
+        }
+
+        // Delete the last character in the input field
+        function deleteLast() {
+            const input = document.getElementById('message-input');
+            input.value = input.value.slice(0, -1);
+        }
+
+        // Dummy functions for Camera and Voice (can be replaced with actual logic)
+        function openCamera() {
+            console.log("Open Camera");
+        }
+
+        function recordVoice() {
+            console.log("Record Voice");
         }
 
         // Initial call to display existing messages
