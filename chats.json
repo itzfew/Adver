@@ -1,114 +1,21 @@
 [
   {
-    "name": "Mom",
-    "profilePic": "https://www.imagella.com/cdn/shop/products/76d435e2602095035f8d959b21cd67a0.jpg?v=1707575025&width=300",
-    "status": "mom",
+    "name": "Crush",
+    "profilePic": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzuZkslEQmeFF2mXV4o1q0InHJRYbZH_BGAA&s",
+    "status": "Flirting mode activated 😏",
     "messages": [
       {
         "type": "sent",
-        "text": "Hey, Mom!",
-        "timestamp": "10:00 AM"
+        "text": "Are you a magician?"
       },
       {
         "type": "received",
-        "text": "Arrey! Kaise ho beta?",
-        "timestamp": "10:02 AM"
+        "text": "Why?"
       },
       {
         "type": "sent",
-        "text": "Sab thik hai, bas kaam mein busy hoon.",
-        "timestamp": "10:05 AM"
+        "text": "Because whenever I look at you, everyone else disappears."
       },
-      {
-        "type": "received",
-        "text": "Haan, samajh gayi thi. Sab kaise chal raha hai?",
-        "timestamp": "10:06 AM"
-      },
-      {
-        "type": "sent",
-        "text": "Thoda hectic hai, par manage kar le raha hoon.",
-        "timestamp": "10:08 AM"
-      },
-      {
-        "type": "received",
-        "text": "Accha hai! Koi madad chahiye?",
-        "timestamp": "10:10 AM"
-      },
-      {
-        "type": "sent",
-        "text": "Nahi, abhi ke liye sab theek hai. Par thank you!",
-        "timestamp": "10:12 AM"
-      },
-      {
-        "type": "received",
-        "text": "Theek hai, dhyaan rakhna apna!",
-        "timestamp": "10:14 AM"
-      },
-      {
-        "type": "sent",
-        "text": "Haan, haan, bas abhi thoda break le raha hoon.",
-        "timestamp": "10:16 AM"
-      },
-      {
-        "type": "received",
-        "text": "Acha! Aur aaj dinner mein kya bana rahe ho?",
-        "timestamp": "10:18 AM"
-      },
-      {
-        "type": "sent",
-        "text": "Socha tha pasta bana leta hoon.",
-        "timestamp": "10:20 AM"
-      },
-      {
-        "type": "received",
-        "text": "Mmmm, pasta! Bilkul banta hai!",
-        "timestamp": "10:22 AM"
-      },
-      {
-        "type": "sent",
-        "text": "Haan, simple hai aur jaldi ho jaata hai.",
-        "timestamp": "10:25 AM"
-      },
-      {
-        "type": "received",
-        "text": "Bilkul! Enjoy karo apna dinner.",
-        "timestamp": "10:30 AM"
-      },
-      {
-        "type": "sent",
-        "text": "Thanks, Mom! Tumhara bhi khayal rakhna.",
-        "timestamp": "10:35 AM"
-      },
-      {
-        "type": "received",
-        "text": "Haan, beta. Tumhare bina sab kuch udaas lagta hai.",
-        "timestamp": "10:37 AM"
-      },
-      {
-        "type": "sent",
-        "text": "Aww, Mom, don’t worry, I’m just a message away!",
-        "timestamp": "10:40 AM"
-      },
-      {
-        "type": "received",
-        "text": "I know, beta! Par teri yaad aati hai har waqt.",
-        "timestamp": "10:42 AM"
-      },
-      {
-        "type": "sent",
-        "text": "I miss you too, Mom. We should meet soon!",
-        "timestamp": "10:45 AM"
-      },
-      {
-        "type": "received",
-        "text": "Bilkul, jaldi milte hain! I love you!",
-        "timestamp": "10:48 AM"
-      },
-      {
-        "type": "sent",
-        "text": "Love you too, take care!",
-        "timestamp": "10:50 AM"
-      }
     ]
   }
 ]
