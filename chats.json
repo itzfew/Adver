@@ -1,18 +1,34 @@
- [
-  {
-    "type": "sent",
-    "text": "Hey, how's it going?"
-  },
-  {
-    "type": "received",
-    "text": "I'm doing well, thanks! How about you?"
-  },
-  {
-    "type": "sent",
-    "text": "I'm good! Just trying out this WhatsApp clone."
-  },
-  {
-    "type": "received",
-    "text": "Looks great! Keep up the good work!"
-  }
+[
+    {
+        "type": "sent",
+        "text": "Hey, how's it going?"
+    },
+    {
+        "type": "received",
+        "text": "I'm doing well, thanks! How about you?"
+    },
+    {
+        "type": "sent",
+        "text": "I'm good! Just trying out this WhatsApp clone."
+    },
+    {
+        "type": "received",
+        "text": "Looks great! Keep up the good work!"
+    },
+    {
+        "type": "sent",
+        "text": "Any plans for the weekend?"
+    },
+    {
+        "type": "received",
+        "text": "Yes, I'm going hiking. What about you?"
+    },
+    {
+        "type": "sent",
+        "text": "I might go for a movie. Any recommendations?"
+    },
+    {
+        "type": "received",
+        "text": "How about the new action movie? It's supposed to be amazing!"
+    }
 ]
