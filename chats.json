@@ -1,7 +1,9 @@
+
+[
 {
   "name": "Mom",
   "profilePic": "https://www.imagella.com/cdn/shop/products/76d435e2602095035f8d959b21cd67a0.jpg?v=1707575025&width=300",
-  "status":"mom",
+  "status": "mom",
   "messages": [
     {
       "type": "sent",
@@ -89,3 +91,6 @@
     }
   ]
 }
+
+]
+      
