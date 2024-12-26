@@ -1,14 +1,62 @@
- [
+[
   {
-    "name": "Alpha",
-    "number": 2,
-    "image": "https://www.siasat.com/wp-content/uploads/2024/11/sddefault.jpg",
+    "name": "MrBeast",
+    "number": 1,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/2/2d/MrBeast_Logo.jpg",
     "texture": "url('https://itzfew.github.io/Adver/img/nature-texture-photos.jpg')"
   },
   {
-    "name": "Ramayana",
-    "number": 1,
-    "image": "https://cdn.siasat.com/wp-content/uploads/2024/04/Ramayana-1.jpg",
+    "name": "T-Series",
+    "number": 2,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/31/T-Series_Logo.jpg",
+    "texture": "url('https://itzfew.github.io/Adver/img/nature-texture-photos.jpg')"
+  },
+  {
+    "name": "CoComelon",
+    "number": 3,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/4/4f/CoComelon_Logo.jpg",
+    "texture": "url('https://itzfew.github.io/Adver/img/nature-texture-photos.jpg')"
+  },
+  {
+    "name": "SET India",
+    "number": 4,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/0/08/SET_India_logo_2020.svg",
+    "texture": "url('https://itzfew.github.io/Adver/img/nature-texture-photos.jpg')"
+  },
+  {
+    "name": "Vlad and Niki",
+    "number": 5,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Vlad_and_Niki_logo.jpg",
+    "texture": "url('https://itzfew.github.io/Adver/img/nature-texture-photos.jpg')"
+  },
+  {
+    "name": "Kids Diana Show",
+    "number": 6,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Kids_Diana_Show_logo.jpg",
+    "texture": "url('https://itzfew.github.io/Adver/img/nature-texture-photos.jpg')"
+  },
+  {
+    "name": "Like Nastya",
+    "number": 7,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/9/95/Like_Nastya_logo.jpg",
+    "texture": "url('https://itzfew.github.io/Adver/img/nature-texture-photos.jpg')"
+  },
+  {
+    "name": "PewDiePie",
+    "number": 8,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/a/ab/PewDiePie_logo_2019.png",
+    "texture": "url('https://itzfew.github.io/Adver/img/nature-texture-photos.jpg')"
+  },
+  {
+    "name": "Zee Music Company",
+    "number": 9,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Zee_Music_Company_logo.jpg",
+    "texture": "url('https://itzfew.github.io/Adver/img/nature-texture-photos.jpg')"
+  },
+  {
+    "name": "WWE",
+    "number": 10,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/1/18/WWE_Logo.svg",
     "texture": "url('https://itzfew.github.io/Adver/img/nature-texture-photos.jpg')"
   }
 ]
