@@ -70,14 +70,14 @@
       word-wrap: break-word;
     }
 
-    .message-personal {
+    .message-me {
       background: linear-gradient(120deg, #00DBDE, #FC00FF);
       color: white;
       text-align: right;
       margin-left: auto; /* Align messages to the right */
     }
 
-    .message-robot {
+    .message-user {
       background-color: #666;
       color: white;
       text-align: left;
@@ -126,6 +126,7 @@
 
   <div class="chat">
     <div class="chat-title">
+   
     </div>
 
     <div class="messages"></div>
@@ -139,27 +140,34 @@
   <script>
     // Define custom sent and received messages in JSON format
     const messageFlow = [
-      { "sender": "robot", "message": "Hi! I am Fabio! What's your name?" },
-      { "sender": "personal", "message": "Hi Fabio! My name is John." },
-      { "sender": "robot", "message": "That's a really pretty name, John!" },
-      { "sender": "personal", "message": "Thank you! How about you?" },
-      { "sender": "robot", "message": "I'm Fabio, nice to meet you!" },
-      { "sender": "personal", "message": "Nice to meet you too! What do you do?" },
-      { "sender": "robot", "message": "I like to talk to people and help them. What about you?" },
-      { "sender": "personal", "message": "I enjoy coding and playing games." },
-      { "sender": "robot", "message": "Sounds fun! Have you started any cool projects recently?" },
-      { "sender": "personal", "message": "Yes, I'm working on a new website." },
-      { "sender": "robot", "message": "That's awesome! I bet it will be great." },
-      { "sender": "personal", "message": "Thanks, I hope so!" },
-      { "sender": "robot", "message": "Alright, gotta go! It was fun chatting with you!" },
-      { "sender": "personal", "message": "It was great chatting with you too, Fabio! Take care!" }
+      { "sender": "me", "message": "Hey, Mom!" },
+      { "sender": "user", "message": "Arrey! Kaise ho beta?" },
+      { "sender": "me", "message": "Sab thik hai, bas kaam mein busy hoon." },
+      { "sender": "user", "message": "Haan, samajh gayi thi. Sab kaise chal raha hai?" },
+      { "sender": "me", "message": "Thoda hectic hai, par manage kar le raha hoon." },
+      { "sender": "user", "message": "Accha hai! Koi madad chahiye?" },
+      { "sender": "me", "message": "Nahi, abhi ke liye sab theek hai. Par thank you!" },
+      { "sender": "user", "message": "Theek hai, dhyaan rakhna apna!" },
+      { "sender": "me", "message": "Haan, haan, bas abhi thoda break le raha hoon." },
+      { "sender": "user", "message": "Acha! Aur aaj dinner mein kya bana rahe ho?" },
+      { "sender": "me", "message": "Socha tha pasta bana leta hoon." },
+      { "sender": "user", "message": "Mmmm, pasta! Bilkul banta hai!" },
+      { "sender": "me", "message": "Haan, simple hai aur jaldi ho jaata hai." },
+      { "sender": "user", "message": "Bilkul! Enjoy karo apna dinner." },
+      { "sender": "me", "message": "Thanks, Mom! Tumhara bhi khayal rakhna." },
+      { "sender": "user", "message": "Haan, beta. Tumhare bina sab kuch udaas lagta hai." },
+      { "sender": "me", "message": "Aww, Mom, don’t worry, I’m just a message away!" },
+      { "sender": "user", "message": "I know, beta! Par teri yaad aati hai har waqt." },
+      { "sender": "me", "message": "I miss you too, Mom. We should meet soon!" },
+      { "sender": "user", "message": "Bilkul, jaldi milte hain! I love you!" },
+      { "sender": "me", "message": "Love you too, take care!" }
     ];
 
     const $messages = document.querySelector('.messages');
     const $input = document.querySelector('.message-input');
     let currentMessageIndex = 0;
 
-    // Function to simulate typing effect for personal (user) messages only
+    // Function to simulate typing effect for "me" (user) messages only
     function simulateTyping(message, className) {
       const messageDiv = document.createElement('div');
       messageDiv.classList.add('message', className);
@@ -176,7 +184,7 @@
           // Once the typing is done, show the next message after a delay
           setTimeout(autoChat, 1000);
         }
-      }, 100); // Adjust typing speed here
+      }, 50); // Adjust typing speed here
     }
 
     // Function to simulate the chat flow, one message at a time
@@ -186,23 +194,23 @@
         const sender = currentMessage.sender;
         const messageText = currentMessage.message;
 
-        // If the message is sent by the user (personal), apply the typewriter effect
-        if (sender === "personal") {
-          simulateTyping(messageText, 'message-personal');
+        // If the message is sent by the user ("me"), apply the typewriter effect
+        if (sender === "me") {
+          simulateTyping(messageText, 'message-me');
         } else {
-          // If it's a robot message, show "..." first, then the message after 1 second
+          // If it's a "user" message, show "..." first, then the message after 1 second
           const messageDiv = document.createElement('div');
-          messageDiv.classList.add('message', 'message-robot');
+          messageDiv.classList.add('message', 'message-user');
           messageDiv.innerText = '...';
           $messages.appendChild(messageDiv);
           $messages.scrollTop = $messages.scrollHeight;
 
           setTimeout(function() {
-            // After 1 second, show the robot message
+            // After 1 second, show the "user" message
             messageDiv.innerText = messageText;
             $messages.scrollTop = $messages.scrollHeight;
             setTimeout(autoChat, 1000); // Wait a moment before sending the next message
-          }, 1000); // Delay before showing the robot's message
+          }, 1000); // Delay before showing the "user" message
         }
 
         currentMessageIndex++;
