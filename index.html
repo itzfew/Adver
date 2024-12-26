@@ -1,356 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WhatsApp-like Chat</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    
-    <style>
-        /* Basic Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automatic Chat Simulation</title>
+  <style>
+    /* Reset margin and padding */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #2a2a2a;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 14px;
+      line-height: 1.3;
+      overflow: hidden;
+      background-size: cover;
+    }
 
-        body, html {
-            height: 100%;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #e5ddd5;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        }
+    /* Full-screen chat container */
+    .chat {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 10px;
+      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+    }
 
-        .chat-container {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            width: 100%;
-            max-width: 450px;
-            background-color: #fff;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
+    /* Title bar */
+    .chat-title {
+      background: rgba(0, 0, 0, 0.3);
+      padding: 15px;
+      color: white;
+      text-align: left;
+      font-size: 20px;
+      text-transform: uppercase;
+    }
 
-        /* Chat Box */
-        .chat-box {
-            flex: 1;
-            padding: 15px;
-            overflow-y: auto;
-            background-color: #f1f1f1;
-            border-bottom: 1px solid #ddd;
-        }
+    /* Chat messages container */
+    .messages {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      color: white;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
 
-        /* Message bubbles */
-        .message {
-            display: flex;
-            margin-bottom: 15px;
-            align-items: flex-end;
-        }
+    /* Message styles */
+    .message {
+      padding: 12px 16px;
+      margin: 8px 0;
+      border-radius: 12px;
+      max-width: 80%;
+      word-wrap: break-word;
+    }
 
-        .message.sent {
-            justify-content: flex-end;
-        }
+    .message-me {
+      background: linear-gradient(120deg, #00DBDE, #FC00FF);
+      color: white;
+      text-align: right;
+      margin-left: auto; /* Align messages to the right */
+    }
 
-        .message.received {
-            justify-content: flex-start;
-        }
+    .message-user {
+      background-color: #666;
+      color: white;
+      text-align: left;
+      margin-right: auto; /* Align messages to the left */
+    }
 
-        .message p {
-            max-width: 80%;
-            padding: 10px;
-            border-radius: 20px;
-            font-size: 14px;
-            line-height: 20px;
-        }
+    /* Message input box */
+    .message-box {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 10px;
+      position: relative;
+    }
 
-        .message.sent p {
-            background-color: #dcf8c6;
-            color: black;
-        }
+    .message-input {
+      width: 100%;
+      padding: 12px;
+      background-color: #333;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      resize: none;
+      font-size: 14px;
+    }
 
-        .message.received p {
-            background-color: #25d366;
-            color: white;
-        }
+    .message-submit {
+      display: none;
+    }
 
-        .timestamp {
-            font-size: 10px;
-            color: #999;
-            margin-top: 5px;
-        }
+    /* Custom Scrollbar for the messages container */
+    .messages::-webkit-scrollbar {
+      width: 6px;
+    }
 
-        /* Input Box */
-        .input-box {
-            display: flex;
-            padding: 15px;
-            background-color: #fff;
-            border-top: 1px solid #ddd;
-            align-items: center;
-        }
+    .messages::-webkit-scrollbar-thumb {
+      background: #888;
+      border-radius: 3px;
+    }
 
-        .input-box input {
-            flex: 1;
-            padding: 12px 15px;
-            border-radius: 25px;
-            border: 1px solid #ddd;
-            outline: none;
-            font-size: 14px;
-            background-color: #f5f5f5;
-        }
-
-        .input-box input:focus {
-            border-color: #25d366;
-        }
-
-        .input-box i {
-            margin-left: 10px;
-            cursor: pointer;
-            font-size: 22px;
-            color: #25d366;
-        }
-
-        .input-box i:hover {
-            color: #007bff;
-        }
-
-        /* Attachment icons */
-        .attachment-icons {
-            display: flex;
-            gap: 15px;
-            margin-left: 10px;
-        }
-
-        /* Fullscreen mode */
-        .chat-container {
-            max-width: 100%;
-            max-height: 100%;
-            height: 100vh;
-        }
-
-        /* Scrollbar */
-        .chat-box::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .chat-box::-webkit-scrollbar-thumb {
-            background-color: #ddd;
-            border-radius: 10px;
-        }
-
-        .chat-box::-webkit-scrollbar-track {
-            background-color: #f1f1f1;
-        }
-
-        /* Keyboard Styles */
-        .keyboard {
-            display: grid;
-            grid-template-columns: repeat(10, 1fr);
-            gap: 10px;
-            padding: 10px;
-            background-color: #f5f5f5;
-            border-top: 1px solid #ddd;
-        }
-
-        .keyboard button {
-            padding: 15px;
-            font-size: 16px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background-color: #fff;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .keyboard button:hover {
-            background-color: #25d366;
-            color: white;
-        }
-
-        .keyboard button:active {
-            background-color: #128c7e;
-        }
-
-    </style>
+  </style>
 </head>
 <body>
 
-    <div class="chat-container">
-        <!-- Chat Messages -->
-        <div id="chat-box" class="chat-box"></div>
-
-        <!-- Input Box -->
-        <div class="input-box">
-            <!-- Message Input -->
-            <input type="text" id="message-input" placeholder="Type a message..." onkeyup="sendMessage(event)">
-            
-            <!-- Attachment Icons -->
-            <div class="attachment-icons">
-              
-                <i class="fas fa-camera" title="Camera" onclick="openCamera()"></i>
-                <i class="fas fa-microphone" title="Voice Message" onclick="recordVoice()"></i>
-                <i class="fas fa-paper-plane" title="Send" onclick="sendMessageClick()"></i>
-            </div>
-        </div>
-
-        <!-- Keyboard -->
-        <div class="keyboard">
-            <!-- Adding buttons for numbers and letters -->
-            <button onclick="insertText('1')">1</button>
-            <button onclick="insertText('2')">2</button>
-            <button onclick="insertText('3')">3</button>
-            <button onclick="insertText('4')">4</button>
-            <button onclick="insertText('5')">5</button>
-            <button onclick="insertText('6')">6</button>
-            <button onclick="insertText('7')">7</button>
-            <button onclick="insertText('8')">8</button>
-            <button onclick="insertText('9')">9</button>
-            <button onclick="insertText('0')">0</button>
-
-            <button onclick="insertText('Q')">Q</button>
-            <button onclick="insertText('W')">W</button>
-            <button onclick="insertText('E')">E</button>
-            <button onclick="insertText('R')">R</button>
-            <button onclick="insertText('T')">T</button>
-            <button onclick="insertText('Y')">Y</button>
-            <button onclick="insertText('U')">U</button>
-            <button onclick="insertText('I')">I</button>
-            <button onclick="insertText('O')">O</button>
-            <button onclick="insertText('P')">P</button>
-
-            <button onclick="insertText('A')">A</button>
-            <button onclick="insertText('S')">S</button>
-            <button onclick="insertText('D')">D</button>
-            <button onclick="insertText('F')">F</button>
-            <button onclick="insertText('G')">G</button>
-            <button onclick="insertText('H')">H</button>
-            <button onclick="insertText('J')">J</button>
-            <button onclick="insertText('K')">K</button>
-            <button onclick="insertText('L')">L</button>
-
-            <button onclick="insertText(' ')">Space</button>
-            <button onclick="insertText('Z')">Z</button>
-            <button onclick="insertText('X')">X</button>
-            <button onclick="insertText('C')">C</button>
-            <button onclick="insertText('V')">V</button>
-            <button onclick="insertText('B')">B</button>
-            <button onclick="insertText('N')">N</button>
-            <button onclick="insertText('M')">M</button>
-            <button onclick="deleteLast()">Del</button>
-        </div>
+  <div class="chat">
+    <div class="chat-title">
     </div>
 
-    <script>
-        let messages = [
-            { type: "sent", text: "Hey, how's it going?" },
-            { type: "received", text: "I'm doing well, thanks! How about you?" },
-            { type: "sent", text: "I'm good! Just trying out this WhatsApp clone." },
-            { type: "received", text: "Looks great! Keep up the good work!" }
-        ];
+    <div class="messages"></div>
 
-        function displayMessages() {
-            const chatBox = document.getElementById('chat-box');
-            chatBox.innerHTML = ""; // Clear the chat box
+    <div class="message-box">
+      <textarea class="message-input" placeholder="Type your message..."></textarea>
+      <button class="message-submit">Send</button>
+    </div>
+  </div>
 
-            messages.forEach(msg => {
-                const messageDiv = document.createElement('div');
-                messageDiv.classList.add('message', msg.type);
+  <script>
+    // Define custom sent and received messages in JSON format
+    const messageFlow = [
+      { "sender": "user", "message": "Hi! I am Fabio! What's your name?" },
+      { "sender": "me", "message": "Hi Fabio! My name is John." },
+      { "sender": "user", "message": "That's a really pretty name, John!" },
+      { "sender": "me", "message": "Thank you! How about you?" },
+      { "sender": "user", "message": "I'm Fabio, nice to meet you!" },
+      { "sender": "me", "message": "Nice to meet you too! What do you do?" },
+      { "sender": "user", "message": "I like to talk to people and help them. What about you?" },
+      { "sender": "me", "message": "I enjoy coding and playing games." },
+      { "sender": "user", "message": "Sounds fun! Have you started any cool projects recently?" },
+      { "sender": "me", "message": "Yes, I'm working on a new website." },
+      { "sender": "user", "message": "That's awesome! I bet it will be great." },
+      { "sender": "me", "message": "Thanks, I hope so!" },
+      { "sender": "user", "message": "Alright, gotta go! It was fun chatting with you!" },
+      { "sender": "me", "message": "It was great chatting with you too, Fabio! Take care!" }
+    ];
 
-                const p = document.createElement('p');
-                p.textContent = msg.text;
+    const $messages = document.querySelector('.messages');
+    const $input = document.querySelector('.message-input');
+    let currentMessageIndex = 0;
 
-                const timestamp = document.createElement('div');
-                timestamp.classList.add('timestamp');
-                timestamp.textContent = new Date().toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+    // Function to simulate typing effect for "me" (user) messages only
+    function simulateTyping(message, className) {
+      const messageDiv = document.createElement('div');
+      messageDiv.classList.add('message', className);
+      $messages.appendChild(messageDiv);
+      $messages.scrollTop = $messages.scrollHeight;
 
-                messageDiv.appendChild(p);
-                messageDiv.appendChild(timestamp);
-                chatBox.appendChild(messageDiv);
-            });
+      let i = 0;
+      messageDiv.innerHTML = '';
+      let typingTimer = setInterval(function() {
+        messageDiv.innerHTML += message[i];
+        i++;
+        if (i === message.length) {
+          clearInterval(typingTimer);
+          // Once the typing is done, show the next message after a delay
+          setTimeout(autoChat, 1000);
+        }
+      }, 100); // Adjust typing speed here
+    }
 
-            // Scroll to the bottom of the chat box
-            chatBox.scrollTop = chatBox.scrollHeight;
+    // Function to simulate the chat flow, one message at a time
+    function autoChat() {
+      if (currentMessageIndex < messageFlow.length) {
+        const currentMessage = messageFlow[currentMessageIndex];
+        const sender = currentMessage.sender;
+        const messageText = currentMessage.message;
+
+        // If the message is sent by the user ("me"), apply the typewriter effect
+        if (sender === "me") {
+          simulateTyping(messageText, 'message-me');
+        } else {
+          // If it's a "user" message, show "..." first, then the message after 1 second
+          const messageDiv = document.createElement('div');
+          messageDiv.classList.add('message', 'message-user');
+          messageDiv.innerText = '...';
+          $messages.appendChild(messageDiv);
+          $messages.scrollTop = $messages.scrollHeight;
+
+          setTimeout(function() {
+            // After 1 second, show the "user" message
+            messageDiv.innerText = messageText;
+            $messages.scrollTop = $messages.scrollHeight;
+            setTimeout(autoChat, 1000); // Wait a moment before sending the next message
+          }, 1000); // Delay before showing the "user" message
         }
 
-        function sendMessage(event) {
-            const input = document.getElementById('message-input');
-            if (event.key === "Enter" && input.value.trim() !== "") {
-                const newMessage = {
-                    type: "sent",
-                    text: input.value.trim(),
-                };
+        currentMessageIndex++;
+      }
+    }
 
-                messages.push(newMessage);
-
-                // Simulate auto reply after 1 second
-                setTimeout(() => {
-                    const replyMessage = {
-                        type: "received",
-                        text: "Auto-reply: " + input.value.trim(),
-                    };
-                    messages.push(replyMessage);
-                    displayMessages();
-                }, 1000);
-
-                input.value = ""; // Clear the input
-                displayMessages();
-            }
-        }
-
-        // Function to send message via button click
-        function sendMessageClick() {
-            const input = document.getElementById('message-input');
-            if (input.value.trim() !== "") {
-                const newMessage = {
-                    type: "sent",
-                    text: input.value.trim(),
-                };
-
-                messages.push(newMessage);
-
-                // Simulate auto reply after 1 second
-                setTimeout(() => {
-                    const replyMessage = {
-                        type: "received",
-                        text: "Auto-reply: " + input.value.trim(),
-                    };
-                    messages.push(replyMessage);
-                    displayMessages();
-                }, 1000);
-
-                input.value = ""; // Clear the input
-                displayMessages();
-            }
-        }
-
-        // Insert text into the message input field
-        function insertText(text) {
-            const input = document.getElementById('message-input');
-            input.value += text;
-        }
-
-        // Delete the last character in the input field
-        function deleteLast() {
-            const input = document.getElementById('message-input');
-            input.value = input.value.slice(0, -1);
-        }
-
-        // Dummy functions for Camera and Voice (can be replaced with actual logic)
-        function openCamera() {
-            console.log("Open Camera");
-        }
-
-        function recordVoice() {
-            console.log("Record Voice");
-        }
-
-        // Initial call to display existing messages
-        displayMessages();
-    </script>
+    // Start the automatic chat when the page loads
+    window.onload = function() {
+      autoChat();
+    };
+  </script>
 
 </body>
 </html>
