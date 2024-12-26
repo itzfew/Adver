@@ -107,29 +107,46 @@
   </div>
 
   <script>
-    // Define custom sent and received messages in JSON format with background image URL
+    // Function to get query parameters from the URL
+    function getQueryParam(name) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+
+    // Get the background URL from the query string
+    const backgroundUrl = getQueryParam('url');
+
+    // If a background URL is provided in the query string, update the body background
+    if (backgroundUrl) {
+      document.body.style.backgroundImage = `url('${backgroundUrl}')`;
+    } else {
+      // Default background if no URL is passed
+      document.body.style.backgroundImage = "url('https://via.placeholder.com/1920x1080/000000/FFFFFF?text=Default+Background')";
+    }
+
+    // Define custom sent and received messages
     const messageFlow = [
-      { "sender": "me", "message": "Hey, Mom!", "background": "url('https://via.placeholder.com/1920x1080/ff7f7f/333333?text=Background+1')" },
-      { "sender": "user", "message": "Arrey! Kaise ho beta?", "background": "url('https://via.placeholder.com/1920x1080/7f7fff/333333?text=Background+2')" },
-      { "sender": "me", "message": "Sab thik hai, bas kaam mein busy hoon.", "background": "url('https://via.placeholder.com/1920x1080/7fff7f/333333?text=Background+3')" },
-      { "sender": "user", "message": "Haan, samajh gayi thi. Sab kaise chal raha hai?", "background": "url('https://via.placeholder.com/1920x1080/ff7fff/333333?text=Background+4')" },
-      { "sender": "me", "message": "Thoda hectic hai, par manage kar le raha hoon.", "background": "url('https://via.placeholder.com/1920x1080/ffbf00/333333?text=Background+5')" },
-      { "sender": "user", "message": "Accha hai! Koi madad chahiye?", "background": "url('https://via.placeholder.com/1920x1080/7fffff/333333?text=Background+6')" },
-      { "sender": "me", "message": "Nahi, abhi ke liye sab theek hai. Par thank you!", "background": "url('https://via.placeholder.com/1920x1080/7f7f7f/333333?text=Background+7')" },
-      { "sender": "user", "message": "Theek hai, dhyaan rakhna apna!", "background": "url('https://via.placeholder.com/1920x1080/ffff7f/333333?text=Background+8')" },
-      { "sender": "me", "message": "Haan, haan, bas abhi thoda break le raha hoon.", "background": "url('https://via.placeholder.com/1920x1080/ff7fff/333333?text=Background+9')" },
-      { "sender": "user", "message": "Acha! Aur aaj dinner mein kya bana rahe ho?", "background": "url('https://via.placeholder.com/1920x1080/7f7fff/333333?text=Background+10')" },
-      { "sender": "me", "message": "Socha tha pasta bana leta hoon.", "background": "url('https://via.placeholder.com/1920x1080/7fff7f/333333?text=Background+11')" },
-      { "sender": "user", "message": "Mmmm, pasta! Bilkul banta hai!", "background": "url('https://via.placeholder.com/1920x1080/ff7f7f/333333?text=Background+12')" },
-      { "sender": "me", "message": "Haan, simple hai aur jaldi ho jaata hai.", "background": "url('https://via.placeholder.com/1920x1080/7f7f7f/333333?text=Background+13')" },
-      { "sender": "user", "message": "Bilkul! Enjoy karo apna dinner.", "background": "url('https://via.placeholder.com/1920x1080/ffff7f/333333?text=Background+14')" },
-      { "sender": "me", "message": "Thanks, Mom! Tumhara bhi khayal rakhna.", "background": "url('https://via.placeholder.com/1920x1080/ffbf00/333333?text=Background+15')" },
-      { "sender": "user", "message": "Haan, beta. Tumhare bina sab kuch udaas lagta hai.", "background": "url('https://via.placeholder.com/1920x1080/7fffff/333333?text=Background+16')" },
-      { "sender": "me", "message": "Aww, Mom, don’t worry, I’m just a message away!", "background": "url('https://via.placeholder.com/1920x1080/ff7fff/333333?text=Background+17')" },
-      { "sender": "user", "message": "I know, beta! Par teri yaad aati hai har waqt.", "background": "url('https://via.placeholder.com/1920x1080/ff7f7f/333333?text=Background+18')" },
-      { "sender": "me", "message": "I miss you too, Mom. We should meet soon!", "background": "url('https://via.placeholder.com/1920x1080/ffff7f/333333?text=Background+19')" },
-      { "sender": "user", "message": "Bilkul, jaldi milte hain! I love you!", "background": "url('https://via.placeholder.com/1920x1080/7f7f7f/333333?text=Background+20')" },
-      { "sender": "me", "message": "Love you too, take care!", "background": "url('https://via.placeholder.com/1920x1080/7fff7f/333333?text=Background+21')" }
+      { "sender": "me", "message": "Hey, Mom!" },
+      { "sender": "user", "message": "Arrey! Kaise ho beta?" },
+      { "sender": "me", "message": "Sab thik hai, bas kaam mein busy hoon." },
+      { "sender": "user", "message": "Haan, samajh gayi thi. Sab kaise chal raha hai?" },
+      { "sender": "me", "message": "Thoda hectic hai, par manage kar le raha hoon." },
+      { "sender": "user", "message": "Accha hai! Koi madad chahiye?" },
+      { "sender": "me", "message": "Nahi, abhi ke liye sab theek hai. Par thank you!" },
+      { "sender": "user", "message": "Theek hai, dhyaan rakhna apna!" },
+      { "sender": "me", "message": "Haan, haan, bas abhi thoda break le raha hoon." },
+      { "sender": "user", "message": "Acha! Aur aaj dinner mein kya bana rahe ho?" },
+      { "sender": "me", "message": "Socha tha pasta bana leta hoon." },
+      { "sender": "user", "message": "Mmmm, pasta! Bilkul banta hai!" },
+      { "sender": "me", "message": "Haan, simple hai aur jaldi ho jaata hai." },
+      { "sender": "user", "message": "Bilkul! Enjoy karo apna dinner." },
+      { "sender": "me", "message": "Thanks, Mom! Tumhara bhi khayal rakhna." },
+      { "sender": "user", "message": "Haan, beta. Tumhare bina sab kuch udaas lagta hai." },
+      { "sender": "me", "message": "Aww, Mom, don’t worry, I’m just a message away!" },
+      { "sender": "user", "message": "I know, beta! Par teri yaad aati hai har waqt." },
+      { "sender": "me", "message": "I miss you too, Mom. We should meet soon!" },
+      { "sender": "user", "message": "Bilkul, jaldi milte hain! I love you!" },
+      { "sender": "me", "message": "Love you too, take care!" }
     ];
 
     const $messages = document.querySelector('.messages');
@@ -140,14 +157,11 @@
     const sendReceiveSound = new Audio("https://itzfew.github.io/Adver/img/WhatsApp-Sending-Message-Sound-Effect.mp3.mp4");
 
     // Function to simulate typing effect for "me" (user) messages only
-    function simulateTyping(message, className, backgroundUrl) {
+    function simulateTyping(message, className) {
       const messageDiv = document.createElement('div');
       messageDiv.classList.add('message', className);
       $messages.appendChild(messageDiv);
       $messages.scrollTop = $messages.scrollHeight;
-
-      // Change the background
-      document.body.style.backgroundImage = backgroundUrl;
 
       let i = 0;
       messageDiv.innerHTML = '';
@@ -178,11 +192,10 @@
         const currentMessage = messageFlow[currentMessageIndex];
         const sender = currentMessage.sender;
         const messageText = currentMessage.message;
-        const backgroundUrl = currentMessage.background;
 
         // If the message is sent by the user ("me"), apply the typewriter effect
         if (sender === "me") {
-          simulateTyping(messageText, 'message-me', backgroundUrl);
+          simulateTyping(messageText, 'message-me');
         } else {
           // If it's a "user" message, show "..." first, then the message after 1 second
           const messageDiv = document.createElement('div');
@@ -194,7 +207,6 @@
           setTimeout(function() {
             // After 1 second, show the "user" message
             messageDiv.innerText = messageText;
-            document.body.style.backgroundImage = backgroundUrl; // Change the background image
             $messages.scrollTop = $messages.scrollHeight;
             setTimeout(autoChat, 1000); // Wait a moment before sending the next message
           }, 1000); // Delay before showing the "user" message
