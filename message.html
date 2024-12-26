@@ -84,32 +84,6 @@
       margin-right: auto; /* Align messages to the left */
     }
 
-    /* Message input box */
-    .message-box {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: rgba(0, 0, 0, 0.4);
-      padding: 10px;
-      position: relative;
-    }
-
-    .message-input {
-      width: 100%;
-      padding: 12px;
-      background-color: #333;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      outline: none;
-      resize: none;
-      font-size: 14px;
-    }
-
-    .message-submit {
-      display: none;
-    }
-
     /* Custom Scrollbar for the messages container */
     .messages::-webkit-scrollbar {
       width: 6px;
@@ -125,16 +99,9 @@
 <body>
 
   <div class="chat">
-    <div class="chat-title">
-   
-    </div>
+    <div class="chat-title"></div>
 
     <div class="messages"></div>
-
-    <div class="message-box">
-      <textarea class="message-input" placeholder="Type your message..."></textarea>
-      <button class="message-submit">Send</button>
-    </div>
   </div>
 
   <script>
@@ -164,8 +131,11 @@
     ];
 
     const $messages = document.querySelector('.messages');
-    const $input = document.querySelector('.message-input');
     let currentMessageIndex = 0;
+
+    // Audio elements for typing and send/receive sounds
+    const typingSound = new Audio("https://itzfew.github.io/Adver/img/keyboard-typing-5997.mp3");
+    const sendReceiveSound = new Audio("https://itzfew.github.io/Adver/img/WhatsApp-Sending-Message-Sound-Effect.mp3.mp4");
 
     // Function to simulate typing effect for "me" (user) messages only
     function simulateTyping(message, className) {
@@ -176,13 +146,23 @@
 
       let i = 0;
       messageDiv.innerHTML = '';
+      
+      // Start the typing sound when typing begins
+      typingSound.loop = true;  // Loop typing sound
+      typingSound.play();
+
       let typingTimer = setInterval(function() {
         messageDiv.innerHTML += message[i];
         i++;
         if (i === message.length) {
           clearInterval(typingTimer);
-          // Once the typing is done, show the next message after a delay
-          setTimeout(autoChat, 1000);
+          // Stop typing sound after typing is finished
+          typingSound.loop = false;  // Stop the loop
+          typingSound.pause();  // Stop playing sound
+          typingSound.currentTime = 0;  // Reset sound to start from the beginning
+          // Once the typing is done, play send/receive sound
+          sendReceiveSound.play(); // Play send/receive sound when typing is done
+          setTimeout(autoChat, 1000); // Delay before sending the next message
         }
       }, 50); // Adjust typing speed here
     }
