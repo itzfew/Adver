@@ -11,12 +11,6 @@
       padding: 0;
       box-sizing: border-box;
     }
-
-    body {
-      background: #ececec;
-      font-family: Arial, sans-serif;
-    }
-
     .chat {
       width: 350px;
       max-width: 100%;
@@ -164,13 +158,19 @@
         if (sender === "personal") {
           simulateTyping(messageText, 'message-personal');
         } else {
-          // If it's a robot message, show it instantly
+          // If it's a robot message, show "..." first, then the message after 1 second
           const messageDiv = document.createElement('div');
           messageDiv.classList.add('message', 'message-robot');
-          messageDiv.innerText = messageText;
+          messageDiv.innerText = '...';
           $messages.appendChild(messageDiv);
           $messages.scrollTop = $messages.scrollHeight;
-          setTimeout(autoChat, 1000); // Wait a moment before sending the next message
+
+          setTimeout(function() {
+            // After 1 second, show the robot message
+            messageDiv.innerText = messageText;
+            $messages.scrollTop = $messages.scrollHeight;
+            setTimeout(autoChat, 1000); // Wait a moment before sending the next message
+          }, 1000); // Delay before showing the robot's message
         }
 
         currentMessageIndex++;
