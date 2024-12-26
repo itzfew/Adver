@@ -8,55 +8,55 @@
   {
     "name": "T-Series",
     "number": 2,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/3/31/T-Series_Logo.jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/T-series-logo.svg/180px-T-series-logo.svg.png",
     "texture": "url('https://itzfew.github.io/Adver/img/nature-texture-photos.jpg')"
   },
   {
     "name": "CoComelon",
     "number": 3,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/4/4f/CoComelon_Logo.jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Cocomelon-label-hd.png/330px-Cocomelon-label-hd.png",
     "texture": "url('https://itzfew.github.io/Adver/img/nature-texture-photos.jpg')"
   },
   {
     "name": "SET India",
     "number": 4,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/0/08/SET_India_logo_2020.svg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/d/d5/New_SetIndia_Logo.png",
     "texture": "url('https://itzfew.github.io/Adver/img/nature-texture-photos.jpg')"
   },
   {
     "name": "Vlad and Niki",
     "number": 5,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Vlad_and_Niki_logo.jpg",
+    "image": "https://m.media-amazon.com/images/I/91RFZ30f1OL.jpg",
     "texture": "url('https://itzfew.github.io/Adver/img/nature-texture-photos.jpg')"
   },
   {
     "name": "Kids Diana Show",
     "number": 6,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Kids_Diana_Show_logo.jpg",
+    "image": "https://m.media-amazon.com/images/S/pv-target-images/0a9d8763232cd20c633cd42533ed0c19748f7ab691644bba8a6578777f5f1565.jpg",
     "texture": "url('https://itzfew.github.io/Adver/img/nature-texture-photos.jpg')"
   },
   {
     "name": "Like Nastya",
     "number": 7,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/9/95/Like_Nastya_logo.jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Anastasia_Radzinskaya.png/330px-Anastasia_Radzinskaya.png",
     "texture": "url('https://itzfew.github.io/Adver/img/nature-texture-photos.jpg')"
   },
   {
     "name": "PewDiePie",
     "number": 8,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/a/ab/PewDiePie_logo_2019.png",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Pewdiepie_head_shot.jpg/330px-Pewdiepie_head_shot.jpg",
     "texture": "url('https://itzfew.github.io/Adver/img/nature-texture-photos.jpg')"
   },
   {
     "name": "Zee Music Company",
     "number": 9,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Zee_Music_Company_logo.jpg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Zee_Music_Company.svg/330px-Zee_Music_Company.svg.png",
     "texture": "url('https://itzfew.github.io/Adver/img/nature-texture-photos.jpg')"
   },
   {
     "name": "WWE",
     "number": 10,
-    "image": "https://upload.wikimedia.org/wikipedia/commons/1/18/WWE_Logo.svg",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/WWE_official_logo.svg/225px-WWE_official_logo.svg.png",
     "texture": "url('https://itzfew.github.io/Adver/img/nature-texture-photos.jpg')"
   }
 ]
