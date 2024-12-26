@@ -1,59 +1,5 @@
  [
   {
-    "name": "Raid 2",
-    "number": 11,
-    "image": "https://www.siasat.com/wp-content/uploads/2024/11/ET00382745.jpg.avif",
-    "texture": "url('https://itzfew.github.io/Adver/img/nature-texture-photos.jpg')"
-  },
-  {
-    "name": "Lahore 1947",
-    "number": 10,
-    "image": "https://cdn.siasat.com/wp-content/uploads/2024/11/ffc79761_73a9_4436_a5d1_faaa16e3ea0e.webp.avif",
-    "texture": "url('https://itzfew.github.io/Adver/img/nature-texture-photos.jpg')"
-  },
-  {
-    "name": "Sky Force",
-    "number": 9,
-    "image": "https://cdn.siasat.com/wp-content/uploads/2024/11/et00371539-wzjxuycgmq-landscape.jpg.avif",
-    "texture": "url('https://itzfew.github.io/Adver/img/nature-texture-photos.jpg')"
-  },
-  {
-    "name": "Bhooth Bangla",
-    "number": 8,
-    "image": "https://cdn.siasat.com/wp-content/uploads/2024/11/Bhoot-Bangla-Gallery-d84b0110-6f47-11ef-8cab-43ca45a3e1e8.jpg-1.avif",
-    "texture": "url('https://itzfew.github.io/Adver/img/nature-texture-photos.jpg')"
-  },
-  {
-    "name": "Jolly LLB 3",
-    "number": 7,
-    "image": "https://cdn.siasat.com/wp-content/uploads/2024/11/6198-its-confirmed-jolly-llb-3-on-the-way.jpg",
-    "texture": "url('https://itzfew.github.io/Adver/img/nature-texture-photos.jpg')"
-  },
-  {
-    "name": "Golmaal 5",
-    "number": 6,
-    "image": "https://cdn.siasat.com/wp-content/uploads/2024/11/golmaal-5-announcement.jpg",
-    "texture": "url('https://itzfew.github.io/Adver/img/nature-texture-photos.jpg')"
-  },
-  {
-    "name": "Housefull 5",
-    "number": 5,
-    "image": "https://www.siasat.com/wp-content/uploads/2024/11/MV5BNWQ0ZTM3OTUtMzAxNy00MDI4LTlmOTEtMWE4NDAzYTkyNGY3XkEyXkFqcGc@._V1_-1223x1536.jpg",
-    "texture": "url('https://itzfew.github.io/Adver/img/nature-texture-photos.jpg')"
-  },
-  {
-    "name": "War 2",
-    "number": 4,
-    "image": "https://cdn.siasat.com/wp-content/uploads/2024/09/Hrithik-Roshan.jpg",
-    "texture": "url('https://itzfew.github.io/Adver/img/nature-texture-photos.jpg')"
-  },
-  {
-    "name": "Sikandar",
-    "number": 3,
-    "image": "https://cdn.siasat.com/wp-content/uploads/2024/09/Sikandar-1.jpg",
-    "texture": "url('https://itzfew.github.io/Adver/img/nature-texture-photos.jpg')"
-  },
-  {
     "name": "Alpha",
     "number": 2,
     "image": "https://www.siasat.com/wp-content/uploads/2024/11/sddefault.jpg",
