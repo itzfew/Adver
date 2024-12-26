@@ -1,34 +1,58 @@
 [
-    {
-        "type": "sent",
-        "text": "Hey, how's it going?"
-    },
-    {
-        "type": "received",
-        "text": "I'm doing well, thanks! How about you?"
-    },
-    {
-        "type": "sent",
-        "text": "I'm good! Just trying out this WhatsApp clone."
-    },
-    {
-        "type": "received",
-        "text": "Looks great! Keep up the good work!"
-    },
-    {
-        "type": "sent",
-        "text": "Any plans for the weekend?"
-    },
-    {
-        "type": "received",
-        "text": "Yes, I'm going hiking. What about you?"
-    },
-    {
-        "type": "sent",
-        "text": "I might go for a movie. Any recommendations?"
-    },
-    {
-        "type": "received",
-        "text": "How about the new action movie? It's supposed to be amazing!"
-    }
+  {
+    "sender": "user",
+    "message": "Hi! I am Fabio! What's your name?"
+  },
+  {
+    "sender": "me",
+    "message": "Hi Fabio! My name is John."
+  },
+  {
+    "sender": "user",
+    "message": "That's a really pretty name, John!"
+  },
+  {
+    "sender": "me",
+    "message": "Thank you! How about you?"
+  },
+  {
+    "sender": "user",
+    "message": "I'm Fabio, nice to meet you!"
+  },
+  {
+    "sender": "me",
+    "message": "Nice to meet you too! What do you do?"
+  },
+  {
+    "sender": "user",
+    "message": "I like to talk to people and help them. What about you?"
+  },
+  {
+    "sender": "me",
+    "message": "I enjoy coding and playing games."
+  },
+  {
+    "sender": "user",
+    "message": "Sounds fun! Have you started any cool projects recently?"
+  },
+  {
+    "sender": "me",
+    "message": "Yes, I'm working on a new website."
+  },
+  {
+    "sender": "user",
+    "message": "That's awesome! I bet it will be great."
+  },
+  {
+    "sender": "me",
+    "message": "Thanks, I hope so!"
+  },
+  {
+    "sender": "user",
+    "message": "Alright, gotta go! It was fun chatting with you!"
+  },
+  {
+    "sender": "me",
+    "message": "It was great chatting with you too, Fabio! Take care!"
+  }
 ]
