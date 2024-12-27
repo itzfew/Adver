@@ -139,10 +139,38 @@
 
   <script>
     // Define custom sent and received messages in JSON format
-    const messageFlow = [
-      { "sender": "me", "message": "my message" },
-      { "sender": "user", "message": "users message" }
-    ];
+const messageFlow = [
+  { "sender": "me", "message": "Hey, kaisi ho? Kaafi time se baat nahi hui." },
+  { "sender": "user", "message": "Bas, thoda busy thi... thoda sad bhi hoon." },
+  { "sender": "me", "message": "Kya hua? Tum thoda upset lag rahi ho." },
+  { "sender": "user", "message": "Bas, kuch cheezein chal rahi hain life mein." },
+  { "sender": "me", "message": "Tumhare liye jo bhi ho, main hamesha yahan hoon." },
+  { "sender": "user", "message": "I know, par kuch samajh nahi aata... sab confusing lag raha hai." },
+  { "sender": "me", "message": "Mujhe batao na, maybe kuch bekaar ka tension hai jo tum par hai." },
+  { "sender": "user", "message": "Mujhe lagta hai, main kuch galat kar rahi hoon apni life mein." },
+  { "sender": "me", "message": "Koi galat decision nahi hai. Sab kuch seekhne ka hissa hota hai." },
+  { "sender": "user", "message": "Lekin kabhi kabhi lagta hai ki kuch chhupane ki wajah se sab galat ho raha hai." },
+  { "sender": "me", "message": "Kya chhupane ki baat hai? Tumhare saath kuch nahi hona chahiye jo tumhe chupana pade." },
+  { "sender": "user", "message": "Bas, kuch cheezein hain jo main nahi bata sakti tumhe." },
+  { "sender": "me", "message": "Agar tumhe lagta hai ki mujhe jaanne se kuch farak padta hai, toh main samajh sakta hoon." },
+  { "sender": "user", "message": "Nahi, farak nahi padta... bas, kuch dar lagta hai." },
+  { "sender": "me", "message": "Main tumhare saath hoon, tumhe darne ki koi zarurat nahi." },
+  { "sender": "user", "message": "Par kabhi kabhi lagta hai, main kuch deserve nahi karti." },
+  { "sender": "me", "message": "Yeh bilkul galat hai! Tum jo ho, waise hi perfect ho." },
+  { "sender": "user", "message": "Mujhe samajh nahi aata, har din kuch aur complicated hota jaa raha hai." },
+  { "sender": "me", "message": "Life kabhi simple nahi hoti, par hum saath hain, sab theek ho jayega." },
+  { "sender": "user", "message": "I hope so... kabhi kabhi lagta hai ki sab kuch bohot mushkil ho gaya hai." },
+  { "sender": "me", "message": "Mujhe pata hai, lekin hum saath hain, aur kisi bhi mushkil se hum nikal sakte hain." },
+  { "sender": "user", "message": "Thanks, tumhara saath bohot zaruri hai." },
+  { "sender": "me", "message": "Aur tumhara saath mere liye sabse zaruri hai. Tum bilkul bhi akeli nahi ho." },
+  { "sender": "user", "message": "Mujhe tumhare saath sab kuch thoda better lagta hai." },
+  { "sender": "me", "message": "Phir chalo, milte hain aur baat karte hain. Sab thik ho jayega." },
+  { "sender": "user", "message": "Haan, milte hain. Tumse milne se thoda comfort milta hai." },
+  { "sender": "me", "message": "Main hamesha tumhare saath hoon. Tum kuch bhi ho, tumse zyada important koi nahi." },
+  { "sender": "user", "message": "Muaah! 😘 Tum bohot sweet ho." },
+  { "sender": "me", "message": "Mujhe tum bhi utni hi sweet lagti ho." }
+];
+
 
     const $messages = document.querySelector('.messages');
     const $input = document.querySelector('.message-input');
